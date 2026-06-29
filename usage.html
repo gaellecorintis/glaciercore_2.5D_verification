@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Usage &mdash; Corintis project template 2026.06 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customstyle.css?v=43b63fb2" />
+      <link rel="stylesheet" type="text/css" href="_static/customstyle.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_latex_numbering.css?v=188b0fb8" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customstyle.css?v=43b63fb2" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=ff5d30e9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Project procedure" href="project_procedure.html" />
+    <link rel="prev" title="4. Documentation" href="documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Corintis project template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">1. Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="purpose.html#corintis-project-template">2. Corintis Project Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">3. Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">4. Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-project-from-the-template">5.1. Create a project from the template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-compute-instance">5.2. Set up the compute instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#power-maps">5.3. Power maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manipulating-power-maps">5.3.1. Manipulating power maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#straight-channel-simulation">5.4. Straight-channel simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#case-folder-contents">5.4.1. Case folder contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-it">5.4.2. Run it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sanity-checks">5.4.3. Sanity checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#topology-optimization">5.5. Topology optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#zebraflow-recommended">5.5.1. Zebraflow (recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#density-based-topology-optimization">5.5.2. Density-based topology optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dune-fixed-pattern-designs">5.6. Dune fixed-pattern designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#body-fitted-simulation-of-a-selected-design">5.7. Body-fitted simulation of a selected design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#meshing-directly-from-a-dxf">5.7.1. Meshing directly from a DXF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting">5.8. Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#document-results-in-notion">5.9. Document results in Notion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-hygiene">5.10. Data hygiene</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_procedure.html">6. Project procedure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codedocumentation.html">7. Scripts and utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Corintis project template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1><span class="section-number">5. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<p>This page walks through the end-to-end workflow the template supports, from a
+fresh instance to documented results. Every command uses the <strong>current</strong>
+glaciercore CLI (Python 3.14 workspace, glaciercore v0.22+).</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-a-project-from-the-template" id="id2">Create a project from the template</a></p></li>
+<li><p><a class="reference internal" href="#set-up-the-compute-instance" id="id3">Set up the compute instance</a></p></li>
+<li><p><a class="reference internal" href="#power-maps" id="id4">Power maps</a></p>
+<ul>
+<li><p><a class="reference internal" href="#manipulating-power-maps" id="id5">Manipulating power maps</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#straight-channel-simulation" id="id6">Straight-channel simulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#case-folder-contents" id="id7">Case folder contents</a></p></li>
+<li><p><a class="reference internal" href="#run-it" id="id8">Run it</a></p></li>
+<li><p><a class="reference internal" href="#sanity-checks" id="id9">Sanity checks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#topology-optimization" id="id10">Topology optimization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#zebraflow-recommended" id="id11">Zebraflow (recommended)</a></p></li>
+<li><p><a class="reference internal" href="#density-based-topology-optimization" id="id12">Density-based topology optimization</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dune-fixed-pattern-designs" id="id13">Dune fixed-pattern designs</a></p></li>
+<li><p><a class="reference internal" href="#body-fitted-simulation-of-a-selected-design" id="id14">Body-fitted simulation of a selected design</a></p>
+<ul>
+<li><p><a class="reference internal" href="#meshing-directly-from-a-dxf" id="id15">Meshing directly from a DXF</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#plotting" id="id16">Plotting</a></p></li>
+<li><p><a class="reference internal" href="#document-results-in-notion" id="id17">Document results in Notion</a></p></li>
+<li><p><a class="reference internal" href="#data-hygiene" id="id18">Data hygiene</a></p></li>
+</ul>
+</nav>
+<section id="create-a-project-from-the-template">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">5.1. </span>Create a project from the template</a><a class="headerlink" href="#create-a-project-from-the-template" title="Link to this heading"></a></h2>
+<p>On GitHub, open the <a class="reference external" href="https://github.com/Corintis/project_template">project template repo</a>
+and click <span class="guilabel">Use this template</span> to create a new project. The new repo
+inherits this documentation, which you edit under <span class="guilabel">doc/</span>; pushes to
+<code class="docutils literal notranslate"><span class="pre">main</span></code> rebuild the GitHub Pages site automatically.</p>
+</section>
+<section id="set-up-the-compute-instance">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">5.2. </span>Set up the compute instance</a><a class="headerlink" href="#set-up-the-compute-instance" title="Link to this heading"></a></h2>
+<p>glaciercore (which now bundles <code class="docutils literal notranslate"><span class="pre">zebraflow</span></code> and the meshing / design / drawing
+CLIs) is a <strong>Python 3.14</strong> <code class="docutils literal notranslate"><span class="pre">uv</span></code> workspace. On a fresh GCP instance, run the
+one-command setup script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./utils/gcp_setup/basic_setup_gcp.sh<span class="w">            </span><span class="c1"># base setup</span>
+./utils/gcp_setup/basic_setup_gcp.sh<span class="w"> </span>ale<span class="w">        </span><span class="c1"># + a named profile&#39;s aliases</span>
+./utils/gcp_setup/basic_setup_gcp.sh<span class="w"> </span>--list-profiles
+</pre></div>
+</div>
+<p>It installs system packages, creates the <code class="docutils literal notranslate"><span class="pre">~/venv-glaciercore</span></code> virtualenv,
+clones and installs glaciercore + <code class="docutils literal notranslate"><span class="pre">Notion_API</span></code>, and sets up aliases (<code class="docutils literal notranslate"><span class="pre">fire</span></code>
+activates the venv, <code class="docutils literal notranslate"><span class="pre">glock</span></code> jumps to glaciercore). User aliases live in
+<code class="docutils literal notranslate"><span class="pre">utils/gcp_setup/profiles.json</span></code>. For the Notion upload, copy <code class="docutils literal notranslate"><span class="pre">.env.example</span></code>
+to <code class="docutils literal notranslate"><span class="pre">.env</span></code> and fill in your credentials (the script bootstraps this for you).</p>
+</section>
+<section id="power-maps">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">5.3. </span>Power maps</a><a class="headerlink" href="#power-maps" title="Link to this heading"></a></h2>
+<p>Power maps drive both simulation and optimization. Organize them by format
+version under <span class="guilabel">powermap/</span>:</p>
+<ul class="simple">
+<li><p><span class="guilabel">powermap/original_powermap/</span> — the raw map as delivered by the customer.</p></li>
+<li><p><span class="guilabel">powermap/powermap_v1/</span>, <span class="guilabel">powermap_v2/</span> — legacy formats, kept for reference.</p></li>
+<li><p><span class="guilabel">powermap/powermap_v3/</span> — the <strong>current</strong> physical format that the run
+scripts consume: the first row holds the <em>x</em> cell-centre coordinates and the
+first column the <em>y</em> cell-centre coordinates, with the origin at the bottom-left.</p></li>
+</ul>
+<p>The example <code class="docutils literal notranslate"><span class="pre">powermap_v3/powermap_example.csv</span></code> spans <strong>3.0 mm × 4.0 mm</strong> to match
+the chip footprint shared by every example case. glaciercore checks the power-map
+extent against the mesh heating region, so if you change a chip’s <code class="docutils literal notranslate"><span class="pre">chip_width</span></code> /
+<code class="docutils literal notranslate"><span class="pre">chip_length</span></code> you must rescale or regenerate the map to match.</p>
+<section id="manipulating-power-maps">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">5.3.1. </span>Manipulating power maps</a><a class="headerlink" href="#manipulating-power-maps" title="Link to this heading"></a></h3>
+<p>Power-map utilities ship with glaciercore under
+<code class="docutils literal notranslate"><span class="pre">glaciercore_scripts/powermap_utils/</span></code> — use them rather than maintaining local
+copies:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Tool (<code class="docutils literal notranslate"><span class="pre">glaciercore_scripts/powermap_utils/...</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Split into halves / quarters</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">powermap_manipulators/split.py</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Worst-case (element-wise max)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">powermap_manipulators/create_worst_case_powermap.py</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Apply an HBM power profile</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">powermap_manipulators/apply_hbm.py</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Convert v1 → v3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">powermap_converters/from_v1_to_v3.py</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Visualize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">powermap_visualizers/powermap_visualizer.py</span> <span class="pre">-v</span> <span class="pre">v3</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The former <code class="docutils literal notranslate"><span class="pre">generate_sub_powermaps.py</span></code> scripts were removed — their
+splitting and worst-case functionality is fully covered by the tools above,
+which track the current power-map API.</p>
+</div>
+</section>
+</section>
+<section id="straight-channel-simulation">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">5.4. </span>Straight-channel simulation</a><a class="headerlink" href="#straight-channel-simulation" title="Link to this heading"></a></h2>
+<p>A straight-channel run is the usual first check of a chip’s thermal performance.
+Each case lives in its own folder under <span class="guilabel">simulations/</span>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simulations/straight_channels_100micrometers
+</pre></div>
+</div>
+<section id="case-folder-contents">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">5.4.1. </span>Case folder contents</a><a class="headerlink" href="#case-folder-contents" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Files in <span class="guilabel">simulations/straight_channels_100micrometers</span></span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>File</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">parameters_mesh.json</span></code></p></th>
+<td><p>Meshing configuration (geometry, boundary markers, orthotropic regions).</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">parameters_simulation.json</span></code></p></th>
+<td><p>Simulation configuration (fluid/thermal settings, problem data, BCs).</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">generate_mesh.sh</span></code></p></th>
+<td><p>Build the mesh: <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">mesh</span> <span class="pre">straight-channels</span></code> → <code class="docutils literal notranslate"><span class="pre">mesh/straight_channels.msh</span></code> (+ <code class="docutils literal notranslate"><span class="pre">_metadata.json</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">run_simulation.sh</span></code></p></th>
+<td><p>Run the CHT solver: <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">simulate</span> <span class="pre">run</span></code> (override ranks with <code class="docutils literal notranslate"><span class="pre">NPROCS=&lt;n&gt;</span></code>).</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">run_pressure_sweep.sh</span></code></p></th>
+<td><p>Sweep the inlet pressure drop: <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">simulate</span> <span class="pre">pressure-sweep</span></code> (override with <code class="docutils literal notranslate"><span class="pre">PRESSURES=&quot;...&quot;</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">run_single_snapshot.sh</span></code></p></th>
+<td><p>Render result screenshots from a PVD: <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">postprocess</span> <span class="pre">results-snapshots</span></code>.</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">generate_all_snapshots.sh</span></code></p></th>
+<td><p>Walk a folder and render screenshots for every <code class="docutils literal notranslate"><span class="pre">simulation_results_dim.pvd</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">clean_*.sh</span></code></p></th>
+<td><p>Reset helpers that delete generated artifacts (mesh, <code class="docutils literal notranslate"><span class="pre">.h5</span></code>, ParaView, screenshots) while preserving the JSON configs.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="run-it">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">5.4.2. </span>Run it</a><a class="headerlink" href="#run-it" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>generate_mesh.sh<span class="w">        </span><span class="c1"># mesh + metadata</span>
+bash<span class="w"> </span>run_simulation.sh<span class="w">       </span><span class="c1"># NPROCS=8 bash run_simulation.sh to use 8 ranks</span>
+bash<span class="w"> </span>run_single_snapshot.sh<span class="w">  </span><span class="c1"># screenshots next to the PVD</span>
+</pre></div>
+</div>
+<p>Every run script is written defensively: it checks its inputs exist, logs the
+mesh / metadata / power-map / rank count it is about to use, and fails with an
+explicit, stage-tagged error if something is missing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">simulate</span> <span class="pre">run</span></code> now <strong>requires</strong> <code class="docutils literal notranslate"><span class="pre">--mesh-metadata</span></code> (the
+<code class="docutils literal notranslate"><span class="pre">&lt;mesh&gt;_metadata.json</span></code> emitted next to the mesh). The run scripts pass it
+automatically. To converge to a target flow rate, set the inlet boundary
+condition to <code class="docutils literal notranslate"><span class="pre">target_flow_rate</span></code> in the simulation JSON — the solver handles
+it natively, so the old external pressure-iteration loop is no longer needed.</p>
+</div>
+</section>
+<section id="sanity-checks">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">5.4.3. </span>Sanity checks</a><a class="headerlink" href="#sanity-checks" title="Link to this heading"></a></h3>
+<p>After a simulation converges, verify the terminal output and the result files
+before launching a full campaign:</p>
+<ol class="arabic simple">
+<li><p>the power map (extent matches the chip),</p></li>
+<li><p>the mesh and meshing parameters,</p></li>
+<li><p>the boundary conditions,</p></li>
+<li><p>the range and shape of the velocity and temperature fields,</p></li>
+<li><p>a spot-check of the input JSON.</p></li>
+</ol>
+</section>
+</section>
+<section id="topology-optimization">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">5.5. </span>Topology optimization</a><a class="headerlink" href="#topology-optimization" title="Link to this heading"></a></h2>
+<p>Two optimization paths are provided.</p>
+<section id="zebraflow-recommended">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">5.5.1. </span>Zebraflow (recommended)</a><a class="headerlink" href="#zebraflow-recommended" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">zebraflow</span></code> discovers the channel layout. Each design under
+<span class="guilabel">zebra_opt/</span> bundles <code class="docutils literal notranslate"><span class="pre">settings_mesh.json</span></code>, <code class="docutils literal notranslate"><span class="pre">settings_sim.json</span></code>,
+<code class="docutils literal notranslate"><span class="pre">settings_opt.json</span></code> and <code class="docutils literal notranslate"><span class="pre">run_zebra.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>zebra_opt/design001
+bash<span class="w"> </span>run_zebra.sh<span class="w">    </span><span class="c1"># NPROCS=&lt;n&gt; to override MPI ranks</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_zebra.sh</span></code> runs <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">zebraflow</span> <span class="pre">optimize</span></code> and then renders a design picture
+for each iteration mesh with <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">draw</span> <span class="pre">design</span></code>.</p>
+</section>
+<section id="density-based-topology-optimization">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">5.5.2. </span>Density-based topology optimization</a><a class="headerlink" href="#density-based-topology-optimization" title="Link to this heading"></a></h3>
+<p>The <span class="guilabel">topology_optimization/</span> folder drives the <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">optimize</span> <span class="pre">topology</span></code>
+engine on a precomputed mesh:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>topology_optimization
+bash<span class="w"> </span>generate_uniform_mesh.sh<span class="w">           </span><span class="c1"># glaciercore mesh optimization</span>
+<span class="nb">cd</span><span class="w"> </span>case_uniform_001<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bash<span class="w"> </span>run_optimization.sh
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_optimization.sh</span></code> runs <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">optimize</span> <span class="pre">topology</span></code> and then
+exports a thresholded design snapshot with <code class="docutils literal notranslate"><span class="pre">glaciercore</span> <span class="pre">postprocess</span> <span class="pre">design-snapshot</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Power-map-graded meshing (<code class="docutils literal notranslate"><span class="pre">generate_power_based_mesh.sh</span></code>) moved out of
+glaciercore into the separate
+<a class="reference external" href="https://github.com/Corintis/power_based_mesh">Corintis/power_based_mesh</a>
+package (<code class="docutils literal notranslate"><span class="pre">glaciercore-power-based-mesh</span></code>); install it if you need it. The
+script falls back with a clear message otherwise.</p>
+</div>
+</section>
+</section>
+<section id="dune-fixed-pattern-designs">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">5.6. </span>Dune fixed-pattern designs</a><a class="headerlink" href="#dune-fixed-pattern-designs" title="Link to this heading"></a></h2>
+<p>When the channel topology is prescribed up front rather than optimized, use
+<span class="guilabel">dune_design/</span>. Each design folder holds <code class="docutils literal notranslate"><span class="pre">settings_mesh.json</span></code>,
+<code class="docutils literal notranslate"><span class="pre">settings_sim.json</span></code>, <code class="docutils literal notranslate"><span class="pre">setting_dune.json</span></code> and <code class="docutils literal notranslate"><span class="pre">dune_design.sh</span></code> (which calls
+the external <code class="docutils literal notranslate"><span class="pre">dune</span></code> CLI).</p>
+</section>
+<section id="body-fitted-simulation-of-a-selected-design">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">5.7. </span>Body-fitted simulation of a selected design</a><a class="headerlink" href="#body-fitted-simulation-of-a-selected-design" title="Link to this heading"></a></h2>
+<p>A selected design picture (the <strong>split / partitioned</strong> computational sub-domain,
+in <span class="guilabel">selected_design_png/</span>) is meshed body-fitted and simulated exactly
+like the straight-channel case, except the meshing step uses <code class="docutils literal notranslate"><span class="pre">mesh</span> <span class="pre">design</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simulations/optimized_design001
+bash<span class="w"> </span>generate_mesh.sh<span class="w">    </span><span class="c1"># glaciercore mesh design --design-png ... -&gt; mesh/design.msh</span>
+bash<span class="w"> </span>run_simulation.sh
+</pre></div>
+</div>
+<p>To go from an optimization result to a body-fitted picture, threshold the
+optimization PVD:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glaciercore<span class="w"> </span>postprocess<span class="w"> </span>design-snapshot<span class="w"> </span>--json<span class="w"> </span>parameters_mesh.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--threshold<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>--input-pvd<span class="w"> </span>result/design.pvd
+</pre></div>
+</div>
+<section id="meshing-directly-from-a-dxf">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">5.7.1. </span>Meshing directly from a DXF</a><a class="headerlink" href="#meshing-directly-from-a-dxf" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">scripts/generate_mesh_from_dxf.py</span></code> meshes a chip straight from a DXF design
+(shapely-based, with optional clogging injection). This is the current
+<strong>interim</strong> route — the capability is expected to move into glaciercore later.</p>
+</section>
+</section>
+<section id="plotting">
+<span id="plotting-section"></span><h2><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">5.8. </span>Plotting</a><a class="headerlink" href="#plotting" title="Link to this heading"></a></h2>
+<p>Prefer the maintained plotting paths over hand-rolled routines:</p>
+<ol class="arabic simple">
+<li><p><strong>glaciercore postprocess plot</strong> — built-in comparison plots from sweep results
+(each sweep passed as a repeatable <code class="docutils literal notranslate"><span class="pre">--parameter-sweep</span> <span class="pre">&quot;NAME=PATH&quot;</span></code> token).</p></li>
+<li><p><strong>glaciercore_scripts/</strong> — power-map visualizers and manipulators shipped with
+glaciercore.</p></li>
+<li><p><strong>scripts/</strong> — result plots beyond the CLI: temperature stack-up waterfall
+(<code class="docutils literal notranslate"><span class="pre">waterfall_plot.py</span></code>), die-vs-HBM dumbbell (<code class="docutils literal notranslate"><span class="pre">create_dumbell_plot.py</span></code>),
+monitor-region lollipop (<code class="docutils literal notranslate"><span class="pre">create_lollipop_plot.py</span></code>), and a Customer/Project
+comparison straight from the Notion database (<code class="docutils literal notranslate"><span class="pre">create_plot_from_notion_db.py</span></code>).</p></li>
+</ol>
+<p>The pre-CLI project plotting routines are no longer maintained; they live under
+<span class="guilabel">archive_legacy/plotting/</span> for reference only.</p>
+</section>
+<section id="document-results-in-notion">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">5.9. </span>Document results in Notion</a><a class="headerlink" href="#document-results-in-notion" title="Link to this heading"></a></h2>
+<p>Push a finished design’s results to the project’s Notion database:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>notion-database/upload_design_notion.sh<span class="w">   </span><span class="c1"># edit the design metadata block first</span>
+</pre></div>
+</div>
+</section>
+<section id="data-hygiene">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">5.10. </span>Data hygiene</a><a class="headerlink" href="#data-hygiene" title="Link to this heading"></a></h2>
+<p>Only light files belong in git: JSON configs, input CSVs, and the occasional
+design <code class="docutils literal notranslate"><span class="pre">.png</span></code>. The <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> already excludes meshes, <code class="docutils literal notranslate"><span class="pre">.h5</span></code>, ParaView
+output and rendered images. Use the per-case <code class="docutils literal notranslate"><span class="pre">clean_*.sh</span></code> scripts to reset a
+folder before re-running it.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation.html" class="btn btn-neutral float-left" title="4. Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project_procedure.html" class="btn btn-neutral float-right" title="6. Project procedure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023–2026, Corintis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

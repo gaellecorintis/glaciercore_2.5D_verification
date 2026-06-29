@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Documentation &mdash; Corintis project template 2026.06 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customstyle.css?v=43b63fb2" />
+      <link rel="stylesheet" type="text/css" href="_static/customstyle.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_latex_numbering.css?v=188b0fb8" />
+      <link rel="stylesheet" type="text/css" href="_static/css/customstyle.css?v=43b63fb2" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=ff5d30e9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Usage" href="usage.html" />
+    <link rel="prev" title="3. Dependencies" href="dependencies.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Corintis project template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">1. Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="purpose.html#corintis-project-template">2. Corintis Project Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">3. Dependencies</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-update-the-documentation">4.1. How to update the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-build-locally-the-documentation">4.2. How to build locally the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-have-autodoc-and-autosummary-for-different-functions">4.3. How to have autodoc and autosummary for different functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventions-to-write-documentation-in-github-page-for-corintis">4.4. Conventions to write documentation in github page for Corintis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">5. Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_procedure.html">6. Project procedure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codedocumentation.html">7. Scripts and utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Corintis project template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/documentation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="documentation">
+<h1><span class="section-number">4. </span>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h1>
+<section id="how-to-update-the-documentation">
+<h2><span class="section-number">4.1. </span>How to update the documentation<a class="headerlink" href="#how-to-update-the-documentation" title="Link to this heading"></a></h2>
+<p>Update directly the files in the doc folder. These will be compiled and updated through github (github actions) upon push in the main branch.</p>
+</section>
+<section id="how-to-build-locally-the-documentation">
+<h2><span class="section-number">4.2. </span>How to build locally the documentation<a class="headerlink" href="#how-to-build-locally-the-documentation" title="Link to this heading"></a></h2>
+<p>In the repository in your computed, use the following commands :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>_build
+</pre></div>
+</div>
+<p>Then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>-W<span class="w"> </span>-b<span class="w"> </span>linkcheck<span class="w"> </span>-d<span class="w"> </span>_build/doctrees<span class="w"> </span>_build/html
+</pre></div>
+</div>
+<p>This should build locally the html pages in the repo <span class="guilabel">_build</span> that can be deleted afterwards. It is also useful to use these commands to check an update of the documetation on the local computer before pushing to github.</p>
+</section>
+<section id="how-to-have-autodoc-and-autosummary-for-different-functions">
+<h2><span class="section-number">4.3. </span>How to have autodoc and autosummary for different functions<a class="headerlink" href="#how-to-have-autodoc-and-autosummary-for-different-functions" title="Link to this heading"></a></h2>
+<p><span class="guilabel">autodoc</span> and <span class="guilabel">autosummary</span> are powerful tools to get the docstring of your code and represent it. There are a few conditions for it to work correctly:</p>
+<ol class="arabic simple">
+<li><p>The path to your module should be added in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code></p></li>
+<li><p>The scripts you want to docstring should pass a standard import, i.e they must be compatible with your local python. This is obvious for your local machine, but not for the github action. You need to be careful that all the modules are installed when running the github action that will, in the end, generate the <code class="docutils literal notranslate"><span class="pre">html</span> <span class="pre">files</span></code>.</p></li>
+<li><p>The scripts should be importable as modules. This project currently documents its scripts <strong>manually</strong> in <span class="guilabel">codedocumentation.rst</span> (no autodoc), so the docs build stays light and does not need glaciercore / heavy dependencies installed in the GitHub Action. If you reintroduce autodoc for an importable module, add its path to <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and reference it with <code class="docutils literal notranslate"><span class="pre">automodule</span></code> / <code class="docutils literal notranslate"><span class="pre">autoclass</span></code> / <code class="docutils literal notranslate"><span class="pre">autofunction</span></code>.</p></li>
+<li><p>Sphinx <span class="guilabel">autodoc</span> reference available <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#module-sphinx.ext.autodoc">https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#module-sphinx.ext.autodoc</a></p></li>
+</ol>
+</section>
+<section id="conventions-to-write-documentation-in-github-page-for-corintis">
+<h2><span class="section-number">4.4. </span>Conventions to write documentation in github page for Corintis<a class="headerlink" href="#conventions-to-write-documentation-in-github-page-for-corintis" title="Link to this heading"></a></h2>
+<p>These are the following settings that are used so far and ideally we should stick to it, or adapt them everywhere for consistency.</p>
+<ol class="arabic simple">
+<li><p>The documentation is written in restructured text (rst) format. This is the format used by sphinx. It is automatically map into a html format by sphinx, through github actions.</p></li>
+<li><p>Code convention. Inline lines of code can be written like this <code class="docutils literal notranslate"><span class="pre">comandline_example</span></code> and block of code with the code block syntax like that :</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Specific folders/files or program names can be put in perspective either with guilabel like <span class="guilabel">this</span> or with the inline code convention like <code class="docutils literal notranslate"><span class="pre">that</span></code>. Both are ok, ideally <span class="guilabel">folders</span> and <code class="docutils literal notranslate"><span class="pre">files</span></code> follow the guilabel/inline code convention like this.</p></li>
+<li><p>Math formulas can be written in <span class="guilabel">latex</span> syntax either inline like this with the math marker <span class="math notranslate nohighlight">\(\alpha+\beta=\gamma\)</span> or in a block like navier-stokes equations <a class="reference internal" href="#equation-navier-stokes">(1)</a>, which is a copy-paste of the latex in the notion page <a class="reference external" href="https://www.notion.so/Navier-Stokes-strong-form-5b3fc5c2546c427389d6355e13cfee40">https://www.notion.so/Navier-Stokes-strong-form-5b3fc5c2546c427389d6355e13cfee40</a>  :</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-navier-stokes">
+<span class="eqno">(1)<a class="headerlink" href="#equation-navier-stokes" title="Link to this equation"></a></span>\[\begin{split}&amp;\text{div}(\rho_0 \boldsymbol{U}_{3d}\otimes \boldsymbol{U}_{3d})=-\boldsymbol{\nabla}P_{3d}+\text{div}(2 \mu \epsilon(\boldsymbol{U}_{3d}))-A_{opt}\boldsymbol{U}_{3d}, \\\\
+&amp;\text{div}\left( \boldsymbol{U_{3d}}\right) =0.\end{split}\]</div>
+<p>Unfortunately, it seems that the references to different equations can not be passed between different pages (to be further investigated).</p>
+<ol class="arabic simple" start="5">
+<li><p>In order to use cross-page references the easiest and most convenient use is the target reference like <a class="reference internal" href="usage.html#plotting-section"><span class="std std-ref">this</span></a>, which is a direct reference to the <span class="guilabel">usage</span> page’s plotting section. The label is declared just above that heading with <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">_plotting-section:</span></code>.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dependencies.html" class="btn btn-neutral float-left" title="3. Dependencies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="5. Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023–2026, Corintis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
