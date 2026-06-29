@@ -1,0 +1,42 @@
+# Local tooling for this template (plotting, docs, tests, Notion upload).
+#
+# NOTE: glaciercore / zebraflow themselves are NOT listed here — they are a
+# Python 3.14 uv workspace installed editable on the instance by
+# utils/gcp_setup/basic_setup_gcp.sh. Versions below are aligned with the
+# glaciercore v0.22 environment so they coexist without conflicts.
+# Target interpreter: Python 3.14.
+
+# --- numerics / units / plotting (used by plotting/ and simulations/) ---
+numpy
+scipy>=1.9.3
+matplotlib
+Pint==0.25
+numexpr
+colorama
+
+# --- data structures (match glaciercore pins) ---
+attrs==25.4.0
+cattrs==25.2.0
+click==8.2.1
+
+# --- meshing / geometry / imaging helpers ---
+gmsh==4.15.2
+meshio
+imagehash
+opencv-contrib-python
+
+# --- Notion upload + .env support (notion-database/) ---
+requests
+python-dotenv
+
+# --- documentation (Sphinx site under doc/) ---
+sphinx
+sphinx_rtd_theme
+sphinx-mdinclude
+sphinx-click
+
+# --- developer tooling ---
+memory_profiler>=0.61.0
+pytest
+pytest-split
+yamllint==1.33.0

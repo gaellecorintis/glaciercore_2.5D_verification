@@ -1,0 +1,44 @@
+{
+    "initial_design_parameters": {
+        "strategy": "optimized",
+        "start_with_max_refinement": true,
+        "leftover_space_allocation": "split_top_bottom",
+        "max_number_of_channels": 8
+    },
+    "graphics_type": "straight",
+    "optimization_settings": {
+        "max_iterations": 8,
+        "cost_function_type": "max_die_substrate_temperature",
+        "refinement_unrefinement_strategy": {
+            "type": "percentage",
+            "refinement_threshold_percentage": 0.75,
+            "unrefinement_threshold_percentage": 0.75
+        },
+        "cost_function_shift_regions": [
+            {
+                "region": {
+                    "point1": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "point2": {
+                        "x": 1e-3,
+                        "y": 1e-3
+                    }
+                },
+                "weight": 1.5
+            }
+        ]
+    },
+    "flow_control_parameters": {
+        "max_iterations": 5,
+        "tolerance": 0.01,
+        "relaxation_factor": 5.0
+    },
+    "channel_size_parameters": {
+        "minimum_channel_width": 80e-6,
+        "minimum_fin_width": 80e-6,
+        "max_channel_width_increase": 0.0,
+        "channel_width_increase_gamma": 0.0
+    }
+}

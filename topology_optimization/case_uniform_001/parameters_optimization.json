@@ -1,0 +1,215 @@
+{
+    "boundary_markers": {
+        "inlet": [
+            3
+        ],
+        "outlet": [
+            4
+        ],
+        "symmetry": [],
+        "walls": [
+            1,
+            2
+        ]
+    },
+    "fluid_boundary_conditions": {
+        "inlet": "pressure",
+        "outlet": "free",
+        "pressure_drop": 30000.0
+    },
+    "optimization_settings": {
+        "Hdfactor": {
+            "iterations": [
+                0
+            ],
+            "values": [
+                1500.0
+            ]
+        },
+        "acceptable_iteration_threshold": 10,
+        "acceptable_tolerance": 0.0001,
+        "asymptote_move_factor": 0.05,
+        "checkpointing_steps": {
+            "adjoint_filtered_field_checkpointing_step": null,
+            "adjoint_temperature_checkpointing_step": null,
+            "adjoint_velocity_pressure_checkpointing_step": null,
+            "design_checkpointing_step": null,
+            "optimization_field_checkpointing_step": 50,
+            "temperature_checkpointing_step": null,
+            "velocity_pressure_checkpointing_step": null
+        },
+        "cost_function_scale": 1.0,
+        "filter_type": "cg1",
+        "flow_rate_constraint": null,
+        "fluid_phase_volume_constraint": null,
+        "heaviside_settings": {
+            "beta": 200.0,
+            "eta": 0.01
+        },
+        "initial_rho_val": 0.01,
+        "is_global_convergence_mma": true,
+        "max_n_optimization_iterations": 1200,
+        "min_feature_scale": 3e-05,
+        "plotting_step": 10,
+        "pressure_drop_constraint": null,
+        "ramp_p_fluid": {
+            "end_iteration": 410,
+            "number_of_steps": 100,
+            "start_iteration": 110,
+            "start_value": 200.0,
+            "stop_value": 5
+        },
+        "ramp_p_temp": {
+            "end_iteration": 430,
+            "number_of_steps": 200,
+            "start_iteration": 30,
+            "start_value": 1.0,
+            "stop_value": 300
+        },
+        "save_progress_to_json": true,
+        "tolerance": 1e-06
+    },
+    "physical_scales": {
+        "length_scale": 0.001,
+        "temperature_scale": 350.0
+    },
+    "problem_data": {
+        "channel_depth": 0.0003,
+        "conductivity_die_substrate": 149,
+        "die_substrate_thickness": 0.0002,
+        "liquid_coolant": "pgw25"
+    },
+    "pod_settings": {
+        "fluid": {
+            "approximation_manifold": "linear",
+            "is_fom_fallback_enabled": true,
+            "is_incremental_svd_activated": false,
+            "is_pod_modes_saving_activated": false,
+            "iter_start_svd": 1,
+            "max_pod_rank": 20,
+            "min_pod_rank": 2,
+            "pod_accuracy_tolerance": 0.0001,
+            "pod_rom_activation_mode": "deactivated",
+            "projection_type": "petrov-galerkin",
+            "quadratic_reduced_dimension": 4,
+            "reset_at_continuation": false,
+            "solver_type": "fluid",
+            "tolerance_orthogonality": 2.220446049250313e-16,
+            "tolerance_svd": 1e-05
+        },
+        "thermal": {
+            "approximation_manifold": "linear",
+            "is_fom_fallback_enabled": true,
+            "is_incremental_svd_activated": false,
+            "is_pod_modes_saving_activated": false,
+            "iter_start_svd": 1,
+            "max_pod_rank": 20,
+            "min_pod_rank": 2,
+            "pod_accuracy_tolerance": 0.0001,
+            "pod_rom_activation_mode": "deactivated",
+            "projection_type": "galerkin",
+            "quadratic_reduced_dimension": 4,
+            "reset_at_continuation": false,
+            "solver_type": "thermal",
+            "tolerance_orthogonality": 2.220446049250313e-16,
+            "tolerance_svd": 1e-05
+        }
+    },
+    "simulation_settings": {
+        "is_nondimensional": true,
+        "is_split_flow": false,
+        "fluid": {
+            "discretization": "p1p1",
+            "is_stokes": false,
+            "is_viscosity_coupled": false,
+            "supg": true,
+            "turbulence_model": null,
+            "smagorinsky_scale": null,
+            "backflow_stabilisation": "both",
+            "compute_error_estimator": false
+        },
+        "thermal": {
+            "discretization": "p2p1",
+            "beta_supg": 1.0
+        }
+    },
+    "solver_settings": {
+        "convergence_mode": "robust",
+        "is_flow_field_progress_monitored": false,
+        "is_reset_preconditioner": true,
+        "lambda_homotopy_initial_value": null,
+        "navier_stokes_adjoint_solver_parameters": {
+            "ksp_type": "preonly",
+            "mat_mumps_icntl_14": 200,
+            "mat_mumps_icntl_24": 1,
+            "mat_type": "aij",
+            "pc_factor_mat_solver_type": "mumps",
+            "pc_type": "lu"
+        },
+        "navier_stokes_solver_parameters": {
+            "homotopy_iterations": 6,
+            "ksp_type": "preonly",
+            "mat_mumps_icntl_14": 200,
+            "mat_mumps_icntl_24": 1,
+            "mat_type": "aij",
+            "pc_factor_mat_solver_type": "mumps",
+            "pc_type": "lu",
+            "snes_atol": 1e-07,
+            "snes_linesearch_max_it": 10,
+            "snes_linesearch_minlambda": 0.0001,
+            "snes_linesearch_type": "bt",
+            "snes_max_it": 12,
+            "snes_rtol": 1e-06,
+            "snes_type": "newtonls"
+        },
+        "nonlinear_solver": "homotopy_iterative",
+        "pde_filter_solver_parameters": {
+            "ksp_type": "preonly",
+            "mat_mumps_icntl_14": 200,
+            "mat_mumps_icntl_24": 1,
+            "mat_type": "aij",
+            "pc_factor_mat_solver_type": "mumps",
+            "pc_type": "lu",
+            "snes_atol": 1e-07,
+            "snes_linesearch_max_it": 10,
+            "snes_linesearch_minlambda": 0.0001,
+            "snes_linesearch_type": "bt",
+            "snes_max_it": 50,
+            "snes_rtol": 1e-06,
+            "snes_type": "newtonls"
+        },
+        "robust_strategy": "aggressive",
+        "temperature_solver_adjoint_parameters": {
+            "ksp_type": "preonly",
+            "mat_mumps_icntl_14": 200,
+            "mat_mumps_icntl_24": 1,
+            "mat_type": "aij",
+            "pc_factor_mat_solver_type": "mumps",
+            "pc_type": "lu"
+        },
+        "temperature_solver_parameters": {
+            "ksp_type": "preonly",
+            "mat_mumps_icntl_14": 200,
+            "mat_mumps_icntl_24": 1,
+            "mat_type": "aij",
+            "pc_factor_mat_solver_type": "mumps",
+            "pc_type": "lu",
+            "snes_atol": 1e-07,
+            "snes_linesearch_max_it": 10,
+            "snes_linesearch_minlambda": 0.0001,
+            "snes_linesearch_type": "bt",
+            "snes_max_it": 50,
+            "snes_rtol": 1e-06,
+            "snes_type": "newtonls"
+        },
+        "viscosity_coupled_solver_parameters": {
+            "flow_rate_rtol": 0.001,
+            "max_it": 200,
+            "residual_atol": 1e-06,
+            "residual_rtol": 1e-05
+        }
+    },
+    "thermal_boundary_conditions": {
+        "temperature_inlet": 308.7
+    }
+}

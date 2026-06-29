@@ -1,0 +1,66 @@
+{
+    "boundary_markers": {
+        "inlet": [
+            1
+        ],
+        "outlet": [
+            2
+        ],
+        "symmetry": [
+            3
+        ],
+        "walls": [
+            4
+        ]
+    },
+    "fluid_boundary_conditions": {
+        "inlet": "target_flow_rate",
+        "target_flow_rate": 8e-7,
+        "initial_pressure_drop": 5000,
+        "target_flow_rate_rtol": 1e-4,
+        "target_flow_rate_atol": 1e-9,
+        "target_flow_rate_max_iterations": 10
+    },
+    "physical_scales": {
+        "length_scale": 0.001,
+        "temperature_scale": 350.0
+    },
+    "problem_data": {
+        "capacity_fluid": 4187,
+        "channel_depth": 0.0004,
+        "conductivity_die_substrate": 149,
+        "conductivity_fluid": 0.593,
+        "density_fluid": 1000,
+        "die_substrate_thickness": 0.00015,
+        "viscosity_fluid": 0.001013,
+        "cold_plate_substrate_thickness": 300e-6,
+        "tim_thickness": 50e-6,
+        "conductivity_cold_plate_substrate": 400.0,
+        "conductivity_tim": 8.5,
+        "orthotropic_material_conductivity_list": [
+            {
+                "marker": 301,
+                "k_x": 20,
+                "k_y": 20,
+                "k_z": 30
+            }
+        ]
+    },
+    "simulation_settings": {
+        "is_nondimensional": true,
+        "is_split_flow": false,
+        "fluid": {
+            "is_stokes": false
+        }
+    },
+    "solver_settings": {
+        "convergence_mode": "accept_failure",
+        "navier_stokes_solver_parameters": {
+            "homotopy_iterations": 10
+        },
+        "nonlinear_solver": "homotopy_iterative"
+    },
+    "thermal_boundary_conditions": {
+        "temperature_inlet": 293.15
+    }
+}

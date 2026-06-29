@@ -1,0 +1,32 @@
+{
+    "Hdfactor": {
+        "iterations": [
+            0
+        ],
+        "values": [
+            1500.0
+        ]
+    },
+    "channel_depth": {
+        "iterations": [
+            0
+        ],
+        "values": [
+            0.001
+        ]
+    },
+    "ramp_p_fluid": {
+        "start_iteration": 100,
+        "end_iteration": 500,
+        "number_of_steps": 40,
+        "start_value": 500.0,
+        "stop_value": 1.0
+    },
+    "ramp_p_temp": {
+        "start_iteration": 100,
+        "end_iteration": 500,
+        "number_of_steps": 40,
+        "start_value": 1.0,
+        "stop_value": 300
+    }
+}

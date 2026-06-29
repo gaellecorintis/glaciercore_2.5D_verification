@@ -1,0 +1,24 @@
+{
+    "problem_setup": {
+        "flow_settings": {
+            "flow_orientation": "x",
+            "pressure_drop": 15000.0
+        },
+        "slit_geometry": {"mode": "automatic"},
+        "discretization": {"mode": "automatic"}
+    },
+    "optimization": {
+        "options": {
+            "initial_slit_type": "outlet",
+            "optimize_initial_inlet": false,
+            "initial_slit_position": 0.000025,
+            "smooth_boundary_transition": true
+        },
+        "parameters": {
+            "min_weight": 0.1,
+            "target_lpm_per_kw": 0.8,
+            "averaging_radius": 0.006
+        }
+    }
+}
+

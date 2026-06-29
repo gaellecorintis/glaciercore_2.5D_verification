@@ -1,0 +1,12 @@
+*.*vtu
+*.pvd
+*.h5
+*.png
+*.brep
+*.msh
+*.geo*
+**/.DS_Store
+_build
+.env
+__pycache__/
+*.pyc

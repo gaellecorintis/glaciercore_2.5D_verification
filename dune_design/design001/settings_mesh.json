@@ -1,0 +1,32 @@
+{
+    "boundary_markers": {
+        "inlet": [
+            1
+        ],
+        "outlet": [
+            2
+        ],
+        "walls": [
+            4
+        ],
+        "symmetry": [
+            3
+        ]
+    },
+    "geometry": {
+        "dimensions": {
+            "fluid_mesh_size": 2e-05,
+            "solid_mesh_size": 2e-05,
+            "left_buffer": {
+                "length": 0.001
+            },
+            "chip_width": 0.003,
+            "chip_length": 0.004
+        },
+        "settings": {
+            "is_boundary_refinement": false,
+            "use_splines": false
+        },
+        "type": "top_opt"
+    }
+}

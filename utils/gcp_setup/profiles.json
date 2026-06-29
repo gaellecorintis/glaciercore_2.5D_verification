@@ -1,0 +1,17 @@
+{
+  "ale": {
+    "fire": "source ~/venv-glaciercore/bin/activate",
+    "glock": "cd ~/glaciercore && source ~/venv-glaciercore/bin/activate",
+    "plot_pmap": "python ~/glaciercore/glaciercore_scripts/powermap_utils/powermap_visualizers/powermap_visualizer.py -v v3 --white-text"
+  },
+  "edo": {
+    "fact": "source ~/venv-glaciercore/bin/activate",
+    "glock": "cd ~/glaciercore && source ~/venv-glaciercore/bin/activate",
+    "plot_pmap": "python ~/glaciercore/glaciercore_scripts/powermap_utils/powermap_visualizers/powermap_visualizer.py -v v3 --white-text"
+  },
+  "matte": {
+    "gactivate": "source ~/venv-glaciercore/bin/activate",
+    "glock": "cd ~/glaciercore && source ~/venv-glaciercore/bin/activate",
+    "plot_pmap": "python ~/glaciercore/glaciercore_scripts/powermap_utils/powermap_visualizers/powermap_visualizer.py -v v3 --white-text"
+  }
+}

@@ -1,0 +1,58 @@
+{
+    "problem_data": {
+        "density_fluid": 1024,
+        "viscosity_fluid": 0.002625,
+        "capacity_fluid": 3974,
+        "conductivity_fluid": 0.4758,
+        "conductivity_die_substrate": 149,
+        "channel_half_thickness": 0.00019,
+        "die_substrate_half_thickness": 7.5e-05,
+        "pressure_drop": 10000,
+        "temperature_inlet": 293.71
+    },
+    "physical_scales": {
+        "temperature_scale": 350,
+        "length_scale": 0.004948800422
+    },
+    "simulation_settings": {
+        "is_nondimensional": true,
+        "is_stokes": false,
+        "filter_type": "dg0",
+        "nonlinear_solver": "homotopy_iterative",
+        "turbulence_model": "les",
+        "smagorinsky_scale": 0.0,
+        "discretization": "p2p1",
+        "buffer_inlet": 0.001555000133,
+        "buffer_outlet": 0.0
+    },
+    "optimization_settings": {
+        "ramp_p_temp": 20.0,
+        "ramp_p_fluid": 20.0,
+        "cost_function_scale": 100.0,
+        "Htfactor": 100.0
+    },
+    "boundary_markers": {
+        "inlet": 1,
+        "outlet": 2,
+        "walls": 4,
+        "symmetry": 3
+    },
+    "boundary_conditions": {
+        "inlet": "pressure",
+        "outlet": "free"
+    },
+    "simulation_regions": {
+        "design": 6,
+        "non_design": 7,
+        "dissipative_buffer": null
+    },
+    "geometry": {
+        "type": "straight_channels",
+        "dimensions": {
+            "inlet_buffer_length": 0.001555000133,
+            "outlet_buffer_length": 0.0,
+            "buffer_mesh_size": 4e-05,
+            "channel_width": 0.0001
+        }
+    }
+}
