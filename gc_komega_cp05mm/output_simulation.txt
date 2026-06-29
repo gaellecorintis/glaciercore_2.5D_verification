@@ -1,0 +1,664 @@
+[33m--- Powermap File ---[39m
+[33mPower map filename used: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/../../../powermap/apollo_pmap/powermap_ttv_quarter_for_hm27_mesh.csv[39m
+[34m--- Power map properties ---[39m
+[34m=======================================[39m
+[34m Powermap width: [33m0.0265 meter[39m
+[34m Powermap length: [33m0.0435 meter[39m
+[34m Power map power: [33m499.5 watt[39m
+[34m Physical power: [33m499.5 watt[39m
+[34m Physical width: [33m0.0265 meter[39m
+[34m Physical length: [33m0.0435 meter[39m
+[34m Origin x: [33m0.0 meter[39m
+[34m Origin y: [33m0.0 meter[39m
+[34m Average power density: [33m433311.6 watt / meter ** 2[39m
+[31m=======================================[39m
+[31m        Configuration Parameters       [39m
+[31m=======================================[39m
+[33m--- JSON File ---[39m
+[33mJson filename used: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/settings_sim_cp05mm.json[39m
+[34m--- Simulation settings ---[39m
+[34m=======================================[39m
+[34m thermal: [33m{'discretization': <ThermalDiscretization.p1: 'p1'>, 'beta_supg': 1.0, 'junction_extrapolation_mode': <JunctionExtrapolationMode.TWO_DIMENSIONAL: 'two_dimensional'>}[39m
+[34m fluid: [33m{'discretization': <NavierStokesDiscretization.p2p1: 'p2p1'>, 'is_stokes': False, 'is_viscosity_coupled': False, 'supg': False, 'turbulence_model': <TurbulenceModel.K_OMEGA_SST: 'k_omega_sst'>, 'smagorinsky_scale': None, 'turbulence_intensity': 0.05, 'turbulence_length_scale': 0.0001, 'beta_supg_momentum': 0.5, 'beta_supg_k': 0.5, 'beta_supg_omega': 0.5, 'beta_crosswind_omega': 1.0, 'semi_implicit_supg': False, 'account_turbulent_viscosity_in_stabilization': True, 'account_turbulent_viscosity_in_supg_residual': True, 'account_turbulent_viscosity_in_galerkin': True, 'project_supg_tau_to_dg0': True, 'omega_wall_treatment': <OmegaWallTreatment.MENTER_BLENDED: 'menter_blended'>, 'wall_distance_degree_in_pde': 2, 'wall_distance_method': <WallDistanceMethod.EIKONAL: 'eikonal'>, 'turbulent_mu_projection_space': 'DG0', 'element_length_stabilization_strategy': <ElementLengthStabilizationStrategy.UGN: 'ugn'>, 'backflow_stabilisation': <BackFlowStabilisationType.BOTH: 'both'>, 'compute_error_estimator': False}[39m
+[34m is_nondimensional: [33mFalse[39m
+[34m is_split_flow: [33mTrue[39m
+[34m--- Boundary markers  ---[39m
+[34m=======================================[39m
+[34m inlet: [33m[][39m
+[34m outlet: [33m[][39m
+[34m walls: [33m[<BoundaryLines.LEFT: 1>, <BoundaryLines.RIGHT: 2>, <BoundaryLines.TOP: 4>, <BoundaryLines.FLUID_WALL: 5>][39m
+[34m symmetry: [33m[<BoundaryLines.BOTTOM: 3>][39m
+[34m inlet_surfaces: [33m[{'x0': <Quantity(0.0264, 'meter')>, 'y0': <Quantity(0.0, 'meter')>, 'dx': <Quantity(0.0001, 'meter')>, 'dy': <Quantity(0.0187, 'meter')>}, {'x0': <Quantity(0.0139, 'meter')>, 'y0': <Quantity(0.0188, 'meter')>, 'dx': <Quantity(0.0123, 'meter')>, 'dy': <Quantity(0.0001, 'meter')>}][39m
+[34m outlet_surfaces: [33m[{'x0': <Quantity(0.0, 'meter')>, 'y0': <Quantity(0.0, 'meter')>, 'dx': <Quantity(0.0001, 'meter')>, 'dy': <Quantity(0.0358, 'meter')>}][39m
+[34m flow_direction: [33mx-[39m
+[34m--- Problem data ---[39m
+[34m=======================================[39m
+[34m channel_depth: [33m0.0015 meter[39m
+[34m die_substrate_thickness: [33m0.001 meter[39m
+[34m tim_thickness: [33m0.0001 meter[39m
+[34m cold_plate_substrate_thickness: [33m0.0005 meter[39m
+[34m conductivity_die_substrate: [33m150 conductivity_si_unit[39m
+[34m conductivity_tim: [33m8.0 conductivity_si_unit[39m
+[34m conductivity_cold_plate_substrate: [33m400.0 conductivity_si_unit[39m
+[34m liquid_coolant: [33mpgw25[39m
+[34m--- Thermal boundary conditions ---[39m
+[34m=======================================[39m
+[34m inlet_temperature: [33m316.15 kelvin[39m
+[34m inlet_temperature_C: [33m43.0 degree_Celsius[39m
+[34m--- Solver settings ---[39m
+[34m=======================================[39m
+[34m navier_stokes_solver_parameters: [33m{'snes_rtol': 1e-06, 'snes_atol': 1e-07, 'ksp_type': 'preonly', 'mat_type': 'aij', 'pc_type': 'lu', 'pc_factor_mat_solver_type': 'mumps', 'mat_mumps_icntl_14': 200, 'mat_mumps_icntl_24': 1, 'snes_type': 'newtonls', 'snes_max_it': 1, 'snes_linesearch_type': 'bt', 'snes_linesearch_max_it': 10, 'snes_linesearch_minlambda': 0.0001, 'snes_error_if_not_converged': True}[39m
+[34m temperature_solver_parameters: [33m{'snes_rtol': 1e-06, 'snes_atol': 1e-07, 'ksp_type': 'preonly', 'mat_type': 'aij', 'pc_type': 'lu', 'pc_factor_mat_solver_type': 'mumps', 'mat_mumps_icntl_14': 200, 'mat_mumps_icntl_24': 1, 'snes_type': 'newtonls', 'snes_max_it': 50, 'snes_linesearch_type': 'bt', 'snes_linesearch_max_it': 10, 'snes_linesearch_minlambda': 0.0001, 'snes_error_if_not_converged': True}[39m
+[34m viscosity_coupled_solver_parameters: [33m{'residual_atol': 1e-06, 'residual_rtol': 1e-05, 'flow_rate_rtol': 0.001, 'max_it': 200}[39m
+[34m nonlinear_solver: [33mdefault[39m
+[34m convergence_mode: [33maccept_failure[39m
+[34m is_reset_preconditioner: [33mFalse[39m
+[34m robust_strategy: [33maggressive[39m
+[34m lambda_homotopy_initial_value: [33mNone[39m
+[34m is_flow_field_progress_monitored: [33mFalse[39m
+[34m rans_solver_parameters: [33m{'residual_atol': 1e-07, 'residual_rtol': 1e-05, 'max_it': 50, 'under_relaxation_nu_t': 0.5, 'under_relaxation_k': 0.6, 'under_relaxation_omega': 0.6, 'momentum_snes_max_it': 1, 'n_laminar_presolve': 5, 'max_cleanup_steps': 25, 'cleanup_u_delta_rtol': 1e-06, 'n_turbulence_inner_sweeps': 1, 'use_anderson_acceleration': True, 'anderson_m': 5, 'anderson_beta': 0.7, 'anderson_safeguard_ratio': 2.0, 'quasi_convergence_window': 15, 'quasi_convergence_rtol': 0.0005, 'pseudo_transient_enabled': True, 'pseudo_transient_dt0': 0.01, 'pseudo_transient_dt_max': 10000000000.0, 'pseudo_transient_dt_min': 0.001, 'pseudo_transient_safety_factor': 0.9, 'enable_post_cap_uran_averaging': False, 'uran_n_samples': 20, 'uran_dt': 0.01, 'use_sqrt_k_reformulation': False, 'residual_envelope_window': 20, 'frozen_momentum_snes_max_it': None, 'relaxed_max_it': 10, 'relaxed_delta_u_rtol': 0.005, 'k_min': 1e-10, 'omega_min': 0.1, 'k_max': 1000000.0, 'omega_max_rel': 10.0, 'nu_t_max_ratio': 100000.0, 'interior_seed_mode': 'nu_t_ratio', 'interior_nu_t_ratio': 10.0, 'interior_turbulence_length_scale': 0.0001, 'interior_turbulence_intensity': None, 'use_ipcs_momentum': False, 'ipcs_dt_init': 1.0, 'ipcs_dt_max': 100.0, 'ipcs_cfl_target': 1.0, 'ipcs_dt_growth': 1.1, 'ipcs_dt_growth_threshold': 0.9, 'ipcs_dt_shrink_threshold': 1.05, 'ipcs_dt_shrink_factor': 0.5, 'ipcs_dt_min_ratio': 0.01, 'reuse_lu_factorization': True}[39m
+[34m k_solver_parameters: [33m{'snes_rtol': 1e-06, 'snes_atol': 1e-07, 'ksp_type': 'preonly', 'mat_type': 'aij', 'pc_type': 'lu', 'pc_factor_mat_solver_type': 'mumps', 'mat_mumps_icntl_14': 200, 'mat_mumps_icntl_24': 1, 'snes_type': 'newtonls', 'snes_max_it': 50, 'snes_linesearch_type': 'bt', 'snes_linesearch_max_it': 10, 'snes_linesearch_minlambda': 0.0001, 'snes_error_if_not_converged': True}[39m
+[34m omega_solver_parameters: [33m{'snes_rtol': 1e-06, 'snes_atol': 1e-07, 'ksp_type': 'preonly', 'mat_type': 'aij', 'pc_type': 'lu', 'pc_factor_mat_solver_type': 'mumps', 'mat_mumps_icntl_14': 200, 'mat_mumps_icntl_24': 1, 'snes_type': 'newtonls', 'snes_max_it': 50, 'snes_linesearch_type': 'bt', 'snes_linesearch_max_it': 10, 'snes_linesearch_minlambda': 0.0001, 'snes_error_if_not_converged': True}[39m
+[34m non_linear_algorithm: [33mpicard[39m
+[34m--- Boundary conditions ---[39m
+[34m=======================================[39m
+[34m inlet: [33mtarget_flow_rate[39m
+[34m outlet: [33mfree[39m
+[34m pressure_drop: [33m14000.0[39m
+[34m target_flow_rate: [33m1.416666667e-05 m3s[39m
+[34m initial_pressure_drop: [33m14000.0 pascal[39m
+[34m target_flow_rate_rtol: [33m0.0001[39m
+[34m target_flow_rate_atol: [33m1e-08[39m
+[34m target_flow_rate_max_iterations: [33m20[39m
+[34m initial_pressure_drop_mbar: [33m140.0 millibar[39m
+[34m initial_pressure_drop_psi: [33m2.030528328222929 pound_force_per_square_inch[39m
+[34m--- Physical scales ---[39m
+[34m=======================================[39m
+[34m length_scale: [33m1.0 meter[39m
+[34m temperature_scale: [33m350.0 kelvin[39m
+Environment metadata written to /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/environment_metadata.json[39m
+2026-06-29 16:27:06,090 - glaciercore - USER - [31mThe simulation mesh is loaded from a saved solution![39m
+2026-06-29 16:27:13,925 - glaciercore - USER - [31mMesh file taken from the restart file: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_warmstart_from_30C/flow_solution_save.h5[39m
+2026-06-29 16:27:15,191 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:15,585 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:27:27,540 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:27,669 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:27:28,054 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:28,179 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:27:29,426 - glaciercore - USER - [32mDOFS in fluid function space UP: 17072953[39m
+2026-06-29 16:27:35,194 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:35,340 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:27:37,999 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:38,469 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:27:39,106 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:27:39,254 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:28:56,517 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:28:56,692 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:28:57,320 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:28:57,459 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:28:58,094 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:28:58,222 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:17,696 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:17,865 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:18,287 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:18,419 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:19,376 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:19,508 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:20,978 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:21,116 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:21,502 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:21,630 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:21,974 - glaciercore - USER - [32mDOFS in temperature function space T: 14195012[39m
+2026-06-29 16:29:22,225 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.0456412 seconds.[0m
+2026-06-29 16:29:22,274 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.048955 seconds.[0m
+2026-06-29 16:29:22,317 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.042496 seconds.[0m
+2026-06-29 16:29:22,358 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0415297 seconds.[0m
+2026-06-29 16:29:22,416 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0572793 seconds.[0m
+2026-06-29 16:29:22,416 - tsfc - INFO - [1;37;32mTSFC finished in 0.236341 seconds.[0m
+2026-06-29 16:29:22,565 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.0716729 seconds.[0m
+2026-06-29 16:29:22,596 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0303462 seconds.[0m
+2026-06-29 16:29:22,666 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0699151 seconds.[0m
+2026-06-29 16:29:22,692 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0263171 seconds.[0m
+2026-06-29 16:29:22,718 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0259321 seconds.[0m
+2026-06-29 16:29:22,718 - tsfc - INFO - [1;37;32mTSFC finished in 0.22454 seconds.[0m
+2026-06-29 16:29:22,777 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.0110819 seconds.[0m
+2026-06-29 16:29:22,788 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0111179 seconds.[0m
+2026-06-29 16:29:22,798 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0101409 seconds.[0m
+2026-06-29 16:29:22,812 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0133429 seconds.[0m
+2026-06-29 16:29:22,831 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0194659 seconds.[0m
+2026-06-29 16:29:22,842 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.010186 seconds.[0m
+2026-06-29 16:29:22,842 - tsfc - INFO - [1;37;32mTSFC finished in 0.0757592 seconds.[0m
+2026-06-29 16:29:22,990 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.105285 seconds.[0m
+2026-06-29 16:29:23,011 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.020885 seconds.[0m
+2026-06-29 16:29:23,030 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0190082 seconds.[0m
+2026-06-29 16:29:23,055 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.025506 seconds.[0m
+2026-06-29 16:29:23,075 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0195451 seconds.[0m
+2026-06-29 16:29:23,095 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0202498 seconds.[0m
+2026-06-29 16:29:23,095 - tsfc - INFO - [1;37;32mTSFC finished in 0.210845 seconds.[0m
+2026-06-29 16:29:23,113 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.0106769 seconds.[0m
+2026-06-29 16:29:23,123 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00970912 seconds.[0m
+2026-06-29 16:29:23,133 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00979495 seconds.[0m
+2026-06-29 16:29:23,142 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00911832 seconds.[0m
+2026-06-29 16:29:23,151 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00922012 seconds.[0m
+2026-06-29 16:29:23,160 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00907922 seconds.[0m
+2026-06-29 16:29:23,160 - tsfc - INFO - [1;37;32mTSFC finished in 0.0579138 seconds.[0m
+2026-06-29 16:29:23,177 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.00856018 seconds.[0m
+2026-06-29 16:29:23,196 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0188179 seconds.[0m
+2026-06-29 16:29:23,196 - tsfc - INFO - [1;37;32mTSFC finished in 0.0274842 seconds.[0m
+2026-06-29 16:29:23,206 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.00632811 seconds.[0m
+2026-06-29 16:29:23,215 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00943708 seconds.[0m
+2026-06-29 16:29:23,215 - tsfc - INFO - [1;37;32mTSFC finished in 0.0158541 seconds.[0m
+2026-06-29 16:29:23,228 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.00635791 seconds.[0m
+2026-06-29 16:29:23,238 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.00913215 seconds.[0m
+2026-06-29 16:29:23,238 - tsfc - INFO - [1;37;32mTSFC finished in 0.015595 seconds.[0m
+2026-06-29 16:29:23,253 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.00832987 seconds.[0m
+2026-06-29 16:29:23,271 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0181749 seconds.[0m
+2026-06-29 16:29:23,271 - tsfc - INFO - [1;37;32mTSFC finished in 0.0266318 seconds.[0m
+2026-06-29 16:29:26,847 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:26,977 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:27,625 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:27,761 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:29:28,347 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:29:28,490 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:30:06,426 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:30:06,578 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:30:07,277 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:30:07,453 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:30:47,002 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:30:47,151 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:30:47,780 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:30:47,920 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:27,684 - glaciercore - INFO - [32mEikonal wall distance converged in 2 iterations (rel_change=1.22e-08)[39m
+2026-06-29 16:31:27,902 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:28,072 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:28,641 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:28,779 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:29,076 - glaciercore - USER - [32mRANS SST init (Menter blended wall treatment): nu=1.3818e-06, TI=0.05, l_t=1.0000e-04, U_ref=4.1571e+00, k_inlet=6.4807e-02, omega_inlet=4.6478e+03[39m
+2026-06-29 16:31:29,473 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:29,616 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:29,910 - glaciercore - USER - [32mRANS pseudo-transient continuation enabled: dt0=1.000e-02, dt_min=1.000e-03, dt_max=1.000e+10, safety=0.9[39m
+2026-06-29 16:31:35,313 - glaciercore - USER - [32mRANS momentum coupling: monolithic Oseen/Picard (use_ipcs_momentum=False)[39m
+2026-06-29 16:31:35,515 - glaciercore - USER - [32mFluid solver: FlowRateDrivenGlaciercoreSolver[39m
+2026-06-29 16:31:35,515 - glaciercore - USER - Iter 0: Current P=14000.0[39m
+2026-06-29 16:31:35,515 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1) [RELAXED][39m
+2026-06-29 16:31:35,515 - glaciercore - USER - [32mStage 1: Laminar pre-solve for initial velocity field (5 steps)[39m
+2026-06-29 16:31:35,625 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:35,764 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:36,434 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:36,571 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:37,423 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:37,575 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:38,279 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:38,426 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:39,208 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:39,351 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:39,949 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:41,100 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:42,007 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:42,161 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:43,355 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:43,511 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:44,154 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:44,301 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:31:44,991 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:31:45,137 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:13,773 - glaciercore - USER - [32mStage 2: Initializing k, omega from velocity field[39m
+2026-06-29 16:34:13,773 - glaciercore - USER - [32mInterior turbulence seed (nu_t_ratio): k=6.3646e-02, omega=4.6060e+03, nu_t/nu=10.00[39m
+2026-06-29 16:34:13,789 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:34:13,791 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:34:14,057 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:14,226 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:14,969 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:15,109 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:15,417 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:34:20,562 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:34:21,038 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:21,183 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:21,487 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:34:21,592 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:21,726 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:22,683 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:22,831 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:23,812 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:23,991 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:30,584 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:34:31,007 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:31,156 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:31,672 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:31,805 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:32,129 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:34:32,907 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:33,091 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:34,913 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:35,145 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:43,287 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:34:43,779 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:34:43,930 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:34:44,238 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:34:44,247 - glaciercore - USER - [36m  [relaxed] delta_u=6.2374e+00, delta_k=1.1999e+00, delta_omega=9.9291e-01[39m
+2026-06-29 16:34:44,395 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:34:53,218 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:35:01,361 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:35:10,064 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:35:24,662 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:35:36,290 - glaciercore - USER - [36m  [relaxed] delta_u=1.0238e-01, delta_k=3.4121e-02, delta_omega=1.5773e-02[39m
+2026-06-29 16:35:36,428 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:35:47,457 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:35:58,353 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:36:09,204 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:36:20,112 - glaciercore - USER - [33mRANS k-omega SST solver did not converge after 10 iterations (delta_primary=1.9034e-01, delta_u=4.9848e-02, delta_k=2.4580e-04, delta_omega=1.2286e-04, delta_nu_t=1.9034e-01) [relaxed mode][39m
+2026-06-29 16:36:20,251 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:36:20,396 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:36:20,739 - glaciercore - USER - [32mIter 0: Current P=14000.0 Pa -> Flow Rate = 6.088e-01 lpm liters per minute[39m
+2026-06-29 16:36:20,740 - glaciercore - USER - Iter 1: Current P=19547.0[39m
+2026-06-29 16:36:20,740 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1) [RELAXED][39m
+2026-06-29 16:36:20,740 - glaciercore - USER - [32mWarm start: reusing converged fields from previous solve (skipping Stages 1-2)[39m
+2026-06-29 16:36:20,740 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:36:20,743 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:36:20,774 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:36:25,843 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:36:25,865 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:36:26,321 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:36:26,330 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:36:31,510 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:36:31,522 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:36:31,529 - glaciercore - USER - [36m  [relaxed] delta_u=3.5499e-01, delta_k=9.5268e-08, delta_omega=3.2191e-03[39m
+2026-06-29 16:36:31,672 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:36:42,531 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:36:53,397 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:37:04,315 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:37:15,187 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:37:25,942 - glaciercore - USER - [36m  [relaxed] delta_u=3.0378e-02, delta_k=6.0575e-10, delta_omega=1.9535e-04[39m
+2026-06-29 16:37:26,080 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:37:36,933 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:37:47,818 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:37:58,705 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:38:09,620 - glaciercore - USER - [33mRANS k-omega SST solver did not converge after 10 iterations (delta_primary=2.5427e-02, delta_u=2.5427e-02, delta_k=4.4654e-16, delta_omega=1.3863e-04, delta_nu_t=2.5345e-04) [relaxed mode][39m
+2026-06-29 16:38:09,621 - glaciercore - USER - [32mIter 1: Current P=19547.0 Pa -> Flow Rate = 8.810e-01 lpm liters per minute[39m
+2026-06-29 16:38:09,622 - glaciercore - USER - Iter 2: Current P=18860.3[39m
+2026-06-29 16:38:09,622 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1) [RELAXED][39m
+2026-06-29 16:38:09,622 - glaciercore - USER - [32mWarm start: reusing converged fields from previous solve (skipping Stages 1-2)[39m
+2026-06-29 16:38:09,622 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:38:09,623 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:38:09,644 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:38:14,655 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:38:14,676 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:38:15,124 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:38:15,133 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:38:20,304 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:38:20,316 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:38:20,323 - glaciercore - USER - [36m  [relaxed] delta_u=6.9387e-02, delta_k=4.8757e-17, delta_omega=8.2763e-04[39m
+2026-06-29 16:38:20,449 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:38:31,337 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:38:42,294 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:38:53,146 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:39:04,009 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:39:14,814 - glaciercore - USER - [36m  [relaxed] delta_u=1.9205e-02, delta_k=5.4374e-18, delta_omega=2.2977e-05[39m
+2026-06-29 16:39:14,945 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:39:25,843 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:39:36,748 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:39:47,638 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:39:58,540 - glaciercore - USER - [33mRANS k-omega SST solver did not converge after 10 iterations (delta_primary=1.3987e-02, delta_u=1.3987e-02, delta_k=0.0000e+00, delta_omega=4.8565e-05, delta_nu_t=6.9604e-05) [relaxed mode][39m
+2026-06-29 16:39:58,541 - glaciercore - USER - [32mIter 2: Current P=18860.3 Pa -> Flow Rate = 8.552e-01 lpm liters per minute[39m
+2026-06-29 16:39:58,542 - glaciercore - USER - [36m  Blended: P_prop=18745.6, P_secant=18721.7, P_blend=18733.6 Pa (dQ/dP=3.750e-05 LPM/Pa)[39m
+2026-06-29 16:39:58,542 - glaciercore - USER - Iter 3: Current P=18733.6[39m
+2026-06-29 16:39:58,542 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1) [RELAXED][39m
+2026-06-29 16:39:58,542 - glaciercore - USER - [32mWarm start: reusing converged fields from previous solve (skipping Stages 1-2)[39m
+2026-06-29 16:39:58,542 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:39:58,543 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:39:58,564 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:40:03,592 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:40:03,613 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:40:04,063 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:40:04,072 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:40:09,274 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:40:09,287 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:40:09,293 - glaciercore - USER - [36m  [relaxed] delta_u=4.6581e-02, delta_k=2.2462e-19, delta_omega=4.1996e-04[39m
+2026-06-29 16:40:09,431 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:40:20,430 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:40:31,292 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:40:42,143 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:40:53,028 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:41:03,785 - glaciercore - USER - [36m  [relaxed] delta_u=1.3366e-02, delta_k=0.0000e+00, delta_omega=2.3135e-05[39m
+2026-06-29 16:41:03,912 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:41:14,782 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:41:25,627 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:41:36,494 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:41:47,356 - glaciercore - USER - [33mRANS k-omega SST solver did not converge after 10 iterations (delta_primary=1.0976e-02, delta_u=1.0976e-02, delta_k=0.0000e+00, delta_omega=1.8187e-04, delta_nu_t=2.7183e-05) [relaxed mode][39m
+2026-06-29 16:41:47,357 - glaciercore - USER - [32mIter 3: Current P=18733.6 Pa -> Flow Rate = 8.489e-01 lpm liters per minute[39m
+2026-06-29 16:41:47,357 - glaciercore - USER - [36m  Blended: P_prop=18758.4, P_secant=18756.1, P_blend=18757.3 Pa (dQ/dP=4.991e-05 LPM/Pa)[39m
+2026-06-29 16:41:47,357 - glaciercore - USER - Iter 4: Current P=18757.3[39m
+2026-06-29 16:41:47,357 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1) [RELAXED][39m
+2026-06-29 16:41:47,357 - glaciercore - USER - [32mWarm start: reusing converged fields from previous solve (skipping Stages 1-2)[39m
+2026-06-29 16:41:47,357 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:41:47,358 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:41:47,380 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:41:52,436 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:41:52,456 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:41:52,906 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:41:52,914 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:41:58,074 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:41:58,086 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:41:58,097 - glaciercore - USER - [36m  [relaxed] delta_u=1.2736e-02, delta_k=2.0504e-19, delta_omega=3.3323e-04[39m
+2026-06-29 16:41:58,231 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:42:09,174 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:42:20,465 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:42:31,388 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:42:42,296 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:42:53,012 - glaciercore - USER - [36m  [relaxed] delta_u=8.7992e-03, delta_k=0.0000e+00, delta_omega=7.3267e-05[39m
+2026-06-29 16:42:53,144 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:43:04,057 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:43:14,962 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:43:25,928 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:43:36,850 - glaciercore - USER - [33mRANS k-omega SST solver did not converge after 10 iterations (delta_primary=8.4155e-03, delta_u=8.4155e-03, delta_k=0.0000e+00, delta_omega=2.1162e-04, delta_nu_t=2.0606e-05) [relaxed mode][39m
+2026-06-29 16:43:36,851 - glaciercore - USER - [32mIter 4: Current P=18757.3 Pa -> Flow Rate = 8.501e-01 lpm liters per minute[39m
+2026-06-29 16:43:36,851 - glaciercore - USER - [32mRunning final full RANS convergence at P=18757 Pa.[39m
+2026-06-29 16:43:36,851 - glaciercore - USER - [32mRANS k-omega SST solver: max_it=50, atol=1e-07, rtol=1e-05, momentum=picard(snes_max_it=1)[39m
+2026-06-29 16:43:36,851 - glaciercore - USER - [32mWarm start: reusing converged fields from previous solve (skipping Stages 1-2)[39m
+2026-06-29 16:43:36,851 - glaciercore - USER - [32mStage 3: RANS outer loop[39m
+2026-06-29 16:43:36,852 - glaciercore - INFO - [32mRANS iteration 0[39m
+2026-06-29 16:43:36,873 - glaciercore - USER - [35m[iter0] entering momentum solve[39m
+2026-06-29 16:43:41,907 - glaciercore - USER - [35m[iter0] u_after_momentum returned[39m
+2026-06-29 16:43:41,927 - glaciercore - USER - [35m[iter0] entering k solve (sweep 0)[39m
+2026-06-29 16:43:42,373 - glaciercore - USER - [35m[iter0] k_after_solve_sweep0 returned[39m
+2026-06-29 16:43:42,382 - glaciercore - USER - [35m[iter0] entering omega solve (sweep 0)[39m
+2026-06-29 16:43:47,574 - glaciercore - USER - [35m[iter0] omega_after_solve_sweep0 returned[39m
+2026-06-29 16:43:47,588 - glaciercore - USER - [35m[iter0] nu_t_after_update returned[39m
+2026-06-29 16:43:47,595 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.1000e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:43:47,595 - glaciercore - USER - [36m  delta_u=7.9079e-03, delta_k=2.0504e-19, delta_omega=2.5332e-04, delta_nu_t=2.5519e-05[39m
+2026-06-29 16:43:47,595 - glaciercore - USER - [33m  R_snes: flow=2.0823e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:43:47,595 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:43:47,732 - glaciercore - INFO - [32mRANS iteration 1[39m
+2026-06-29 16:43:58,451 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0997e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:43:58,451 - glaciercore - USER - [36m  delta_u=7.1066e-03, delta_k=2.0504e-19, delta_omega=1.6862e-04, delta_nu_t=2.7705e-05[39m
+2026-06-29 16:43:58,451 - glaciercore - USER - [33m  R_snes: flow=2.0421e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:43:58,451 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:43:58,577 - glaciercore - INFO - [32mRANS iteration 2[39m
+2026-06-29 16:44:09,297 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0995e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:44:09,297 - glaciercore - USER - [36m  delta_u=6.5424e-03, delta_k=0.0000e+00, delta_omega=7.7875e-05, delta_nu_t=2.3389e-05[39m
+2026-06-29 16:44:09,297 - glaciercore - USER - [33m  R_snes: flow=1.9702e-02, k=5.4986e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:44:09,297 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:44:09,429 - glaciercore - INFO - [32mRANS iteration 3[39m
+2026-06-29 16:44:20,195 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0995e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:44:20,195 - glaciercore - USER - [36m  delta_u=6.7652e-03, delta_k=0.0000e+00, delta_omega=1.8913e-05, delta_nu_t=2.2537e-05[39m
+2026-06-29 16:44:20,195 - glaciercore - USER - [33m  R_snes: flow=1.8552e-02, k=5.4986e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:44:20,195 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:44:20,326 - glaciercore - INFO - [32mRANS iteration 4[39m
+2026-06-29 16:44:31,054 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:44:31,054 - glaciercore - USER - [36m  delta_u=7.1595e-03, delta_k=0.0000e+00, delta_omega=7.3554e-05, delta_nu_t=2.1899e-05[39m
+2026-06-29 16:44:31,054 - glaciercore - USER - [33m  R_snes: flow=1.7525e-02, k=5.4986e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:44:31,054 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:44:31,191 - glaciercore - INFO - [32mRANS iteration 5[39m
+2026-06-29 16:44:42,000 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:44:42,000 - glaciercore - USER - [36m  delta_u=7.0629e-03, delta_k=0.0000e+00, delta_omega=6.2500e-05, delta_nu_t=1.8802e-05[39m
+2026-06-29 16:44:42,000 - glaciercore - USER - [33m  R_snes: flow=1.7117e-02, k=5.4986e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:44:42,000 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:44:42,137 - glaciercore - INFO - [32mRANS iteration 6[39m
+2026-06-29 16:44:52,903 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:44:52,903 - glaciercore - USER - [36m  delta_u=3.2320e-03, delta_k=0.0000e+00, delta_omega=5.3363e-05, delta_nu_t=1.3261e-05[39m
+2026-06-29 16:44:52,903 - glaciercore - USER - [33m  R_snes: flow=1.6810e-02, k=5.4986e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:44:52,903 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:44:53,035 - glaciercore - INFO - [32mRANS iteration 7[39m
+2026-06-29 16:45:03,832 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:03,832 - glaciercore - USER - [36m  delta_u=3.1355e-03, delta_k=0.0000e+00, delta_omega=2.2041e-05, delta_nu_t=1.0803e-05[39m
+2026-06-29 16:45:03,832 - glaciercore - USER - [33m  R_snes: flow=1.6555e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:45:03,832 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:03,969 - glaciercore - INFO - [32mRANS iteration 8[39m
+2026-06-29 16:45:14,775 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:14,775 - glaciercore - USER - [36m  delta_u=3.1064e-03, delta_k=0.0000e+00, delta_omega=5.1556e-05, delta_nu_t=1.0750e-05[39m
+2026-06-29 16:45:14,775 - glaciercore - USER - [33m  R_snes: flow=1.6299e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:45:14,775 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:14,907 - glaciercore - INFO - [32mRANS iteration 9[39m
+2026-06-29 16:45:25,630 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:25,630 - glaciercore - USER - [36m  delta_u=6.6822e-03, delta_k=0.0000e+00, delta_omega=4.5837e-05, delta_nu_t=1.7402e-05[39m
+2026-06-29 16:45:25,630 - glaciercore - USER - [33m  R_snes: flow=1.6242e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:45:25,630 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:25,761 - glaciercore - INFO - [32mRANS iteration 10[39m
+2026-06-29 16:45:36,540 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:36,540 - glaciercore - USER - [36m  delta_u=6.5388e-03, delta_k=0.0000e+00, delta_omega=4.2679e-05, delta_nu_t=1.9699e-05[39m
+2026-06-29 16:45:36,540 - glaciercore - USER - [33m  R_snes: flow=1.5669e-02, k=5.4985e-04, omega=3.5668e+04, combined=3.5668e+04[39m
+2026-06-29 16:45:36,540 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:36,678 - glaciercore - INFO - [32mRANS iteration 11[39m
+2026-06-29 16:45:47,436 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:47,436 - glaciercore - USER - [36m  delta_u=6.1132e-03, delta_k=0.0000e+00, delta_omega=9.6999e-05, delta_nu_t=2.0200e-05[39m
+2026-06-29 16:45:47,436 - glaciercore - USER - [33m  R_snes: flow=1.4555e-02, k=5.4984e-04, omega=3.5668e+04, combined=3.5668e+04[39m
+2026-06-29 16:45:47,436 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:47,561 - glaciercore - INFO - [32mRANS iteration 12[39m
+2026-06-29 16:45:58,319 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:45:58,319 - glaciercore - USER - [36m  delta_u=5.5860e-03, delta_k=0.0000e+00, delta_omega=9.6808e-05, delta_nu_t=1.9622e-05[39m
+2026-06-29 16:45:58,319 - glaciercore - USER - [33m  R_snes: flow=1.3556e-02, k=5.4984e-04, omega=3.5668e+04, combined=3.5668e+04[39m
+2026-06-29 16:45:58,319 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:45:58,450 - glaciercore - INFO - [32mRANS iteration 13[39m
+2026-06-29 16:46:09,198 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8199e+05, 3.0813e+07], nu_t=[7.0994e-17, 3.8586e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:46:09,198 - glaciercore - USER - [36m  delta_u=5.2469e-03, delta_k=0.0000e+00, delta_omega=1.5644e-04, delta_nu_t=1.8063e-05[39m
+2026-06-29 16:46:09,198 - glaciercore - USER - [33m  R_snes: flow=1.3113e-02, k=5.4985e-04, omega=3.5669e+04, combined=3.5669e+04[39m
+2026-06-29 16:46:09,198 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:46:09,331 - glaciercore - INFO - [32mRANS iteration 14[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [36m  k=[1.0000e-10, 1.6105e-01], omega=[1.8198e+05, 3.0812e+07], nu_t=[7.0994e-17, 3.8587e-07], nu_t/nu=2.79e-01[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [36m  delta_u=5.1509e-03, delta_k=0.0000e+00, delta_omega=2.3361e-04, delta_nu_t=1.9096e-05[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [33m  R_snes: flow=1.3070e-02, k=5.4984e-04, omega=3.5668e+04, combined=3.5668e+04[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [33m  clip: k nan=0 clipped=751878[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [33mRANS quasi-converged after 15 iterations: max(delta_turb) over last 15 iters = 2.5332e-04 < 5.0e-04[39m
+2026-06-29 16:46:20,125 - glaciercore - USER - [32mRunning adaptive momentum cleanup (max 25 steps, rtol=1.0e-06)[39m
+2026-06-29 16:46:25,213 - glaciercore - USER - [36m  cleanup step 0: delta_u=2.3443e-03, R_snes_flow=1.2920e-02[39m
+2026-06-29 16:46:50,634 - glaciercore - USER - [36m  cleanup step 5: delta_u=2.1930e-03, R_snes_flow=1.2228e-02[39m
+2026-06-29 16:47:15,905 - glaciercore - USER - [36m  cleanup step 10: delta_u=4.7748e-03, R_snes_flow=1.0659e-02[39m
+2026-06-29 16:47:41,254 - glaciercore - USER - [36m  cleanup step 15: delta_u=1.9378e-03, R_snes_flow=1.0151e-02[39m
+2026-06-29 16:48:06,633 - glaciercore - USER - [36m  cleanup step 20: delta_u=4.0862e-03, R_snes_flow=9.5329e-03[39m
+2026-06-29 16:48:26,890 - glaciercore - USER - [33mMomentum cleanup: max steps (25) reached, delta_u=1.8240e-03, R_snes_flow=8.3474e-03[39m
+2026-06-29 16:48:26,891 - glaciercore - USER - Target flow rate reached within tolerance at 18757 Pa after 4 iterations.[39m
+2026-06-29 16:48:26,891 - glaciercore - INFO - [92m    Flow solver timing: 1011.37 s[39m
+2026-06-29 16:48:28,772 - glaciercore - USER - [34mThe solution Velocity-Pressure is saved in /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/flow_solution_save.h5 file[39m
+2026-06-29 16:48:31,805 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.0409789 seconds.[0m
+2026-06-29 16:48:31,845 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0400841 seconds.[0m
+2026-06-29 16:48:31,884 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0389571 seconds.[0m
+2026-06-29 16:48:31,924 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0398011 seconds.[0m
+2026-06-29 16:48:31,962 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0388491 seconds.[0m
+2026-06-29 16:48:31,963 - tsfc - INFO - [1;37;32mTSFC finished in 0.198996 seconds.[0m
+2026-06-29 16:48:32,032 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.020823 seconds.[0m
+2026-06-29 16:48:32,055 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0228057 seconds.[0m
+2026-06-29 16:48:32,077 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.022527 seconds.[0m
+2026-06-29 16:48:32,100 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.022505 seconds.[0m
+2026-06-29 16:48:32,122 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.022131 seconds.[0m
+2026-06-29 16:48:32,144 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.0224552 seconds.[0m
+2026-06-29 16:48:32,145 - tsfc - INFO - [1;37;32mTSFC finished in 0.133606 seconds.[0m
+2026-06-29 16:48:32,188 - tsfc - INFO - [1;37;32mcompute_form_data finished in 0.00638509 seconds.[0m
+2026-06-29 16:48:32,210 - tsfc - INFO - [1;37;32mcompile_integral finished in 0.02106 seconds.[0m
+2026-06-29 16:48:32,210 - tsfc - INFO - [1;37;32mTSFC finished in 0.0275681 seconds.[0m
+2026-06-29 16:48:32,945 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:33,099 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:33,906 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:34,051 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:34,808 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:34,958 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:35,682 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:35,828 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:36,525 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:36,668 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:37,347 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:37,485 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:38,164 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:38,305 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:39,001 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:39,142 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:39,837 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:39,977 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:40,748 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:40,890 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:41,592 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:41,731 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:42,556 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:42,710 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:43,511 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:43,665 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:44,504 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:44,658 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:45,443 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:45,599 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:46,347 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:46,499 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:47,261 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:47,408 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:48,203 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:48,353 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:49,118 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:49,269 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:49,907 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:50,046 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:50,716 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:50,858 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:51,552 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:51,693 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:52,441 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:52,583 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:53,240 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:53,377 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:54,088 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:54,231 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:54,951 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:55,095 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:55,831 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:55,972 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:56,689 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:56,834 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:57,549 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:57,693 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:58,320 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:58,458 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:59,150 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:48:59,292 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:48:59,979 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:00,126 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:00,746 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:00,886 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:01,538 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:01,679 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:02,315 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:02,455 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:03,176 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:03,318 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:04,000 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:04,139 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:04,800 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:04,944 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:49:05,655 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:49:05,798 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:10,613 - glaciercore - INFO - [92m    Temperature solver timing: 158.97 s[39m
+2026-06-29 16:51:14,073 - glaciercore - USER - [34mThe solution Temperature fields is saved in /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/temperature_solution.h5 file[39m
+2026-06-29 16:51:14,709 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:14,848 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:15,434 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:15,578 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:16,103 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:16,247 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:17,110 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:17,248 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:17,894 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:18,042 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:18,788 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:18,930 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:34,118 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:34,258 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:34,703 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:34,848 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:35,342 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:35,479 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:36,706 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:36,850 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:37,352 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:37,495 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:37,946 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:38,085 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:38,580 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:38,717 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:39,289 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:39,430 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:40,590 - glaciercore - USER - Paraview physical result files saved as simulation_results_dim.pvd[39m
+2026-06-29 16:51:40,747 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:40,885 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:41,315 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:41,455 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:41,883 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:42,022 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:42,532 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:42,678 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:43,019 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip is [35min split configuration [37m[39m
+2026-06-29 16:51:43,019 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip [35mhas an axis of symmetry [37m[39m
+2026-06-29 16:51:43,147 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:43,288 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:43,708 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:43,848 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:44,121 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip is [35min split configuration [37m[39m
+2026-06-29 16:51:44,121 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip [35mhas an axis of symmetry [37m[39m
+2026-06-29 16:51:44,268 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:44,407 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:51:44,697 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip is [35min split configuration [37m[39m
+2026-06-29 16:51:44,698 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip [35mhas an axis of symmetry [37m[39m
+2026-06-29 16:51:59,536 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:51:59,675 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:00,110 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:00,256 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:00,690 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:00,832 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:01,261 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:01,403 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:01,810 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:01,948 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:02,451 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:02,590 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:26,792 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:26,934 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:27,400 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:27,541 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:28,072 - pyop2 - INFO - Compiling wrapper...
+2026-06-29 16:52:28,218 - pyop2 - INFO - Compiling wrapper...done
+2026-06-29 16:52:28,638 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip is [35min split configuration [37m[39m
+2026-06-29 16:52:28,638 - glaciercore - USER - [31mATTENTION: the hydro-thermal performance is calculated considering that the simulated chip [35mhas an axis of symmetry [37m[39m
+2026-06-29 16:52:28,646 - glaciercore - USER - [96m=== CHT SIMULATION RESULTS ===[39m
+2026-06-29 16:52:28,646 - glaciercore - USER - [32mChip power Q = 1998.00 W[39m
+2026-06-29 16:52:28,646 - glaciercore - USER - [35mCoefficient of performance COP = 1.5971e+03[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [31mPressure Drop ΔP = 188 mbar | 2.721 psi[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m=== FLOW BALANCE CHECK ===[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - Inlet flow rate: -5.6691e-05 m^3/s | -3.4 LPM[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - Outlet flow rate: 5.6691e-05 m^3/s | 3.4 LPM[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mAbsolute error: 1.47654783e-17 m^3/s or 8.85928700e-13 LPM[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mRelative error: 0.00 %[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m--------------------------------[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m=== RANS TURBULENCE STATISTICS ===[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - k (TKE):  min=0.0000e+00, max=1.6105e-01, mean=1.3484e-02 m^2/s^2[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - omega:    min=0.0000e+00, max=3.0812e+07, mean=3.3662e+05 1/s[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - nu_t:     min=0.0000e+00, max=3.8587e-07, mean=2.7437e-08 m^2/s[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [36mnu_t/nu:  max=0.28, mean=0.02[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m--------------------------------[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - Junction temperature increase ΔT = 42.49 C (extrapolation: two_dimensional)[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [35mThermal resistance R = 2.1264e-02 C/W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [33mAverage outlet temperature Tout = 54.51 C[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [33mMass-flow weighted average outlet temperature: 51.68 C[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m=== THERMAL POWER BALANCE CHECK ===[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - Q (chip power): 1998.00 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - Fluid power increase: 1996.27 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mAbsolute error: 1.7337 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mRelative error: 0.09 %[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mChip power interpolated: 1997.96 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mAbsolute error due to interpolation: 0.0377 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [32mAbsolute error due to PDE: 1.6960 W[39m
+2026-06-29 16:52:28,647 - glaciercore - USER - [94m--------------------------------[39m
+2026-06-29 16:52:28,694 - glaciercore - USER - /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/simulation_results_dim.json JSON file created[39m
+2026-06-29 16:52:28,695 - glaciercore - USER - /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/simulation_results_report.md Markdown report created[39m
+2026-06-29 16:52:28,708 - glaciercore - USER - [34mPhysical scales and flow info saved in /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/flow_solution_save.h5[39m
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There are 13 unused database options. They are:
+Option left: name:--initial-flow-solution value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_warmstart_from_30C/flow_solution_save.h5 source: command line
+Option left: name:--json value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/settings_sim_cp05mm.json source: command line
+Option left: name:--mesh value: ../body_fit_simulation_DNS/mesh/quarter_chip_HM27.msh source: command line
+Option left: name:--mesh-metadata value: ../body_fit_simulation_DNS/mesh/quarter_chip_HM27_metadata.json source: command line
+Option left: name:--output-dir value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm source: command line
+Option left: name:--powermap value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/../../../powermap/apollo_pmap/powermap_ttv_quarter_for_hm27_mesh.csv source: command line
+Option left: name:-dm_plex_gmsh_multiple_tags (no value) source: code
+Option left: name:-initial-flow-solution value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_warmstart_from_30C/flow_solution_save.h5 source: code
+Option left: name:-json value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/settings_sim_cp05mm.json source: code
+Option left: name:-mesh value: ../body_fit_simulation_DNS/mesh/quarter_chip_HM27.msh source: code
+Option left: name:-mesh-metadata value: ../body_fit_simulation_DNS/mesh/quarter_chip_HM27_metadata.json source: code
+Option left: name:-output-dir value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm source: code
+Option left: name:-powermap value: /Users/gaelle/Repositories/failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/../../../powermap/apollo_pmap/powermap_ttv_quarter_for_hm27_mesh.csv source: code

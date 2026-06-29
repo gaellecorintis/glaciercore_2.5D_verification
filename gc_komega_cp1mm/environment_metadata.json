@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "glaciercore_version": "0.0.0",
+  "glaciercore_commit_hash": null,
+  "python_version": "3.11.8 (main, May 12 2026, 09:42:55) [Clang 17.0.0 (clang-1700.4.4.1)]",
+  "timestamp": "2026-06-05T15:38:02.209345+00:00",
+  "system_info": {
+    "os": "macOS-26.1-arm64-arm-64bit",
+    "kernel": "25.1.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "physical_cores": 32,
+    "logical_cores": 32,
+    "memory_total_gb": 512.0
+  }
+}

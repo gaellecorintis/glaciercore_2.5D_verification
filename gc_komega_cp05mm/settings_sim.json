@@ -1,0 +1,70 @@
+{
+    "boundary_markers": {
+        "walls": [1, 2, 4, 5],
+        "symmetry": [3],
+        "flow_direction": "x-",
+        "inlet_surfaces": [
+            { "x0": 0.0264, "y0": 0.0,    "dx": 0.0001, "dy": 0.0187  },
+            { "x0": 0.0139, "y0": 0.0188, "dx": 0.0123, "dy": 0.0001 }
+        ],
+        "outlet_surfaces": [
+            { "x0": 0.0, "y0": 0.0, "dx": 0.0001, "dy": 0.0358 }
+        ]
+    },
+    "fluid_boundary_conditions": {
+        "inlet": "target_flow_rate",
+        "outlet": "free",
+        "target_flow_rate": 0.00001416666667,
+        "initial_pressure_drop": 14000,
+        "target_flow_rate_rtol": 1e-4,
+        "target_flow_rate_atol": 1e-8,
+        "target_flow_rate_max_iterations": 20
+    },
+    "problem_data": {
+        "channel_depth": 1.5e-3,
+        "cold_plate_substrate_thickness": 5e-4,
+        "conductivity_cold_plate_substrate": 400.0,
+        "tim_thickness": 100e-6,
+        "conductivity_tim": 8,
+        "conductivity_die_substrate": 150,
+        "die_substrate_thickness": 1e-3,
+        "liquid_coolant": "pgw25"
+    },
+    "simulation_settings": {
+        "is_nondimensional": false,
+        "is_split_flow": true,
+        "fluid": {
+            "is_stokes": false,
+            "discretization": "p2p1",
+            "backflow_stabilisation": "both",
+            "semi_implicit_supg": false,
+            "turbulence_model": "k_omega_sst",
+            "turbulence_intensity": 0.05,
+            "turbulence_length_scale": 0.0001
+        },
+        "thermal": {
+            "junction_extrapolation_mode": "two_dimensional"
+        }
+    },
+    "solver_settings": {
+        "convergence_mode": "accept_failure",
+        "nonlinear_solver": "default",
+        "navier_stokes_solver_parameters": {
+            "snes_max_it": 1
+        },
+        "rans_solver_parameters": {
+            "max_it": 50,
+            "max_cleanup_steps": 25,
+            "omega_min": 0.1,
+            "interior_nu_t_ratio": 10.0,
+            "interior_turbulence_length_scale": 0.0001,
+            "relaxed_max_it": 10
+        }
+    },
+    "thermal_boundary_conditions": {
+        "temperature_inlet": 316.15
+    },
+    "logging_settings": {
+        "glaciercore_stream_mode": "customer"
+    }
+}

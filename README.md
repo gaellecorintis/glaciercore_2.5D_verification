@@ -12,6 +12,18 @@ kept in sync with the latest `main` of
 > target that version (glaciercore v0.22+). All example JSON configs validate
 > against the current `glaciercore_config` schemas.
 
+## HM27 MI455 — glaciercore verification cases
+
+Verification of the glaciercore 2.5D thermal model against high-fidelity 3D CHT
+simulations (ANSA/Fidelity). Glaciercore results:
+
+| Folder | cp substrate | Tj max | Notes |
+| --- | --- | --- | --- |
+| [`gc_komega_cp1mm/`](gc_komega_cp1mm/) | 1.0 mm | 85.70 °C | Reference k-ω SST run, T_inlet 43 °C |
+| [`gc_komega_cp05mm/`](gc_komega_cp05mm/) | 0.5 mm | 85.49 °C | ANSA-aligned substrate thickness |
+
+OpenFOAM and ANSA/Fidelity cases will be added in separate folders when available.
+
 ## Getting started on a GCP instance
 
 On a fresh instance, run the one-command setup script. It installs system

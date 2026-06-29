@@ -1,0 +1,281 @@
+{
+    "glaciercore_version": "0.0.0",
+    "glaciercore_commit": "584a948f9b1f737cdbbc4a3d823c52e25efa6984",
+    "thermal_quantities": {
+        "temperature_scale": 350.0,
+        "temperature_inlet": 316.15,
+        "is_nondimensional": false,
+        "length_scale": 1.0,
+        "junction_extrapolation_mode": "two_dimensional",
+        "physical_power_full_chip": 1997.9996683999989,
+        "physical_power_full_chip_interpolated": 1997.9619703243761,
+        "physical_temperature_quantity_stats": {
+            "core": {
+                "junction_statistics": {
+                    "min_value": 45.60491927260961,
+                    "max_value": 85.48558453816804,
+                    "mean_value": 60.80589359202963
+                },
+                "die_substrate_statistics": {
+                    "min_value": 45.411019538335154,
+                    "max_value": 82.46614594479723,
+                    "mean_value": 59.36154893048479
+                },
+                "channel_statistics": {
+                    "min_value": 42.16497721134215,
+                    "max_value": 67.9627052179203,
+                    "mean_value": 48.582613390334984
+                },
+                "channel_fluid_statistics": {
+                    "min_value": 42.676213197032666,
+                    "max_value": 67.90394318076977,
+                    "mean_value": 46.625762848941804
+                }
+            },
+            "cold_plate_layers": {
+                "tim_statistics": {
+                    "min_value": 44.67262150378912,
+                    "max_value": 74.63523051798092,
+                    "mean_value": 55.209058028597155
+                },
+                "cold_plate_substrate_statistics": {
+                    "min_value": 44.1319285767438,
+                    "max_value": 69.0916536969545,
+                    "mean_value": 52.230097164203585
+                }
+            }
+        },
+        "physical_temperature_outlet": 54.50933626181995,
+        "physical_temperature_outlet_weighted": 51.679131375450595,
+        "physical_temperature_outlet_tmax_105c": 55.676617032765975,
+        "dissipated_power_density_tmax_105c": 632339.6015203423,
+        "junction_temperature_increase_per_mode": {},
+        "stats_in_extra_regions": {
+            "hotspot_0": {
+                "xmin": 0.0,
+                "xmax": 0.012999999999999994,
+                "ymin": 0.0,
+                "ymax": 0.03199999999999998,
+                "quantity_stats": {
+                    "core": {
+                        "junction_statistics": {
+                            "min_value": 58.04579654604527,
+                            "max_value": 85.48558453816804,
+                            "mean_value": 75.72420245370972
+                        },
+                        "die_substrate_statistics": {
+                            "min_value": 57.073282506675355,
+                            "max_value": 82.46614594479723,
+                            "mean_value": 72.71431831335241
+                        },
+                        "channel_statistics": {
+                            "min_value": 42.713686898324454,
+                            "max_value": 67.9627052179203,
+                            "mean_value": 52.24336598043533
+                        },
+                        "channel_fluid_statistics": {
+                            "min_value": 42.713686898324454,
+                            "max_value": 67.90394318076977,
+                            "mean_value": 49.56608667203227
+                        }
+                    },
+                    "cold_plate_layers": {
+                        "tim_statistics": {
+                            "min_value": 54.062456149853006,
+                            "max_value": 74.63523051798092,
+                            "mean_value": 64.34665854463339
+                        },
+                        "cold_plate_substrate_statistics": {
+                            "min_value": 51.03843719133863,
+                            "max_value": 69.0916536969545,
+                            "mean_value": 58.345624984234234
+                        }
+                    }
+                }
+            }
+        },
+        "stats_in_extra_orthotropic_regions": {},
+        "die_substrate_isotropic_stats": {
+            "core": {
+                "junction_statistics": {
+                    "min_value": 45.60491927260961,
+                    "max_value": 85.48558453816804,
+                    "mean_value": 60.80589359202963
+                },
+                "die_substrate_statistics": {
+                    "min_value": 45.411019538335154,
+                    "max_value": 82.46614594479723,
+                    "mean_value": 59.36154893048479
+                },
+                "channel_statistics": {
+                    "min_value": 42.16497721134215,
+                    "max_value": 67.9627052179203,
+                    "mean_value": 48.582613390334984
+                },
+                "channel_fluid_statistics": {
+                    "min_value": 42.16497721134215,
+                    "max_value": 67.9627052179203,
+                    "mean_value": 48.582613390334984
+                }
+            },
+            "cold_plate_layers": {
+                "tim_statistics": {
+                    "min_value": 44.67262150378912,
+                    "max_value": 74.63523051798092,
+                    "mean_value": 55.209058028597155
+                },
+                "cold_plate_substrate_statistics": {
+                    "min_value": 44.1319285767438,
+                    "max_value": 69.0916536969545,
+                    "mean_value": 52.230097164203585
+                }
+            }
+        },
+        "thermal_power_balance_results": {
+            "physical_temperature_outlet_weighted": 51.679131375450595,
+            "chip_power_q": 1997.9996683999989,
+            "fluid_power_q": 1996.2659331822088,
+            "absolute_error": 1.7337352177901266,
+            "relative_error_percent": 0.08677354882538617,
+            "chip_power_interpolated": 1997.9619703243761,
+            "absolute_interpolation_error": 0.03769807562275673,
+            "absolute_pde_error": 1.69603714216737
+        },
+        "material_properties": {
+            "conductivity_die_substrate": {
+                "coeff_a": 150.0,
+                "coeff_b": 0.0,
+                "ref_value": null
+            },
+            "conductivity_tim": 8.0,
+            "conductivity_cold_plate_substrate": 400.0,
+            "orthotropic_material_conductivity_list": []
+        }
+    },
+    "fluid_quantities": {
+        "physical_flow_rate_full_chip_inlet": -5.669053318655826e-05,
+        "physical_flow_rate_full_chip_outlet": 5.6690533186543495e-05,
+        "physical_velocity_statistics": {
+            "min_value": 0.0,
+            "max_value": 5.967034125067263,
+            "mean_value": 0.73783115847029
+        },
+        "physical_pressure_drop": 18757.279755663098,
+        "flow_balance_results": {
+            "flow_inlet": -5.669053318655826e-05,
+            "flow_outlet": 5.6690533186543495e-05,
+            "flow_sum": -1.4765478336536964e-17,
+            "absolute_error": 1.4765478336536964e-17,
+            "relative_error_percent": 2.604575668383018e-11
+        },
+        "turbulence_statistics": {
+            "k_statistics": {
+                "min_value": 0.0,
+                "max_value": 0.1610529220254081,
+                "mean_value": 0.013484195729095453
+            },
+            "omega_statistics": {
+                "min_value": 0.0,
+                "max_value": 30812482.935186304,
+                "mean_value": 336624.98713610566
+            },
+            "nu_t_statistics": {
+                "min_value": 0.0,
+                "max_value": 3.8586509637228e-07,
+                "mean_value": 2.7436831378974692e-08
+            },
+            "nu_t_over_nu_statistics": {
+                "min_value": 0.0,
+                "max_value": 0.2792478765886472,
+                "mean_value": 0.019855843337298267
+            }
+        }
+    },
+    "coefficient_of_performance": 1597.106731423773,
+    "environment_metadata": {
+        "version": "1.0",
+        "glaciercore_version": "0.0.0",
+        "glaciercore_commit_hash": null,
+        "python_version": "3.11.8 (main, May 12 2026, 09:42:55) [Clang 17.0.0 (clang-1700.4.4.1)]",
+        "timestamp": "2026-06-29T14:52:28.693648+00:00",
+        "system_info": {
+            "os": "macOS-26.1-arm64-arm-64bit",
+            "kernel": "25.1.0",
+            "machine": "arm64",
+            "processor": "arm",
+            "physical_cores": 32,
+            "logical_cores": 32,
+            "memory_total_gb": 512.0
+        }
+    },
+    "flow_target_convergence": {
+        "converged": true,
+        "n_iterations": 4,
+        "target_flow_rate_m3s": 1.416666667e-05,
+        "achieved_flow_rate_m3s": 1.4172633296635874e-05,
+        "achieved_pressure_drop_pa": 18757.279755663098,
+        "relative_error": 0.0004211736447861142
+    },
+    "rans_residual_envelope": {
+        "n_samples": 15,
+        "final_iteration": 14,
+        "relaxed": false,
+        "converged": true,
+        "metrics": {
+            "delta_primary": {
+                "min": 0.0031064131252997442,
+                "max": 0.007907946082197916,
+                "mean": 0.005822442902228997,
+                "std": 0.0015102829742969647
+            },
+            "delta_u": {
+                "min": 0.0031064131252997442,
+                "max": 0.007907946082197916,
+                "mean": 0.005822442902228997,
+                "std": 0.0015102829742969647
+            },
+            "delta_k": {
+                "min": 0.0,
+                "max": 2.0504498192798834e-19,
+                "mean": 2.733933092373178e-20,
+                "std": 6.970189093433948e-20
+            },
+            "delta_omega": {
+                "min": 1.8912949610188163e-05,
+                "max": 0.00025331684208794594,
+                "mean": 9.694046105944971e-05,
+                "std": 7.076713925425665e-05
+            },
+            "delta_nu_t": {
+                "min": 1.0749954574687558e-05,
+                "max": 2.770500320193191e-05,
+                "mean": 1.9249750901397358e-05,
+                "std": 4.701118527313641e-06
+            },
+            "r_snes_flow": {
+                "min": 0.013070091647462182,
+                "max": 0.020823188295557318,
+                "mean": 0.016667262799473347,
+                "std": 0.002396133849444972
+            },
+            "r_snes_k": {
+                "min": 0.0005498433374305009,
+                "max": 0.0005498568476100745,
+                "mean": 0.0005498510429765012,
+                "std": 4.954746421598283e-09
+            },
+            "r_snes_omega": {
+                "min": 35668.4145836186,
+                "max": 35669.10284572332,
+                "mean": 35668.7523439287,
+                "std": 0.240615548485164
+            },
+            "r_snes_combined": {
+                "min": 35668.414583621576,
+                "max": 35669.10284572876,
+                "mean": 35668.75234393268,
+                "std": 0.24061554920480566
+            }
+        }
+    }
+}
