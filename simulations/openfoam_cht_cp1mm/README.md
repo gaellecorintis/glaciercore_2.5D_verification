@@ -27,7 +27,7 @@ Q_out/Q_in ≈ **101.8 %** (Q_out ≈ 508.5 W on the quarter).
 |---|---|
 | `system/` | OpenFOAM dictionaries (controlDict, fvSchemes, fvSolution, decompose…) |
 | `constant/` | Region physical properties (`regionProperties` + per-region), **no mesh** |
-| `logs/` | Solver logs (`log.foamMultiRun.*`), final run = `log.foamMultiRun.limited` |
+| `logs/` | Solver logs: `log.foamMultiRun.ramp_1-5001` (cold-start ramp) + `log.foamMultiRun.final_5001-7000` (final converged run) |
 | `Tdie_history.csv` | Die max temperature vs iteration (`iter, T_K, T_C`) |
 | `Qout_history.csv` | Heat balance vs iteration (`iter, Tout_K, dT_K, Qout_W, pct`) |
 | `figures/` | Curated result figures (T/U fields at 7000, convergence, vs-glaciercore) |
