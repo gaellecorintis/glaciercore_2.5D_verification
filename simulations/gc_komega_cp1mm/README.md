@@ -12,6 +12,6 @@ HM27 MI455 quarter chip, TTV powermap, **T_inlet = 43 °C**, **3.4 LPM** full ch
 
 **Key results:** Tj max **85.70 °C**, ΔP **189.4 mbar**, Q **3.401 LPM**.
 
-Source run: `failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_warmstart_from_30C/`
+Powermap in repo: [`../../powermap/apollo_pmap/powermap_ttv_quarter_for_hm27_mesh.csv`](../../powermap/apollo_pmap/powermap_ttv_quarter_for_hm27_mesh.csv)
 
 Large field files (`.h5`, VTK) are not stored in git — see `.gitignore`.

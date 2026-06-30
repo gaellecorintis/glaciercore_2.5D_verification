@@ -11,6 +11,6 @@ Same case as `gc_komega_cp1mm/`, with **`cold_plate_substrate_thickness = 0.5 mm
 
 **Key results:** Tj max **85.49 °C**, ΔP **187.6 mbar**, Q **3.401 LPM** (ΔTj vs 1 mm: **−0.21 °C**).
 
-Source run: `failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/simulation_result_cp_substrate_0p5mm/`
+Warm-start source: [`../gc_komega_cp1mm/`](../gc_komega_cp1mm/) (flow field at cp 1 mm)
 
 Large field files (`.h5`, VTK) are not stored in git — see `.gitignore`.
