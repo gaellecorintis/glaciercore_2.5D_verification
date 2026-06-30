@@ -1,0 +1,27 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Gravity field. Required by foamMultiRun `fluid` (buoyantFluid family) so
+//  that p_rgh = p - rho*g.h is well defined. For a horizontal chip with the
+//  channel ~1.5 mm tall, the hydrostatic head is negligible (~15 Pa vs
+//  ~19000 Pa pumping drop), but the field still needs to exist.
+//
+//  Convention: z is the chip-normal axis (mesh built with bottom at z=0,
+//  top at z = chip_thickness), so gravity points in -z.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       uniformDimensionedVectorField;
+    location    "constant/fluid";
+    object      g;
+}
+
+dimensions      [0 1 -2 0 0 0 0];
+value           (0 0 -9.81);
+
+// ************************************************************************* //

@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  createPatchDict_front_symmetry -- promote the `front` patch (y = 0) from
+//  `type patch` to `type symmetryPlane` on every region.
+//
+//  WHY: per blockMeshDict, y = 0 is the NE-quarter chip's east-west centerline
+//  (mirror plane for the symmetric NW quarter). It MUST be a symmetryPlane,
+//  not a generic patch -- otherwise OF will not enforce zero-gradient + zero
+//  normal-flux on the BC, and U/T/p will leak across the symmetry line.
+//
+//  Apply per region:
+//      for r in fluid cold_plate tim die; do
+//          createPatch -region $r -overwrite \
+//              -dict system/createPatchDict_front_symmetry
+//      done
+//
+//  This dict reuses ALL existing faces of the patch named `front` and
+//  re-emits them as a symmetryPlane patch with the same name. Other patches
+//  are untouched.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+
+pointSync false;
+
+patches
+(
+    {
+        name           front;
+        patchInfo      { type symmetryPlane; }
+        constructFrom  patches;
+        patches        (front);
+    }
+);
+
+// ************************************************************************* //

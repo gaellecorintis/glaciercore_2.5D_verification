@@ -1,0 +1,184 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  fluid region -- OF13 `fluid` solver module of foamMultiRun.
+//
+//  IMPORTANT (OF13):
+//    The `fluid` module reads the `PIMPLE` block of fvSolution, NOT `SIMPLE`,
+//    even in steady-state mode. Steady-state is selected via
+//    `ddt steadyState` in fvSchemes; convergence is then driven by the
+//    `PIMPLE.residualControl` dict (single values per field, no nested
+//    {tolerance/relTol} sub-dicts -- that triggers a fatal IO error).
+//
+//  Solvers / relaxation copied from the official OF13 steady-state CHT
+//  tutorial (multiRegion/CHT/circuitBoardCooling/system/fluid/fvSolution)
+//  and adapted to our 80 M cell snappy mesh with kOmegaSST RAS.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system/fluid";
+    object      fvSolution;
+}
+
+solvers
+{
+    "rho.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+    //  p_rgh -- GAMG (re-enabled on the new 5-layer mesh).
+    //
+    //  History: GAMG previously NaN'd on the OLD mesh (9 cells with
+    //  determinant < 0.001 made the algebraic coarsening blow up), so we had
+    //  fallen back to PCG+DIC. The NEW mesh passes the determinant check
+    //  (min 0.00149, no cells < 0.001), and we now run soft relaxation (0.3)
+    //  with 2 non-orthogonal correctors, so GAMG is viable again and ~3-5x
+    //  faster than PCG on 74 M cells.
+    //
+    //  Robust settings: GaussSeidel smoother (stable on poor cells),
+    //  conservative coarsening, modest maxIter. PCG+DIC fallback kept in
+    //  fvSolution.pcg_bak -- revert if NaN appears.
+    p_rgh
+    {
+        solver           GAMG;
+        smoother         GaussSeidel;
+        tolerance        1e-6;
+        relTol           0.01;   // 0.05 -> 0.01: solve pressure ~5x tighter per
+                                 // outer iter. The continuity blew up because the
+                                 // pressure update at relTol 0.05 (Final res ~1e-2)
+                                 // left mass un-conserved; 0.01 enforces it harder.
+        maxIter          100;
+        nPreSweeps       0;
+        nPostSweeps      2;
+        nFinestSweeps    2;
+        cacheAgglomeration      true;
+        nCellsInCoarsestLevel   500;
+        agglomerator     faceAreaPair;
+        mergeLevels      1;
+    }
+
+    //  Final pressure corrector (used when nCorrectors > 1): solve to a tighter
+    //  relTol on the last corrector for clean mass conservation.
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol           0;
+    }
+
+    p
+    {
+        $p_rgh;
+    }
+
+    //  potentialFoam initialisation solver (divergence-free starting field).
+    Phi
+    {
+        solver           GAMG;
+        smoother         GaussSeidel;
+        tolerance        1e-6;
+        relTol           0.01;
+        nCellsInCoarsestLevel 500;
+    }
+
+    "(U|h|e|k|omega)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-7;
+        relTol          0.01;
+    }
+
+    "(U|h|e|k|omega)Final"
+    {
+        $U;
+        relTol          0;
+    }
+}
+
+//  potentialFoam controls: divergence-free U initialisation to kill the
+//  ~2e5 initial continuity error (the field starts with massive divergence,
+//  which is what destabilises SIMPLE around iter ~28).
+potentialFlow
+{
+    nNonOrthogonalCorrectors 10;
+}
+
+PIMPLE
+{
+    momentumPredictor           no;
+    //  nCorrectors 2: TWO pressure corrections per outer iteration (was 1,
+    //  implicitly). This is the PIMPLE equivalent of the SIMPLEC idea -- it
+    //  enforces continuity TWICE per iter, directly attacking the mass-balance
+    //  blow-up (sum local continuity stalled at ~137 then exploded). The 2nd
+    //  ("Final") corrector solves p_rgh to relTol 0.
+    // 2 -> 1: flow is fully converged AND decoupled from T (rhoConst, const mu),
+    // so the pressure field no longer moves. One corrector is plenty and cuts the
+    // (expensive) GAMG pressure work ~in half per iteration. Pure speed-up.
+    nCorrectors                 1;
+    //  3 non-orthog correctors (raised from 2) -- max non-orthogonality is
+    //  ~70 deg near the fins/layers; 3 correctors keep the pressure equation
+    //  consistent on these cells.
+    // 3 -> 1: needed 3 during the violent transient on the 75deg non-ortho cells;
+    // now that the flow is dead steady, 1 keeps the non-ortho correction without
+    // the cost of 3. Watch global continuity stays ~1e-4 after this.
+    nNonOrthogonalCorrectors    1;
+
+    //  residualControl: single value per field (NOT nested dicts).
+    //  Steady SIMPLE-like loop stops when all initial residuals are below
+    //  these thresholds. Targets chosen to match Glaciercore convergence
+    //  (typically reached in O(500-1500) outer iters on a well-set-up case).
+    residualControl
+    {
+        U                       1e-6;
+        h                       1e-6;
+        "(k|omega)"             1e-4;
+    }
+}
+
+//  Flat relaxation form (the OF13 tutorial uses this; the older
+//  fields{...}/equations{...} nesting also works but is more verbose).
+//  Strong under-relaxation for first-run robustness on snappy mesh:
+//    p_rgh = 0.3 (LOWERED from 0.7 -- conservative pressure update;
+//      previous 0.7 contributed to GAMG divergence on iter 1).
+//      Can be raised to 0.5-0.7 after a few hundred iters converge.
+//    U     = 0.3
+//    h     = 0.7
+//    k/omega = 0.3 (k-omega SST often needs <= 0.5 to avoid oscillation)
+//  Nested form so the regex also covers the *Final correctors (nCorrectors 2):
+//  in this steady (ddt steadyState) run we relax EVERY corrector for max
+//  stability -- an unrelaxed final pressure update would re-introduce the
+//  instability we are trying to kill.
+relaxationFactors
+{
+    fields
+    {
+        rho             1.0;
+        "p_rgh.*"       0.3;   // p_rgh and p_rghFinal both relaxed at 0.3
+    }
+    equations
+    {
+        "U.*"           0.3;   // 0.5 -> 0.3: more damping. Even 1st-order upwind +
+                               // cellLimited grads blew up at U=0.5; extra margin
+                               // for the violent start. Raise back to 0.5 once stable.
+        "(h|e).*"       0.9;   // 0.3 -> 0.7 -> 0.9: flow fully converged & frozen
+                               // (U,p,k,omega all < 1e-4). Energy on a fixed velocity
+                               // field is a stable advection-diffusion solve, so we
+                               // raise relaxation to accelerate the thermal charge-up
+                               // (solids already at e=0.9). Halves the ~2500-iter
+                               // thermal time constant. Lower back if h oscillates.
+        "(k|omega).*"   0.3;   // turbulence damped: omega diverged first under
+                               // the impinging jets.
+    }
+}
+
+// ************************************************************************* //

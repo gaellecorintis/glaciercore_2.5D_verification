@@ -1,0 +1,37 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Re = rho * U * Dh / mu = 1013 * 0.305 * 2.6e-3 / 1.50e-3 ~ 535
+//  Glaciercore reference (MI455_k_omega_full_powermap, T_inlet = 43 C) uses
+//  the k-omega SST RAS model with low-Re wall treatment. We mirror that exactly
+//  so any difference observed comes from numerics / geometry, not from the
+//  turbulence closure.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/fluid";
+    object      momentumTransport;
+}
+
+//  k-omega SST RAS (matches Glaciercore). Reached via FLOW-RATE RAMPING:
+//  cold-starting k-omega at the full 4.6 m/s jets blew omega up at iter ~28;
+//  the laminar run stayed bounded but only oscillated (no eddy viscosity to
+//  damp the unsteady jets). Solution = ramp the inlet flow 25%->100% (see
+//  0/fluid/U) so nut establishes gradually and damps the jets -> steady
+//  convergence at the target flow.
+simulationType  RAS;
+
+RAS
+{
+    model           kOmegaSST;
+
+    turbulence      on;
+}
+
+// ************************************************************************* //

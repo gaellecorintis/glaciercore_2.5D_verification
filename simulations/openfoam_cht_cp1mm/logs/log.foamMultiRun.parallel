@@ -1,0 +1,2060 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-441953dfbb42
+Exec   : foamMultiRun -parallel
+Date   : Jun 12 2026
+Time   : 08:16:31
+Host   : "foam"
+PID    : 329960
+I/O    : uncollated
+Case   : /home/gaelle/OpenFOAM/hm27_ne_quarter
+nProcs : 24
+Slaves : 
+23
+(
+"foam.329961"
+"foam.329962"
+"foam.329963"
+"foam.329964"
+"foam.329965"
+"foam.329966"
+"foam.329967"
+"foam.329968"
+"foam.329969"
+"foam.329970"
+"foam.329971"
+"foam.329972"
+"foam.329973"
+"foam.329974"
+"foam.329975"
+"foam.329976"
+"foam.329977"
+"foam.329982"
+"foam.329984"
+"foam.329990"
+"foam.329993"
+"foam.329996"
+"foam.329999"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Floating point exception trapping - not supported on this platform
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Selecting solver fluid
+Selecting thermodynamics package 
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+No MRF models present
+
+Selecting patchDistMethod meshWave
+Creating fvConstraints from "system/fvConstraints"
+
+Selecting finite volume constraint type limitTemperature
+    Name: limitTemperature(min=280,max=400)
+Selecting thermophysical transport type RAS
+Selecting default RAS thermophysical transport model unityLewisEddyDiffusivity
+Selecting solver solid
+Selecting thermodynamics package 
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIsoSolid;
+    thermo          eConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+Selecting default solid thermophysical transport model isotropic
+Selecting solver solid
+Selecting thermodynamics package 
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIsoSolid;
+    thermo          eConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+Selecting default solid thermophysical transport model isotropic
+Selecting solver solid
+Selecting thermodynamics package 
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIsoSolid;
+    thermo          eConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+Selecting default solid thermophysical transport model isotropic
+
+PIMPLE: Region fluid
+PIMPLE: Convergence criteria found
+        U: tolerance 0.0001
+        h: tolerance 0.0001
+        "(k|omega)": tolerance 0.005
+
+
+PIMPLE: Region cold_plate
+PIMPLE: Convergence criteria found
+        e: tolerance 0.0001
+
+
+PIMPLE: Region tim
+PIMPLE: Convergence criteria found
+        e: tolerance 0.0001
+
+
+PIMPLE: Region die
+PIMPLE: Convergence criteria found
+        e: tolerance 0.0001
+
+
+PIMPLE: Operating solver in steady-state mode with 1 outer corrector
+PIMPLE: Operating solver in SIMPLE mode
+
+
+
+Starting time loop
+
+           Time = 1s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 1, Final residual = 0.0031803291, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 1, Final residual = 0.0040496345, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 1, Final residual = 0.003792547, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.004000158, Final residual = 2.3563e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.72737299, Final residual = 5.3316769e-08, No Iterations 17
+cold_plate DICPCG:  Solving for e, Initial residual = 0.32762375, Final residual = 5.4880672e-08, No Iterations 16
+tim        DICPCG:  Solving for e, Initial residual = 0.5905818, Final residual = 9.1220098e-08, No Iterations 8
+tim        DICPCG:  Solving for e, Initial residual = 0.32327021, Final residual = 8.6151754e-08, No Iterations 8
+die        DICPCG:  Solving for e, Initial residual = 1, Final residual = 5.7869289e-08, No Iterations 15
+die        DICPCG:  Solving for e, Initial residual = 0.21956028, Final residual = 5.0430728e-08, No Iterations 13
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.99744793, Final residual = 0.044347808, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.30923572, Final residual = 0.0083187988, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.024677823, Final residual = 0.00046678454, No Iterations 4
+fluid      time step continuity errors : sum local = 678.35887, global = -2.9739666, cumulative = -2.9739666
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.026077181, Final residual = 3.7393649e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 1, Final residual = 0.0010110589, No Iterations 1
+           ExecutionTime = 339.21246 s  ClockTime = 340 s
+           
+           Time = 2s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.86039579, Final residual = 0.0016120801, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.74648689, Final residual = 0.0020780442, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.60101851, Final residual = 0.0014347263, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.99999994, Final residual = 0.0066494675, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 1, Final residual = 4.5910643e-08, No Iterations 17
+cold_plate DICPCG:  Solving for e, Initial residual = 0.35993012, Final residual = 7.2325633e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 1, Final residual = 6.4967884e-08, No Iterations 9
+tim        DICPCG:  Solving for e, Initial residual = 0.09271082, Final residual = 9.2114839e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.14810054, Final residual = 8.1563088e-08, No Iterations 12
+die        DICPCG:  Solving for e, Initial residual = 0.11155492, Final residual = 4.583365e-08, No Iterations 12
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14335816, Final residual = 0.0058453867, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.79035684, Final residual = 0.038381214, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.28610511, Final residual = 0.014125325, No Iterations 3
+fluid      time step continuity errors : sum local = 13009.285, global = 4.9145482, cumulative = 1.9405815
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0021509849, Final residual = 9.8861314e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.44702885, Final residual = 0.00013659608, No Iterations 1
+           ExecutionTime = 365.50524 s  ClockTime = 366 s
+           
+           Time = 3s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.20518896, Final residual = 0.00031490332, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.17200648, Final residual = 0.00043618852, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.18362092, Final residual = 0.00054257049, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.47804208, Final residual = 0.0032617286, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.29258531, Final residual = 8.1427671e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.32298442, Final residual = 7.6919259e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.564149, Final residual = 7.6144351e-08, No Iterations 8
+tim        DICPCG:  Solving for e, Initial residual = 0.073419515, Final residual = 7.4968787e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.094781894, Final residual = 4.1927432e-08, No Iterations 12
+die        DICPCG:  Solving for e, Initial residual = 0.078180537, Final residual = 8.2475121e-08, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.20811474, Final residual = 0.009491567, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.28980499, Final residual = 0.0040940021, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.025488594, Final residual = 0.0011229967, No Iterations 3
+fluid      time step continuity errors : sum local = 2768.0185, global = -4.551289, cumulative = -2.6107075
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0010588761, Final residual = 6.3396853e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.26527059, Final residual = 0.00012444217, No Iterations 1
+           ExecutionTime = 392.64025 s  ClockTime = 393 s
+           
+           Time = 4s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.024006915, Final residual = 5.8830856e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.023707647, Final residual = 6.0830646e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.05102472, Final residual = 0.00011347739, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.61981146, Final residual = 0.0049585986, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.51050915, Final residual = 5.220069e-08, No Iterations 16
+cold_plate DICPCG:  Solving for e, Initial residual = 0.5023889, Final residual = 9.0804699e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.33492506, Final residual = 4.6038008e-08, No Iterations 8
+tim        DICPCG:  Solving for e, Initial residual = 0.055479095, Final residual = 5.8061118e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.072905776, Final residual = 8.1911251e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.06136681, Final residual = 5.8249088e-08, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.074466601, Final residual = 0.0026628308, No Iterations 5
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.047580385, Final residual = 0.0012286638, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.0067887268, Final residual = 0.0003017076, No Iterations 5
+fluid      time step continuity errors : sum local = 692.097, global = -1.691219, cumulative = -4.3019265
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00052347233, Final residual = 4.253516e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.18303637, Final residual = 0.00012566836, No Iterations 1
+           ExecutionTime = 418.81543 s  ClockTime = 420 s
+           
+           Time = 5s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.16040215, Final residual = 0.00031316495, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.12983761, Final residual = 0.00035837321, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.1805935, Final residual = 0.00044580937, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.22361128, Final residual = 0.00017126557, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.22922186, Final residual = 5.5334021e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.17672784, Final residual = 3.4372318e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.22140581, Final residual = 7.9657128e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.042374436, Final residual = 4.4969457e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.06030361, Final residual = 6.9039676e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.051006462, Final residual = 4.6817727e-08, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.094908412, Final residual = 0.0042101864, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.29728089, Final residual = 0.014144495, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.054617846, Final residual = 0.0024024854, No Iterations 3
+fluid      time step continuity errors : sum local = 2517.0674, global = 9.456566, cumulative = 5.1546395
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00026257599, Final residual = 2.8937845e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.13676167, Final residual = 0.00012230122, No Iterations 1
+           ExecutionTime = 444.40728 s  ClockTime = 445 s
+           
+           Time = 6s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.29521935, Final residual = 0.00049275667, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.24831208, Final residual = 0.00072612551, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28657539, Final residual = 0.00087044651, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.10796936, Final residual = 0.00017885351, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.068447161, Final residual = 6.4802436e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.040343226, Final residual = 4.8098227e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.15918357, Final residual = 6.0581109e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.033257129, Final residual = 3.5502414e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.051864574, Final residual = 6.0008805e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.043923536, Final residual = 4.0596409e-08, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14347717, Final residual = 0.0069682463, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.59565662, Final residual = 0.025153687, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.092524432, Final residual = 0.0041770525, No Iterations 3
+fluid      time step continuity errors : sum local = 2576.2891, global = -3.0357918, cumulative = 2.1188477
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00013473958, Final residual = 2.0132293e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.10684411, Final residual = 0.00011686772, No Iterations 1
+           ExecutionTime = 470.91589 s  ClockTime = 472 s
+           
+           Time = 7s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.30957061, Final residual = 0.00043143695, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26193358, Final residual = 0.00071701966, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.20076663, Final residual = 0.00075404597, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.25305664, Final residual = 0.00023438204, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.14837776, Final residual = 4.7895521e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.14346207, Final residual = 4.595559e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.12146312, Final residual = 4.8233046e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.026830793, Final residual = 2.8658795e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.045621851, Final residual = 5.2851359e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.038651336, Final residual = 3.6082919e-08, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12635661, Final residual = 0.0056008536, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.2339697, Final residual = 0.0096036565, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.024132685, Final residual = 0.0010872227, No Iterations 3
+fluid      time step continuity errors : sum local = 1284.3922, global = 2.0676754, cumulative = 4.1865231
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 7.1230197e-05, Final residual = 1.433898e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.085909036, Final residual = 0.00011448981, No Iterations 1
+           ExecutionTime = 498.2818 s  ClockTime = 499 s
+           
+           Time = 8s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.13130377, Final residual = 0.0003692217, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.12455222, Final residual = 0.00043701904, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.093263398, Final residual = 0.00037207344, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.34279602, Final residual = 0.00024028026, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.20095215, Final residual = 6.7384976e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.21673701, Final residual = 7.5138429e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.096777629, Final residual = 3.9699392e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.022183232, Final residual = 2.3632419e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.040741958, Final residual = 4.7223139e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.034532479, Final residual = 9.9299186e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.068450041, Final residual = 0.002536491, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.05770806, Final residual = 0.0015555473, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.0088218806, Final residual = 0.00034873242, No Iterations 5
+fluid      time step continuity errors : sum local = 361.15746, global = 1.0761091, cumulative = 5.2626322
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.8984392e-05, Final residual = 1.0302637e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.070611514, Final residual = 0.00011481408, No Iterations 1
+           ExecutionTime = 524.95275 s  ClockTime = 526 s
+           
+           Time = 9s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.27779428, Final residual = 0.00055998242, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23092881, Final residual = 0.00060864841, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.16019519, Final residual = 0.00048998008, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.25165622, Final residual = 0.0001626392, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.1698705, Final residual = 9.1347958e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.14392485, Final residual = 7.8003382e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.079655017, Final residual = 3.3517169e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.018736299, Final residual = 1.987043e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.036783361, Final residual = 4.2691504e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.031221359, Final residual = 9.0441303e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.09328921, Final residual = 0.0043242183, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31244669, Final residual = 0.004354141, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.05113569, Final residual = 0.0022194819, No Iterations 3
+fluid      time step continuity errors : sum local = 1009.9396, global = 1.3474628, cumulative = 6.6100949
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.2222737e-05, Final residual = 7.3895135e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.058961398, Final residual = 0.00011495416, No Iterations 1
+           ExecutionTime = 551.34763 s  ClockTime = 553 s
+           
+           Time = 10s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.15531047, Final residual = 0.00027672534, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.12431045, Final residual = 0.00027326201, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.11202338, Final residual = 0.00035829046, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.20518309, Final residual = 0.00024508, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.11925898, Final residual = 8.7802543e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.083523577, Final residual = 6.3661641e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.067234852, Final residual = 2.8859988e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.016113954, Final residual = 1.6993716e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.033444947, Final residual = 3.8865183e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.02839356, Final residual = 8.2713949e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15340995, Final residual = 0.0074837057, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.54181624, Final residual = 0.024453135, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.076737929, Final residual = 0.0018198395, No Iterations 4
+fluid      time step continuity errors : sum local = 623.39467, global = 3.501212, cumulative = 10.111307
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.3267987e-05, Final residual = 5.2646975e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.049850465, Final residual = 0.0001156841, No Iterations 1
+           ExecutionTime = 578.89084 s  ClockTime = 580 s
+           
+           Time = 11s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.050891308, Final residual = 8.6910312e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.040092566, Final residual = 8.4978108e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.04288741, Final residual = 0.00016696899, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.33064458, Final residual = 0.00037514812, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.1377352, Final residual = 9.4104265e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.1101733, Final residual = 7.3543226e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.057899141, Final residual = 2.5249106e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.014072418, Final residual = 1.4748744e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.030600919, Final residual = 3.5606779e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.025978226, Final residual = 7.6009e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10872578, Final residual = 0.0049420412, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17405721, Final residual = 0.0083839878, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.020812758, Final residual = 0.00065366104, No Iterations 4
+fluid      time step continuity errors : sum local = 349.85005, global = 1.9591011, cumulative = 12.070408
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 8.2861809e-06, Final residual = 3.9302338e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.042622214, Final residual = 0.00011864712, No Iterations 1
+           ExecutionTime = 606.08723 s  ClockTime = 608 s
+           
+           Time = 12s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.026809153, Final residual = 6.4630682e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.026837948, Final residual = 8.3969521e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.031222001, Final residual = 0.0001588924, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.1932796, Final residual = 0.00021654991, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.10979543, Final residual = 7.6737254e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.089648998, Final residual = 6.0668309e-08, No Iterations 15
+tim        DICPCG:  Solving for e, Initial residual = 0.050674584, Final residual = 2.2381707e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.012449551, Final residual = 1.2963748e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.02813325, Final residual = 3.2779451e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.023918954, Final residual = 7.0224436e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.084028397, Final residual = 0.003597876, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.097511578, Final residual = 0.0026285665, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.017145187, Final residual = 0.00052253614, No Iterations 4
+fluid      time step continuity errors : sum local = 217.19226, global = 0.0059220835, cumulative = 12.07633
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 5.3574116e-06, Final residual = 2.9129683e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036836463, Final residual = 0.00012375646, No Iterations 1
+           ExecutionTime = 632.49562 s  ClockTime = 634 s
+           
+           Time = 13s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.07340957, Final residual = 0.00013600224, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.066621875, Final residual = 0.00015786989, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.056988997, Final residual = 0.00013998146, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.068042485, Final residual = 8.5884815e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.073132878, Final residual = 5.6969618e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.061229906, Final residual = 9.863835e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.0449438, Final residual = 2.0056726e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.011134952, Final residual = 1.151967e-08, No Iterations 7
+die        DICPCG:  Solving for e, Initial residual = 0.026003299, Final residual = 3.033858e-08, No Iterations 11
+die        DICPCG:  Solving for e, Initial residual = 0.022141593, Final residual = 6.5186597e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11239304, Final residual = 0.0044397344, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.40600471, Final residual = 0.017527612, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.081540784, Final residual = 0.0027282629, No Iterations 4
+fluid      time step continuity errors : sum local = 430.60212, global = 0.35543949, cumulative = 12.43177
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.5886762e-06, Final residual = 2.4140489e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.03214033, Final residual = 0.00013089576, No Iterations 1
+           ExecutionTime = 659.11076 s  ClockTime = 661 s
+           
+           Time = 14s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.076868621, Final residual = 0.00012700441, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.068983346, Final residual = 0.0001465299, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.0491527, Final residual = 0.00013518054, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.072160776, Final residual = 0.00013803461, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.057125462, Final residual = 4.5763772e-08, No Iterations 15
+cold_plate DICPCG:  Solving for e, Initial residual = 0.046682014, Final residual = 7.691158e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.040301062, Final residual = 1.8137962e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.010051973, Final residual = 9.3134131e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.02414689, Final residual = 9.6162983e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.020590772, Final residual = 6.0803099e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.2061382, Final residual = 0.010060664, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42764757, Final residual = 0.016357984, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.044992036, Final residual = 0.0019512882, No Iterations 4
+fluid      time step continuity errors : sum local = 430.84239, global = 0.8335299, cumulative = 13.2653
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.5079491e-06, Final residual = 1.8612212e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.028280525, Final residual = 0.00013961059, No Iterations 1
+           ExecutionTime = 686.24046 s  ClockTime = 688 s
+           
+           Time = 15s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.030382603, Final residual = 5.5832628e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.027616703, Final residual = 7.6329143e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.018687226, Final residual = 7.2303725e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.10516992, Final residual = 0.00014308901, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.056725235, Final residual = 9.8236979e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.047517895, Final residual = 7.8803245e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.036471288, Final residual = 1.652949e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.00914652, Final residual = 8.4229736e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.022515536, Final residual = 8.9927593e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.019225246, Final residual = 5.6887653e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.084183832, Final residual = 0.003775862, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10495448, Final residual = 0.0046517818, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.01226835, Final residual = 0.00043364634, No Iterations 5
+fluid      time step continuity errors : sum local = 119.93637, global = -0.28882177, cumulative = 12.976478
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.8091526e-06, Final residual = 1.481929e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.02507808, Final residual = 0.00014869679, No Iterations 1
+           ExecutionTime = 712.86276 s  ClockTime = 715 s
+           
+           Time = 16s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.024779632, Final residual = 6.5303949e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.02458317, Final residual = 8.582837e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.022985002, Final residual = 9.4136008e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.089984982, Final residual = 0.00010579521, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.049199584, Final residual = 8.6147401e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.041321128, Final residual = 6.770253e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.033263251, Final residual = 1.516403e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0083796132, Final residual = 7.6733559e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.02106984, Final residual = 8.4358853e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.018013894, Final residual = 5.3400694e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.085165964, Final residual = 0.0035995037, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11355944, Final residual = 0.0053563288, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.016090475, Final residual = 0.00062306602, No Iterations 5
+fluid      time step continuity errors : sum local = 131.65823, global = 0.34076236, cumulative = 13.31724
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.3277824e-06, Final residual = 1.1696739e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.022393018, Final residual = 0.0001588909, No Iterations 1
+           ExecutionTime = 740.25905 s  ClockTime = 742 s
+           
+           Time = 17s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.039859437, Final residual = 0.00010047969, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.035850101, Final residual = 0.00011161403, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.028435658, Final residual = 8.4060457e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.037225789, Final residual = 7.0458795e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.040596356, Final residual = 7.3419766e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.034205541, Final residual = 5.4686854e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.030540558, Final residual = 1.3992407e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0077227094, Final residual = 7.034833e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.019780335, Final residual = 7.9365832e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.016931469, Final residual = 5.0275615e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10503768, Final residual = 0.0039191251, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31428726, Final residual = 0.0086146578, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.041752819, Final residual = 0.0016831934, No Iterations 5
+fluid      time step continuity errors : sum local = 185.93183, global = 0.53179376, cumulative = 13.849034
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.0019034e-06, Final residual = 9.4707488e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.020123346, Final residual = 0.00016867804, No Iterations 1
+           ExecutionTime = 769.85573 s  ClockTime = 772 s
+           
+           Time = 18s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.026988147, Final residual = 6.9428626e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.023000697, Final residual = 9.9740783e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.019260939, Final residual = 6.3179207e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.053148897, Final residual = 0.00011904937, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.03840517, Final residual = 6.9106675e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.033092245, Final residual = 5.2809695e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.028203245, Final residual = 1.2977907e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0071544297, Final residual = 6.4852596e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.018623103, Final residual = 7.4866935e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.015958164, Final residual = 4.7459219e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.1266952, Final residual = 0.0051688325, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31654518, Final residual = 0.0079052018, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.030307197, Final residual = 0.0012854866, No Iterations 5
+fluid      time step continuity errors : sum local = 144.80448, global = 0.29060475, cumulative = 14.139639
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 7.7498332e-07, Final residual = 7.6163756e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.01820265, Final residual = 0.0001777581, No Iterations 1
+           ExecutionTime = 797.09835 s  ClockTime = 799 s
+           
+           Time = 19s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0069657743, Final residual = 3.1801441e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.005994156, Final residual = 3.6880259e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.008573946, Final residual = 3.1835434e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.056000993, Final residual = 0.00011783189, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.036265701, Final residual = 6.4295367e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.031699608, Final residual = 5.0627762e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.026176483, Final residual = 1.2091134e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0066583805, Final residual = 6.0077939e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.01757892, Final residual = 7.0794512e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.015078071, Final residual = 4.4907916e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.0920218, Final residual = 0.002384331, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.06827762, Final residual = 0.0017963671, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.010256752, Final residual = 0.00044030747, No Iterations 6
+fluid      time step continuity errors : sum local = 55.421607, global = 0.099354923, cumulative = 14.238994
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 6.114653e-07, Final residual = 6.3035002e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.016575362, Final residual = 2.0078598e-06, No Iterations 1
+           ExecutionTime = 823.98783 s  ClockTime = 826 s
+           
+           Time = 20s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.012154156, Final residual = 6.1962807e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.013300188, Final residual = 9.3160216e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.01187192, Final residual = 6.4075359e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.039898752, Final residual = 7.8335646e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.032678055, Final residual = 5.7332918e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.028748555, Final residual = 4.5431301e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.024403007, Final residual = 1.1309885e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0062218226, Final residual = 9.7695337e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.016632053, Final residual = 6.7091935e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.014278517, Final residual = 4.258664e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10049849, Final residual = 0.0036206596, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15687096, Final residual = 0.0037625893, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.021787235, Final residual = 0.00072390112, No Iterations 6
+fluid      time step continuity errors : sum local = 66.265052, global = -0.20622603, cumulative = 14.032768
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 4.7688301e-07, Final residual = 5.1190876e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.015212329, Final residual = 1.773822e-06, No Iterations 1
+           ExecutionTime = 850.72107 s  ClockTime = 853 s
+           
+           Time = 21s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.017591687, Final residual = 9.2474791e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.017917527, Final residual = 0.00011622031, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.013258454, Final residual = 6.1986778e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.019063111, Final residual = 5.2117337e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.028918235, Final residual = 5.0734137e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.025544529, Final residual = 9.3293693e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.022838324, Final residual = 1.0615237e-08, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.005834764, Final residual = 9.0952006e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.015769555, Final residual = 6.3712134e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.013549042, Final residual = 4.0465977e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12369271, Final residual = 0.0045676641, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.24304508, Final residual = 0.0047501369, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.029542572, Final residual = 0.00096822347, No Iterations 6
+fluid      time step continuity errors : sum local = 83.626257, global = -0.18140986, cumulative = 13.851358
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.9591204e-07, Final residual = 4.3793789e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.014032054, Final residual = 1.5451668e-06, No Iterations 1
+           ExecutionTime = 877.68846 s  ClockTime = 880 s
+           
+           Time = 22s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.012197518, Final residual = 6.4979638e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.012327594, Final residual = 8.8946538e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.0095314959, Final residual = 5.1563883e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.034171676, Final residual = 8.771903e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.026328345, Final residual = 4.6173988e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.023317226, Final residual = 8.5200393e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.021447604, Final residual = 9.9957728e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0054892607, Final residual = 8.4950617e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.014980638, Final residual = 6.0614948e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.012880925, Final residual = 3.8521351e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.082762015, Final residual = 0.0033501748, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14408864, Final residual = 0.0028386519, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.019397897, Final residual = 0.00061790293, No Iterations 6
+fluid      time step continuity errors : sum local = 68.185894, global = -0.095897733, cumulative = 13.75546
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.2696826e-07, Final residual = 3.7364073e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.01300146, Final residual = 1.3532244e-06, No Iterations 1
+           ExecutionTime = 904.81891 s  ClockTime = 907 s
+           
+           Time = 23s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.003863014, Final residual = 1.6110724e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.0048609424, Final residual = 2.4651778e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.0074015538, Final residual = 3.6303819e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.035566543, Final residual = 6.5953008e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.02452185, Final residual = 9.3393079e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.021862134, Final residual = 7.9580183e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.020203434, Final residual = 9.4396348e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0051789817, Final residual = 7.9612981e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.014256478, Final residual = 5.7767656e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.012266838, Final residual = 3.6732028e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.058104937, Final residual = 0.0014932891, No Iterations 6
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.03394241, Final residual = 0.0011100232, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.015863671, Final residual = 0.00043784651, No Iterations 3
+fluid      time step continuity errors : sum local = 48.896034, global = 0.22309289, cumulative = 13.978553
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.0534635e-07, Final residual = 3.3880471e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.012092746, Final residual = 1.1942155e-06, No Iterations 1
+           ExecutionTime = 930.01216 s  ClockTime = 933 s
+           
+           Time = 24s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.007115098, Final residual = 4.3337009e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.0082058894, Final residual = 6.744705e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.0097231213, Final residual = 5.3562641e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.027122382, Final residual = 0.00010799515, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.022851315, Final residual = 8.698201e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.020509767, Final residual = 7.4235827e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.019083903, Final residual = 8.9373354e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0048988381, Final residual = 7.483523e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.01358957, Final residual = 5.514193e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.011700552, Final residual = 3.5080437e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.06439043, Final residual = 0.0016762061, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.091809971, Final residual = 0.0018385658, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.023577458, Final residual = 0.0010686852, No Iterations 2
+fluid      time step continuity errors : sum local = 103.97078, global = 0.899117, cumulative = 14.87767
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.5838441e-07, Final residual = 3.0439153e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.011288569, Final residual = 1.082779e-06, No Iterations 1
+           ExecutionTime = 955.13318 s  ClockTime = 958 s
+           
+           Time = 25s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0088491923, Final residual = 4.8370878e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.010044618, Final residual = 6.3442657e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.010741614, Final residual = 5.4134005e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.018449964, Final residual = 6.5526749e-05, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.021613139, Final residual = 8.1676058e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.019510939, Final residual = 7.016692e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0180713, Final residual = 8.4814584e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0046446897, Final residual = 7.0534513e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.01297351, Final residual = 5.2713541e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.011176724, Final residual = 3.3551307e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.066906663, Final residual = 0.0029443071, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13570463, Final residual = 0.0030846582, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.038904566, Final residual = 0.0012602914, No Iterations 3
+fluid      time step continuity errors : sum local = 105.4275, global = 0.81643872, cumulative = 15.694109
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.8418028e-07, Final residual = 3.1143438e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.010573869, Final residual = 1.0087095e-06, No Iterations 1
+           ExecutionTime = 981.6544 s  ClockTime = 985 s
+           
+           Time = 26s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0060937758, Final residual = 3.6855811e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.0081111598, Final residual = 6.8172676e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.01168337, Final residual = 6.257745e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.027578128, Final residual = 0.00014223902, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.020634952, Final residual = 7.7576218e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.018717535, Final residual = 6.7057233e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.017151116, Final residual = 8.0658933e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0044131169, Final residual = 6.6643968e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.012402758, Final residual = 5.0461268e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.010690835, Final residual = 3.2131619e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.055983506, Final residual = 0.0014860319, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10461743, Final residual = 0.0022210537, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.03786578, Final residual = 0.0014507312, No Iterations 2
+fluid      time step continuity errors : sum local = 114.5448, global = 0.52996297, cumulative = 16.224072
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.404356e-07, Final residual = 2.8400386e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.009933331, Final residual = 9.6526767e-07, No Iterations 1
+           ExecutionTime = 1006.98 s  ClockTime = 1010 s
+           
+           Time = 27s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0050217237, Final residual = 2.0477574e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.0095176636, Final residual = 4.8403081e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.013931951, Final residual = 6.613571e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.040803947, Final residual = 0.00012958606, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.019580907, Final residual = 7.3353259e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.017833003, Final residual = 6.358608e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.016311345, Final residual = 7.6855623e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0042012629, Final residual = 6.3108587e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.011872546, Final residual = 4.8366768e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.010238976, Final residual = 3.0810278e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.071634628, Final residual = 0.0031158161, No Iterations 4
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.056422653, Final residual = 0.002114259, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.055213867, Final residual = 0.0018236291, No Iterations 3
+fluid      time step continuity errors : sum local = 145.70553, global = -2.630906, cumulative = 13.593165
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.2861831e-07, Final residual = 3.6618442e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0093552588, Final residual = 9.4331095e-07, No Iterations 1
+           ExecutionTime = 1032.2531 s  ClockTime = 1036 s
+           
+           Time = 28s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0072067741, Final residual = 5.125869e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.014384524, Final residual = 0.00012530417, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.022493721, Final residual = 0.00011319054, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.073322059, Final residual = 0.000382544, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.01850095, Final residual = 6.9080071e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.016906789, Final residual = 5.9991667e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.015541921, Final residual = 7.336182e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0040067228, Final residual = 5.9882444e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.011378783, Final residual = 4.6414281e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0098177155, Final residual = 2.9577406e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.079251298, Final residual = 0.0025899613, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.095431639, Final residual = 0.0023851828, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.049762461, Final residual = 0.0018325959, No Iterations 2
+fluid      time step continuity errors : sum local = 150.81593, global = -0.64337116, cumulative = 12.949794
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.5741179e-07, Final residual = 3.0948628e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0088296018, Final residual = 9.4476502e-07, No Iterations 1
+           ExecutionTime = 1057.8036 s  ClockTime = 1062 s
+           
+           Time = 29s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.010531325, Final residual = 4.2876085e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.021725027, Final residual = 0.00010232871, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.027488272, Final residual = 0.00013015067, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.1167304, Final residual = 0.00028782988, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.017472284, Final residual = 6.5022478e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.016015782, Final residual = 5.6532493e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.014834363, Final residual = 7.0141009e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0038274624, Final residual = 5.692736e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.010917859, Final residual = 4.4590008e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0094241027, Final residual = 2.8424565e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.091997183, Final residual = 0.0045774537, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12492262, Final residual = 0.0038857135, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.083063245, Final residual = 0.0032187124, No Iterations 2
+fluid      time step continuity errors : sum local = 295.32035, global = -0.95767458, cumulative = 11.99212
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 4.6467254e-07, Final residual = 5.7964603e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0083456788, Final residual = 9.7770905e-07, No Iterations 1
+           ExecutionTime = 1083.0675 s  ClockTime = 1087 s
+           
+           Time = 30s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.011736961, Final residual = 9.9283714e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.029186045, Final residual = 0.00024235175, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.049924992, Final residual = 0.00024853444, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.22060163, Final residual = 0.0010981896, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.016591275, Final residual = 6.1356689e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.015251983, Final residual = 5.3603854e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.014181501, Final residual = 6.7162413e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0036617508, Final residual = 5.4211021e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.010486686, Final residual = 4.2881912e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0090555529, Final residual = 2.7344321e-08, No Iterations 10
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.068707082, Final residual = 0.0027708741, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.086020255, Final residual = 0.0025771961, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.060498484, Final residual = 0.002258929, No Iterations 2
+fluid      time step continuity errors : sum local = 214.46316, global = -0.58630961, cumulative = 11.40581
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.1183297e-07, Final residual = 3.7319721e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0078963377, Final residual = 1.0238479e-06, No Iterations 1
+           ExecutionTime = 1108.5914 s  ClockTime = 1113 s
+           
+           Time = 31s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.017070117, Final residual = 5.5617538e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.040541607, Final residual = 0.00016821965, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.053108633, Final residual = 0.0002702587, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.27264913, Final residual = 0.00060193773, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.015846389, Final residual = 5.7685256e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.014608181, Final residual = 5.0893367e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.013577262, Final residual = 6.4399799e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0035081202, Final residual = 5.1706146e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.01008252, Final residual = 4.1279431e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0087098005, Final residual = 9.8022244e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11692085, Final residual = 0.0056736144, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12442524, Final residual = 0.0047773164, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14334935, Final residual = 0.005345253, No Iterations 2
+fluid      time step continuity errors : sum local = 554.449, global = 4.4417724, cumulative = 15.847583
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 7.734262e-07, Final residual = 1.2431099e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0074800758, Final residual = 1.0904058e-06, No Iterations 1
+           ExecutionTime = 1132.0336 s  ClockTime = 1136 s
+           
+           Time = 32s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.029132699, Final residual = 0.00027698666, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.065999017, Final residual = 0.00054564486, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.10641656, Final residual = 0.00057969033, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.37006854, Final residual = 0.0019675636, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.015190496, Final residual = 5.4891546e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.01404161, Final residual = 4.8704247e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.013016449, Final residual = 6.1830541e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0033653079, Final residual = 4.9389679e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0097029665, Final residual = 3.9711192e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0083848467, Final residual = 9.4439779e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.09255667, Final residual = 0.0045597569, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.084345578, Final residual = 0.00362277, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.084245955, Final residual = 0.0030433428, No Iterations 3
+fluid      time step continuity errors : sum local = 300.0954, global = 11.119123, cumulative = 26.966705
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.923467e-07, Final residual = 5.0937195e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0070883631, Final residual = 1.0807257e-06, No Iterations 1
+           ExecutionTime = 1157.0426 s  ClockTime = 1161 s
+           
+           Time = 33s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.036192777, Final residual = 0.00011388568, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.075072744, Final residual = 0.00031409667, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.095773023, Final residual = 0.00041878768, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.40062693, Final residual = 0.00085146732, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.014596271, Final residual = 5.2138067e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.013526609, Final residual = 4.6584858e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.012494607, Final residual = 5.9435385e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.003232224, Final residual = 4.724153e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0093459015, Final residual = 3.8294529e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0080789161, Final residual = 9.1082922e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14937694, Final residual = 0.0063835233, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.16047173, Final residual = 0.0057402271, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.18363298, Final residual = 0.0087314435, No Iterations 2
+fluid      time step continuity errors : sum local = 940.10335, global = 14.291333, cumulative = 41.258038
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.0181776e-06, Final residual = 1.3086684e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0067235483, Final residual = 1.284824e-06, No Iterations 1
+           ExecutionTime = 1181.2377 s  ClockTime = 1185 s
+           
+           Time = 34s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.05773625, Final residual = 0.00051664486, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.12053647, Final residual = 0.00085600037, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.16762244, Final residual = 0.00069000277, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.45411841, Final residual = 0.0024228589, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.014050774, Final residual = 4.9778879e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.013050686, Final residual = 4.4709386e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.012007851, Final residual = 5.7197213e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0031079226, Final residual = 4.5244617e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0090094412, Final residual = 3.6959272e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0077904402, Final residual = 8.7916335e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12382634, Final residual = 0.0053641972, No Iterations 7
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17905207, Final residual = 0.0053529712, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13143644, Final residual = 0.0048386747, No Iterations 2
+fluid      time step continuity errors : sum local = 456.65711, global = 1.0564527, cumulative = 42.31449
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 5.3453757e-07, Final residual = 5.5067317e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.006380864, Final residual = 9.2963053e-07, No Iterations 1
+           ExecutionTime = 1206.487 s  ClockTime = 1211 s
+           
+           Time = 35s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.066113614, Final residual = 0.00021032233, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.12053613, Final residual = 0.00048113096, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.15056411, Final residual = 0.00047621152, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.45544464, Final residual = 0.00088467353, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.013583914, Final residual = 4.7522219e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012645829, Final residual = 4.2994606e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.011552804, Final residual = 5.5101301e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0029915746, Final residual = 4.3384646e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.008691906, Final residual = 3.569821e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.007518005, Final residual = 8.4924311e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.24503481, Final residual = 0.0091644005, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.26498841, Final residual = 0.0087087012, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.29690457, Final residual = 0.0098220316, No Iterations 2
+fluid      time step continuity errors : sum local = 1133.2191, global = -3.6035392, cumulative = 38.710951
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.3305145e-06, Final residual = 1.5860336e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0060622518, Final residual = 1.4137677e-06, No Iterations 1
+           ExecutionTime = 1230.0831 s  ClockTime = 1234 s
+           
+           Time = 36s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.11996778, Final residual = 0.00078198844, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.24555365, Final residual = 0.0010738609, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.30738856, Final residual = 0.0011684109, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48339039, Final residual = 0.0022548054, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.01306319, Final residual = 4.4900252e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012183427, Final residual = 9.8596363e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.011126517, Final residual = 5.3134613e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0028824519, Final residual = 4.1651457e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0083917896, Final residual = 3.4505425e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0072603485, Final residual = 8.2093204e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.18040015, Final residual = 0.0059482093, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.16927612, Final residual = 0.0080630019, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.16998855, Final residual = 0.0083728841, No Iterations 2
+fluid      time step continuity errors : sum local = 855.59391, global = -13.842341, cumulative = 24.86861
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 6.6916075e-07, Final residual = 8.0713692e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0057598395, Final residual = 1.605636e-06, No Iterations 1
+           ExecutionTime = 1254.3509 s  ClockTime = 1259 s
+           
+           Time = 37s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.11629985, Final residual = 0.0003707787, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.17376036, Final residual = 0.0006915067, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.211788, Final residual = 0.00057802119, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48048077, Final residual = 0.00087972971, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012580779, Final residual = 9.6958824e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.011755718, Final residual = 9.4749116e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.010726383, Final residual = 5.1285569e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0027799097, Final residual = 4.0032483e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0081077421, Final residual = 3.3375648e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0070163355, Final residual = 7.9410745e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.28744185, Final residual = 0.014067623, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.30631492, Final residual = 0.014084953, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.33822701, Final residual = 0.014833822, No Iterations 2
+fluid      time step continuity errors : sum local = 1869.6526, global = -25.03759, cumulative = -0.16898009
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.242955e-06, Final residual = 3.5010484e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0054810605, Final residual = 1.3756297e-06, No Iterations 1
+           ExecutionTime = 1277.6463 s  ClockTime = 1282 s
+           
+           Time = 38s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.15622597, Final residual = 0.0014113915, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.21580535, Final residual = 0.0015733503, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.25376782, Final residual = 0.0011021525, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49499954, Final residual = 0.0025046129, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012138468, Final residual = 9.0156256e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.01136023, Final residual = 9.130134e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.010350094, Final residual = 4.9543869e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0026833787, Final residual = 3.8516207e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0078385449, Final residual = 3.2304154e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0067849448, Final residual = 7.6865816e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.23943169, Final residual = 0.011745874, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.23747347, Final residual = 0.0096973902, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.23485785, Final residual = 0.0088340776, No Iterations 3
+fluid      time step continuity errors : sum local = 1056.303, global = -24.087525, cumulative = -24.256505
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.1650822e-06, Final residual = 1.715495e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0052233988, Final residual = 1.8052699e-06, No Iterations 1
+           ExecutionTime = 1302.2656 s  ClockTime = 1307 s
+           
+           Time = 39s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.17191735, Final residual = 0.00053395711, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.19863372, Final residual = 0.00084114319, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.24317003, Final residual = 0.00066838639, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48092803, Final residual = 0.00088475559, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.011708065, Final residual = 8.7571737e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010976059, Final residual = 8.7223521e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0099956144, Final residual = 4.7900471e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0025923569, Final residual = 3.7093207e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0075830949, Final residual = 3.1286695e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.006565253, Final residual = 7.444837e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.4398089, Final residual = 0.017962484, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.47588755, Final residual = 0.017220175, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.53114476, Final residual = 0.01897427, No Iterations 2
+fluid      time step continuity errors : sum local = 3714.7058, global = -24.296267, cumulative = -48.552772
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.9917513e-06, Final residual = 7.1196646e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0050084145, Final residual = 1.1604291e-06, No Iterations 1
+           ExecutionTime = 1325.7748 s  ClockTime = 1330 s
+           
+           Time = 40s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.22556168, Final residual = 0.0019774725, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23919658, Final residual = 0.0018923756, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28841506, Final residual = 0.0014828655, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49798356, Final residual = 0.002413418, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.011335737, Final residual = 8.3527941e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010641775, Final residual = 8.4810749e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0096611381, Final residual = 4.6347433e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0025063977, Final residual = 3.5756845e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0073403913, Final residual = 3.0319311e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0063564234, Final residual = 7.2149292e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.30207321, Final residual = 0.011784135, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.2806553, Final residual = 0.013782367, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.26308633, Final residual = 0.0089668586, No Iterations 3
+fluid      time step continuity errors : sum local = 1320.596, global = -13.278001, cumulative = -61.830773
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.699237e-06, Final residual = 3.1013982e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0048026507, Final residual = 2.0960372e-06, No Iterations 1
+           ExecutionTime = 1349.9532 s  ClockTime = 1355 s
+           
+           Time = 41s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.21870797, Final residual = 0.00062770921, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.21746575, Final residual = 0.00097425718, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.26178062, Final residual = 0.00067104193, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.4823913, Final residual = 0.00086616461, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010979808, Final residual = 7.8784742e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010323534, Final residual = 8.0650764e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0093450553, Final residual = 4.4877674e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0024250981, Final residual = 3.4504265e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0071095504, Final residual = 2.9398529e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0061577023, Final residual = 6.9960333e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42623092, Final residual = 0.018938295, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42685418, Final residual = 0.017495808, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.4678224, Final residual = 0.018801903, No Iterations 2
+fluid      time step continuity errors : sum local = 3794.1276, global = -1.0693681, cumulative = -62.900141
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 5.4244129e-06, Final residual = 9.1208391e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0046577715, Final residual = 1.5485069e-06, No Iterations 1
+           ExecutionTime = 1373.548 s  ClockTime = 1379 s
+           
+           Time = 42s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.23478424, Final residual = 0.0018783736, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26682589, Final residual = 0.0016535248, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28447458, Final residual = 0.001102321, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49669215, Final residual = 0.0022522274, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010659867, Final residual = 7.6699385e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010033842, Final residual = 7.8721409e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0090459482, Final residual = 4.3484634e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0023481033, Final residual = 3.332849e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0068897608, Final residual = 2.8521207e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0059684026, Final residual = 6.7874037e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.34843015, Final residual = 0.01093852, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.34427674, Final residual = 0.013318026, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.3299447, Final residual = 0.015661295, No Iterations 2
+fluid      time step continuity errors : sum local = 2942.567, global = 8.521743, cumulative = -54.378398
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.7480095e-06, Final residual = 4.0003981e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.004583176, Final residual = 3.112454e-06, No Iterations 1
+           ExecutionTime = 1397.5174 s  ClockTime = 1403 s
+           
+           Time = 43s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25009474, Final residual = 0.00080444547, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23247783, Final residual = 0.00095463585, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27243886, Final residual = 0.00081939018, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48973132, Final residual = 0.000706365, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010359103, Final residual = 7.3601067e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0097649727, Final residual = 7.5625706e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0087625052, Final residual = 4.2162536e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0022750869, Final residual = 3.222497e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0066802788, Final residual = 2.7684398e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0057878999, Final residual = 6.5883615e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.64980783, Final residual = 0.023015295, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.65997445, Final residual = 0.018876681, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.71193215, Final residual = 0.020756027, No Iterations 2
+fluid      time step continuity errors : sum local = 8875.5459, global = 16.003222, cumulative = -38.375176
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 7.0890524e-06, Final residual = 5.7944926e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0047376349, Final residual = 3.1346444e-06, No Iterations 1
+fluid      bounding k, min: -4.3362776e-10 max: 0.014834093 average: 7.775306e-06
+           ExecutionTime = 1421.1859 s  ClockTime = 1426 s
+           
+           Time = 44s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.32349418, Final residual = 0.0014987142, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.40745194, Final residual = 0.0010605213, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.40140846, Final residual = 0.001941943, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.50495416, Final residual = 0.0018531587, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010077837, Final residual = 7.0452522e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0095095599, Final residual = 7.3683573e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.008493569, Final residual = 4.0906138e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0022057588, Final residual = 3.1184376e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0064804264, Final residual = 2.688544e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0056156233, Final residual = 6.3982882e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.41274189, Final residual = 0.013215101, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.36610972, Final residual = 0.016611864, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31872298, Final residual = 0.0085194095, No Iterations 3
+fluid      time step continuity errors : sum local = 2193.5021, global = 18.702014, cumulative = -19.673162
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 4.6111444e-06, Final residual = 8.4110367e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.004828473, Final residual = 3.2608375e-06, No Iterations 1
+fluid      bounding k, min: -2.5455153e-09 max: 0.014835705 average: 7.4190899e-06
+           ExecutionTime = 1445.5136 s  ClockTime = 1451 s
+           
+           Time = 45s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.26017247, Final residual = 0.00088471766, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23728561, Final residual = 0.0011323049, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.29293675, Final residual = 0.0017650647, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48439775, Final residual = 0.00076003022, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0098122974, Final residual = 6.447049e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0092706361, Final residual = 6.9809832e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0082380771, Final residual = 9.9106668e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0021398621, Final residual = 3.0979002e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0062895799, Final residual = 2.6121914e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0054510472, Final residual = 6.2166144e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.51928769, Final residual = 0.025873965, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.52743003, Final residual = 0.020777887, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.56332333, Final residual = 0.024440508, No Iterations 2
+fluid      time step continuity errors : sum local = 8377.1337, global = 19.301933, cumulative = -0.37122917
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.4967044e-05, Final residual = 1.3880343e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0053258511, Final residual = 4.6984172e-06, No Iterations 1
+fluid      bounding k, min: -7.1549319e-10 max: 0.014837039 average: 7.1004344e-06
+           ExecutionTime = 1469.3152 s  ClockTime = 1475 s
+           
+           Time = 46s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.26988033, Final residual = 0.0025259672, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26754584, Final residual = 0.0016855062, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28544995, Final residual = 0.0011917819, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49088918, Final residual = 0.0030006198, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0095660746, Final residual = 6.2582318e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.009044236, Final residual = 6.8046229e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0079951346, Final residual = 9.5975623e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0020771562, Final residual = 3.0146764e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0061071733, Final residual = 2.5391635e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0052936921, Final residual = 6.042815e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.47026316, Final residual = 0.014299015, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.47850189, Final residual = 0.016281963, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42766876, Final residual = 0.019630125, No Iterations 2
+fluid      time step continuity errors : sum local = 6605.9143, global = 10.06726, cumulative = 9.6960312
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 8.9035768e-06, Final residual = 6.3491261e-09, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0060694645, Final residual = 5.8578809e-06, No Iterations 1
+fluid      bounding k, min: -4.2886635e-10 max: 0.015857472 average: 6.8157686e-06
+           ExecutionTime = 1493.2869 s  ClockTime = 1499 s
+           
+           Time = 47s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25888322, Final residual = 0.00074205466, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23120956, Final residual = 0.00096248763, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27801286, Final residual = 0.00084017994, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48718552, Final residual = 0.00049155886, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0093173213, Final residual = 6.2241387e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0088214658, Final residual = 6.6215964e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0077638577, Final residual = 9.3445593e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0020174251, Final residual = 2.9316954e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0059326905, Final residual = 2.4692581e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0051431178, Final residual = 5.8764114e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.65596659, Final residual = 0.026691921, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.63340157, Final residual = 0.026537374, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.69259562, Final residual = 0.028140089, No Iterations 2
+fluid      time step continuity errors : sum local = 15055.543, global = 3.4053009, cumulative = 13.101332
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.2522267e-05, Final residual = 2.1389252e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0072108121, Final residual = 8.6533316e-06, No Iterations 1
+fluid      bounding k, min: -5.7514641e-10 max: 0.020459045 average: 6.5604899e-06
+           ExecutionTime = 1516.8313 s  ClockTime = 1522 s
+           
+           Time = 48s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.24002406, Final residual = 0.0018030349, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.25192597, Final residual = 0.0016259581, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.29078394, Final residual = 0.0015226972, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.50393911, Final residual = 0.0021276183, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0090838344, Final residual = 5.6606722e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0086034833, Final residual = 6.3045827e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0075434641, Final residual = 9.1076556e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.001960473, Final residual = 2.8520119e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0057656537, Final residual = 2.4022904e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0049989186, Final residual = 5.7169626e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.53123289, Final residual = 0.024763179, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.52521896, Final residual = 0.019419484, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.45899786, Final residual = 0.012683094, No Iterations 3
+fluid      time step continuity errors : sum local = 5627.7301, global = -7.1601374, cumulative = 5.9411948
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 1.3913756e-05, Final residual = 1.7505474e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.0087302337, Final residual = 1.0967667e-05, No Iterations 1
+fluid      bounding k, min: -4.841409e-10 max: 0.029051953 average: 6.3318872e-06
+           ExecutionTime = 1540.8071 s  ClockTime = 1546 s
+           
+           Time = 49s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.26792831, Final residual = 0.00082679299, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23076588, Final residual = 0.0010581955, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27873246, Final residual = 0.00096743531, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49196416, Final residual = 0.0010195563, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0088642953, Final residual = 5.4498157e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.008406237, Final residual = 6.1207943e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0073331932, Final residual = 8.8821153e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0019061092, Final residual = 2.7756938e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0056056221, Final residual = 2.3380851e-08, No Iterations 10
+die        DICPCG:  Solving for e, Initial residual = 0.0048607202, Final residual = 5.5640637e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.71395474, Final residual = 0.027794074, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.68181362, Final residual = 0.025295502, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.75122013, Final residual = 0.02740277, No Iterations 2
+fluid      time step continuity errors : sum local = 24078.297, global = -5.2978086, cumulative = 0.64338621
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.3005296e-05, Final residual = 2.7923116e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.011013475, Final residual = 1.742577e-05, No Iterations 1
+fluid      bounding k, min: -7.0022792e-10 max: 0.040191255 average: 6.1267902e-06
+           ExecutionTime = 1564.6641 s  ClockTime = 1570 s
+           
+           Time = 50s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.23287767, Final residual = 0.0018001067, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23856621, Final residual = 0.0014654698, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.29652597, Final residual = 0.0014226293, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.50131861, Final residual = 0.0021289375, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0086483714, Final residual = 5.1740931e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0082029126, Final residual = 5.9107264e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0071324415, Final residual = 8.6665268e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0018541791, Final residual = 2.7025647e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0054521882, Final residual = 9.8397898e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0047281744, Final residual = 5.4015562e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.54921307, Final residual = 0.025422749, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.53433437, Final residual = 0.020755588, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.45368293, Final residual = 0.012190019, No Iterations 3
+fluid      time step continuity errors : sum local = 8173.6017, global = -9.7122195, cumulative = -9.0688333
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 2.095318e-05, Final residual = 2.6468417e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.013336277, Final residual = 1.8558744e-05, No Iterations 1
+fluid      bounding k, min: -2.9040463e-10 max: 0.065884629 average: 5.9433463e-06
+           ExecutionTime = 1589.578 s  ClockTime = 1595 s
+           
+           Time = 51s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.271269, Final residual = 0.00084432604, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.22663763, Final residual = 0.0010614274, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27735698, Final residual = 0.00088409976, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49174897, Final residual = 0.0011836602, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0084681682, Final residual = 4.919168e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0080432185, Final residual = 5.6556073e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0069405914, Final residual = 8.4600959e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0018045273, Final residual = 2.6324506e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0053049758, Final residual = 9.5822421e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0046009642, Final residual = 5.2608758e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.74575706, Final residual = 0.028391805, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.70594372, Final residual = 0.02464158, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.77805681, Final residual = 0.027230711, No Iterations 2
+fluid      time step continuity errors : sum local = 38967.57, global = 7.1803339, cumulative = -1.8884994
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 4.642545e-05, Final residual = 4.9376961e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.016764076, Final residual = 2.9622871e-05, No Iterations 1
+fluid      bounding k, min: -2.2002097e-10 max: 0.072561202 average: 5.7785438e-06
+           ExecutionTime = 1612.9078 s  ClockTime = 1619 s
+           
+           Time = 52s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25004662, Final residual = 0.001934864, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.2488018, Final residual = 0.0015221243, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28931752, Final residual = 0.0013308648, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49894622, Final residual = 0.0021842189, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0082643516, Final residual = 4.716982e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.007848641, Final residual = 5.4327969e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0067571389, Final residual = 8.262213e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0017570278, Final residual = 2.5651743e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0051636365, Final residual = 9.3360647e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.004478794, Final residual = 5.1258472e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.54171572, Final residual = 0.025438906, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.52738796, Final residual = 0.021279654, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.43104927, Final residual = 0.01165647, No Iterations 3
+fluid      time step continuity errors : sum local = 11852.924, global = 11.05255, cumulative = 9.1640505
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 3.0375789e-05, Final residual = 3.1852488e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.020550781, Final residual = 2.8539099e-05, No Iterations 1
+fluid      bounding k, min: -3.9028076e-10 max: 0.091654746 average: 5.63153e-06
+           ExecutionTime = 1637.6554 s  ClockTime = 1644 s
+           
+           Time = 53s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2737482, Final residual = 0.00087334548, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23335052, Final residual = 0.0010898482, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27707612, Final residual = 0.00071634652, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49066679, Final residual = 0.0010592002, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0081209598, Final residual = 4.5952761e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0077246366, Final residual = 5.2893046e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.006581533, Final residual = 8.0723368e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0017115418, Final residual = 2.5005789e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0050278479, Final residual = 9.0994253e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0043613885, Final residual = 4.9960146e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.70795643, Final residual = 0.027831628, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.65673877, Final residual = 0.025450328, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.72121602, Final residual = 0.027126368, No Iterations 2
+fluid      time step continuity errors : sum local = 49721.018, global = 17.277867, cumulative = 26.441918
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 6.8536251e-05, Final residual = 4.9459738e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.024747735, Final residual = 4.2065064e-05, No Iterations 1
+fluid      bounding k, min: -3.3003882e-10 max: 0.10002005 average: 5.4996395e-06
+           ExecutionTime = 1661.3967 s  ClockTime = 1667 s
+           
+           Time = 54s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25236277, Final residual = 0.0017090639, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.27369063, Final residual = 0.0013244401, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.29540702, Final residual = 0.0010453767, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49875861, Final residual = 0.0021089416, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0079518817, Final residual = 4.3744291e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0075610109, Final residual = 4.9040997e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0064133492, Final residual = 7.8900068e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0016679576, Final residual = 2.4385205e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0048973124, Final residual = 8.8717915e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0042484938, Final residual = 4.8710983e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.51758052, Final residual = 0.023445162, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.48761234, Final residual = 0.017466006, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.41064438, Final residual = 0.010775773, No Iterations 3
+fluid      time step continuity errors : sum local = 17824.981, global = 20.177103, cumulative = 46.619021
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 4.3885822e-05, Final residual = 4.7637359e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.029285357, Final residual = 3.6795989e-05, No Iterations 1
+fluid      bounding k, min: -2.8293818e-10 max: 0.14628824 average: 5.3826849e-06
+           ExecutionTime = 1685.6095 s  ClockTime = 1692 s
+           
+           Time = 55s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.28346951, Final residual = 0.00099620272, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.24473588, Final residual = 0.0010840822, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27647726, Final residual = 0.00070422307, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49358395, Final residual = 0.00097456164, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0079353161, Final residual = 4.3054365e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0075456144, Final residual = 4.7525458e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0062520819, Final residual = 7.7147929e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0016261492, Final residual = 2.3788477e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0047717509, Final residual = 8.6526918e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0041398724, Final residual = 4.7508398e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.74835522, Final residual = 0.027034845, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.70348884, Final residual = 0.022694557, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.77142969, Final residual = 0.024662578, No Iterations 2
+fluid      time step continuity errors : sum local = 92509.237, global = -4.9510921, cumulative = 41.667929
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 7.3861047e-05, Final residual = 4.070142e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.038882914, Final residual = 7.623934e-05, No Iterations 1
+fluid      bounding k, min: -2.4856981e-10 max: 0.12811139 average: 5.2777416e-06
+           ExecutionTime = 1709.4673 s  ClockTime = 1716 s
+           
+           Time = 56s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.27822083, Final residual = 0.0011421303, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.38493175, Final residual = 0.0010136804, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.40562183, Final residual = 0.001693692, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49193461, Final residual = 0.0018839832, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0077926311, Final residual = 4.2050517e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0074181889, Final residual = 4.5413468e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0060973671, Final residual = 7.546277e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0015860243, Final residual = 2.3214543e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0046509048, Final residual = 8.4416864e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0040353042, Final residual = 4.6350013e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.46005041, Final residual = 0.020662898, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.46692754, Final residual = 0.019094078, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.28988993, Final residual = 0.0068694737, No Iterations 3
+fluid      time step continuity errors : sum local = 21700.862, global = -7.7985388, cumulative = 33.86939
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 6.218642e-05, Final residual = 5.4540854e-08, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.039891825, Final residual = 6.264316e-05, No Iterations 1
+fluid      bounding k, min: -2.2497418e-10 max: 0.14395827 average: 5.1848901e-06
+           ExecutionTime = 1733.5071 s  ClockTime = 1740 s
+           
+           Time = 57s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.31936255, Final residual = 0.0010921639, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.25606213, Final residual = 0.0010649814, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.29755869, Final residual = 0.0014369544, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.48794603, Final residual = 0.00094892058, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0076539596, Final residual = 4.0820187e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0072945358, Final residual = 9.8919215e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.0059488031, Final residual = 7.3840876e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.001547481, Final residual = 2.2662026e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0045345326, Final residual = 8.2383586e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0039345841, Final residual = 4.5233628e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.66771451, Final residual = 0.029468595, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.55266376, Final residual = 0.022617329, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.64604541, Final residual = 0.026359355, No Iterations 2
+fluid      time step continuity errors : sum local = 112796.37, global = 6.0762687, cumulative = 39.945659
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00018060739, Final residual = 1.5932351e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.047636426, Final residual = 9.2315494e-05, No Iterations 1
+fluid      bounding k, min: -4.4094083e-10 max: 0.11939406 average: 5.1021781e-06
+           ExecutionTime = 1757.3834 s  ClockTime = 1764 s
+           
+           Time = 58s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25423359, Final residual = 0.0018035511, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26722682, Final residual = 0.0014440185, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28593229, Final residual = 0.0010921464, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49983339, Final residual = 0.0022376354, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.007442997, Final residual = 9.6329195e-08, No Iterations 11
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0070549271, Final residual = 9.2185317e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.0058061135, Final residual = 7.2278747e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0015104481, Final residual = 9.941747e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0044224136, Final residual = 8.0423455e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0038375222, Final residual = 4.4157241e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42323363, Final residual = 0.020237585, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.44828231, Final residual = 0.014570639, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.32002946, Final residual = 0.0085191308, No Iterations 3
+fluid      time step continuity errors : sum local = 42648.202, global = -7.7989835, cumulative = 32.146675
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0001113649, Final residual = 1.0788499e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.049530728, Final residual = 7.7011465e-05, No Iterations 1
+fluid      bounding k, min: -2.6548611e-10 max: 0.11322125 average: 5.0298339e-06
+           ExecutionTime = 1781.4963 s  ClockTime = 1788 s
+           
+           Time = 59s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.32909496, Final residual = 0.0010016488, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23607115, Final residual = 0.00093262406, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.26510341, Final residual = 0.00064902266, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49271865, Final residual = 0.00071954904, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0079052954, Final residual = 4.1003892e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0074834654, Final residual = 4.4128167e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0056688942, Final residual = 6.9988149e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0014748304, Final residual = 9.6932525e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0043143296, Final residual = 7.8532608e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0037439348, Final residual = 4.3118778e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.66325476, Final residual = 0.027003679, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.57606484, Final residual = 0.023367977, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.65349537, Final residual = 0.025893458, No Iterations 2
+fluid      time step continuity errors : sum local = 220291.33, global = 11.182161, cumulative = 43.328836
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00029791498, Final residual = 2.5815227e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.052124935, Final residual = 7.3147848e-05, No Iterations 1
+fluid      bounding k, min: -3.0461077e-10 max: 0.1035227 average: 4.9663096e-06
+           ExecutionTime = 1805.3446 s  ClockTime = 1812 s
+           
+           Time = 60s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25434833, Final residual = 0.0014693027, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.27331339, Final residual = 0.001659519, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.31344905, Final residual = 0.0014724021, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.50375059, Final residual = 0.0019926611, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0073109992, Final residual = 9.1056007e-08, No Iterations 11
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0069330208, Final residual = 8.9968434e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.005536903, Final residual = 6.8477012e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0014405547, Final residual = 9.4781766e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0042100873, Final residual = 7.6707911e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0036536559, Final residual = 4.2116486e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.37019619, Final residual = 0.017280574, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.37351624, Final residual = 0.013671697, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.25104291, Final residual = 0.0074113936, No Iterations 3
+fluid      time step continuity errors : sum local = 65592.098, global = 10.986401, cumulative = 54.315237
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00016072678, Final residual = 2.1325671e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.057315598, Final residual = 0.00012872303, No Iterations 1
+fluid      bounding k, min: -2.3865034e-10 max: 0.11602173 average: 4.9118679e-06
+           ExecutionTime = 1829.5364 s  ClockTime = 1836 s
+           
+           Time = 61s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.35607692, Final residual = 0.0013184539, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.23928006, Final residual = 0.0011670884, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.2677518, Final residual = 0.00085751563, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49329974, Final residual = 0.0011785801, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0077425973, Final residual = 9.9778856e-08, No Iterations 11
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0073713417, Final residual = 9.6708872e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.0054098565, Final residual = 6.7076521e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0014075533, Final residual = 9.2750232e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0041095025, Final residual = 7.494619e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0035665283, Final residual = 4.1148691e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.60749318, Final residual = 0.023811278, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.52403856, Final residual = 0.019684767, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.61618908, Final residual = 0.022550402, No Iterations 2
+fluid      time step continuity errors : sum local = 350942.71, global = 72.284792, cumulative = 126.60003
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00041712846, Final residual = 3.6023823e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.055282406, Final residual = 8.3040469e-05, No Iterations 1
+fluid      bounding k, min: -2.0325951e-10 max: 0.14712887 average: 4.8656442e-06
+           ExecutionTime = 1853.4055 s  ClockTime = 1860 s
+           
+           Time = 62s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2597166, Final residual = 0.0013717897, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.28016374, Final residual = 0.0018172645, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.31567818, Final residual = 0.0013668553, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.50088605, Final residual = 0.0020230749, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0073008282, Final residual = 8.5480251e-08, No Iterations 11
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0069243457, Final residual = 8.6127936e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.0052875574, Final residual = 6.5736308e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0013757743, Final residual = 9.0800159e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0040124033, Final residual = 7.3244577e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0034824042, Final residual = 4.0213835e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.29050601, Final residual = 0.014400909, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31376338, Final residual = 0.012127787, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17855207, Final residual = 0.0056951481, No Iterations 3
+fluid      time step continuity errors : sum local = 103310.56, global = 20.212985, cumulative = 146.81301
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00023644297, Final residual = 3.0795479e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.056473443, Final residual = 0.0001262985, No Iterations 1
+fluid      bounding k, min: -2.3309282e-10 max: 0.1478979 average: 4.8275155e-06
+           ExecutionTime = 1877.5213 s  ClockTime = 1884 s
+           
+           Time = 63s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.38192433, Final residual = 0.0017053156, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.25834047, Final residual = 0.0012411575, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.26383629, Final residual = 0.00085011193, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49404158, Final residual = 0.0012402443, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0091669531, Final residual = 4.3618266e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0086609246, Final residual = 4.2838018e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0051696409, Final residual = 6.4445604e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0013451282, Final residual = 8.8919085e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0039186274, Final residual = 7.1600264e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0034011442, Final residual = 3.931043e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.55286574, Final residual = 0.022227745, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42181928, Final residual = 0.016587115, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.53172829, Final residual = 0.020127601, No Iterations 2
+fluid      time step continuity errors : sum local = 521358.09, global = 9.7686054, cumulative = 156.58162
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00062592325, Final residual = 4.8368287e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.049896449, Final residual = 6.6739108e-05, No Iterations 1
+fluid      bounding k, min: -1.575512e-10 max: 0.16718931 average: 4.7961684e-06
+           ExecutionTime = 1901.2688 s  ClockTime = 1908 s
+           
+           Time = 64s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25976314, Final residual = 0.0011839196, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.30010594, Final residual = 0.0018685895, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.31268327, Final residual = 0.0012637756, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49955404, Final residual = 0.0019818052, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0082687095, Final residual = 9.1149707e-08, No Iterations 11
+cold_plate DICPCG:  Solving for e, Initial residual = 0.0078423954, Final residual = 9.1428237e-08, No Iterations 11
+tim        DICPCG:  Solving for e, Initial residual = 0.0050557313, Final residual = 6.3202333e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0013155209, Final residual = 8.7097486e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0038280181, Final residual = 7.0010533e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0033226149, Final residual = 3.843699e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.21371725, Final residual = 0.010218818, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.23577123, Final residual = 0.0090630713, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12512014, Final residual = 0.0040511317, No Iterations 3
+fluid      time step continuity errors : sum local = 155000.63, global = 31.350064, cumulative = 187.93168
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00033341746, Final residual = 4.1606044e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.053360332, Final residual = 0.00010373563, No Iterations 1
+fluid      bounding k, min: -1.1909931e-10 max: 0.16216134 average: 4.772472e-06
+           ExecutionTime = 1925.2804 s  ClockTime = 1932 s
+           
+           Time = 65s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.41371881, Final residual = 0.0020977441, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.29245127, Final residual = 0.0014009779, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.25660553, Final residual = 0.00090646371, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49722088, Final residual = 0.001371266, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012971406, Final residual = 5.9110547e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.012147247, Final residual = 4.8964015e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0049453103, Final residual = 6.2005358e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0012868227, Final residual = 8.532787e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.003740422, Final residual = 6.8472562e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0032466868, Final residual = 3.759208e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.4907416, Final residual = 0.019485946, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.3488441, Final residual = 0.013796045, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.46184665, Final residual = 0.01752609, No Iterations 2
+fluid      time step continuity errors : sum local = 849980.77, global = 5.5464767, cumulative = 193.47816
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00092669837, Final residual = 6.3090955e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.044934718, Final residual = 5.9230022e-05, No Iterations 1
+fluid      bounding k, min: -1.0879189e-10 max: 0.18432736 average: 4.7526528e-06
+           ExecutionTime = 1948.9723 s  ClockTime = 1956 s
+           
+           Time = 66s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2750248, Final residual = 0.001083453, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.3310408, Final residual = 0.0019378065, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.34087464, Final residual = 0.0012518035, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49748344, Final residual = 0.0019694171, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010668328, Final residual = 4.4187143e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010097712, Final residual = 4.0172497e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0048378706, Final residual = 6.0855559e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0012588885, Final residual = 8.3597939e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0036556872, Final residual = 6.6983386e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0031732326, Final residual = 3.6774249e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15261, Final residual = 0.0072027319, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.1762495, Final residual = 0.0066826188, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.081046225, Final residual = 0.0026153432, No Iterations 3
+fluid      time step continuity errors : sum local = 223518.64, global = 5.7069071, cumulative = 199.18507
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00047553545, Final residual = 5.5926302e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.046936777, Final residual = 9.0308157e-05, No Iterations 1
+fluid      bounding k, min: -9.241959e-11 max: 0.19925104 average: 4.7382428e-06
+           ExecutionTime = 1973.0533 s  ClockTime = 1980 s
+           
+           Time = 67s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.45285092, Final residual = 0.0025847638, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.33122988, Final residual = 0.0015646628, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.24748824, Final residual = 0.0012641249, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.5016836, Final residual = 0.0014881232, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.018173589, Final residual = 7.5769484e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.016877188, Final residual = 5.9405019e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0047357891, Final residual = 5.9750472e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0012317197, Final residual = 8.1914881e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0035736656, Final residual = 6.5540331e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0031021276, Final residual = 3.5982156e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.42396173, Final residual = 0.017527363, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.26377752, Final residual = 0.010942274, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.36752635, Final residual = 0.01462069, No Iterations 2
+fluid      time step continuity errors : sum local = 1400814.9, global = 319.89218, cumulative = 519.07725
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0015473654, Final residual = 1.1622882e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.042189535, Final residual = 5.3163797e-05, No Iterations 1
+fluid      bounding k, min: -8.1759573e-11 max: 0.20027865 average: 4.7272354e-06
+           ExecutionTime = 1997.0849 s  ClockTime = 2004 s
+           
+           Time = 68s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.28678064, Final residual = 0.0011395854, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.32923147, Final residual = 0.0023695294, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.3335988, Final residual = 0.0015033897, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49501927, Final residual = 0.0019484912, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.011229417, Final residual = 5.2463586e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.010016675, Final residual = 3.9664201e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0046406345, Final residual = 5.868847e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0012058937, Final residual = 8.0316111e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.003494215, Final residual = 6.4141026e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0030332522, Final residual = 3.5214626e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.10989007, Final residual = 0.0053994583, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15084034, Final residual = 0.0055983244, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.055409838, Final residual = 0.0018377566, No Iterations 3
+fluid      time step continuity errors : sum local = 339202.41, global = -146.74058, cumulative = 372.33667
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.00072632148, Final residual = 9.0159009e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.043445532, Final residual = 0.00010511323, No Iterations 1
+fluid      bounding k, min: -3.7200825e-11 max: 0.19835665 average: 4.7190439e-06
+           ExecutionTime = 2021.5843 s  ClockTime = 2029 s
+           
+           Time = 69s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.4847459, Final residual = 0.0031935919, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.35585307, Final residual = 0.0018128226, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.24133684, Final residual = 0.0012935597, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.5151919, Final residual = 0.0020957011, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.022015743, Final residual = 8.8755565e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.020281379, Final residual = 6.7303357e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0045502461, Final residual = 5.7660877e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0011813782, Final residual = 7.8776038e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0034172084, Final residual = 6.2783861e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0029664964, Final residual = 3.4470854e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.40160813, Final residual = 0.017078063, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.19622233, Final residual = 0.0076910993, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.29118571, Final residual = 0.011195408, No Iterations 2
+fluid      time step continuity errors : sum local = 2330688.9, global = -365.309, cumulative = 7.0276741
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0019581531, Final residual = 1.0118233e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.041585595, Final residual = 4.8091658e-05, No Iterations 1
+fluid      bounding k, min: -1.5224882e-10 max: 0.17026433 average: 4.7119002e-06
+           ExecutionTime = 2045.5725 s  ClockTime = 2053 s
+           
+           Time = 70s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.33501432, Final residual = 0.0012369887, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.38410769, Final residual = 0.0021663895, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.40591216, Final residual = 0.0016074393, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.47709289, Final residual = 0.0019918627, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.021801659, Final residual = 7.5188648e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.020271218, Final residual = 6.5036063e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0044659882, Final residual = 5.6679719e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0011583141, Final residual = 7.730761e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0033425007, Final residual = 6.1465727e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0029017408, Final residual = 3.3749638e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.066212829, Final residual = 0.0029185961, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.08452, Final residual = 0.0035904292, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.029640885, Final residual = 0.001344136, No Iterations 2
+fluid      time step continuity errors : sum local = 647185.89, global = -299.47031, cumulative = -292.44264
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0010285789, Final residual = 7.2519814e-07, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.041395832, Final residual = 9.5023024e-05, No Iterations 1
+fluid      bounding k, min: -6.7331361e-11 max: 0.15924962 average: 4.7072577e-06
+           ExecutionTime = 2069.4066 s  ClockTime = 2077 s
+           
+           Time = 71s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.48329136, Final residual = 0.0035699848, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.40098143, Final residual = 0.0020788199, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.26483692, Final residual = 0.0014319359, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.56502426, Final residual = 0.0020268358, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.017520647, Final residual = 7.3499062e-08, No Iterations 12
+cold_plate DICPCG:  Solving for e, Initial residual = 0.014517376, Final residual = 5.1889711e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0043866129, Final residual = 5.5732604e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0011366962, Final residual = 7.5901996e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0032699548, Final residual = 6.0184571e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0028388697, Final residual = 3.3050079e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31750098, Final residual = 0.013987685, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13076774, Final residual = 0.0052738539, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.19216733, Final residual = 0.0075198605, No Iterations 2
+fluid      time step continuity errors : sum local = 3644769.8, global = -154.95776, cumulative = -447.4004
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0041492013, Final residual = 3.2912376e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.03836097, Final residual = 4.0105555e-05, No Iterations 1
+fluid      bounding k, min: -6.9549946e-11 max: 0.14307091 average: 4.7034848e-06
+           ExecutionTime = 2093.325 s  ClockTime = 2101 s
+           
+           Time = 72s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.39490634, Final residual = 0.0018670066, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.33693535, Final residual = 0.00039407595, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.35914873, Final residual = 0.0025599864, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.40709105, Final residual = 0.0016872533, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.028127359, Final residual = 5.1822693e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.023213277, Final residual = 9.144045e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.004306209, Final residual = 5.4785802e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0011153977, Final residual = 7.4537867e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0031995037, Final residual = 5.8941997e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0027778115, Final residual = 3.2371677e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.045431042, Final residual = 0.001497433, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11023876, Final residual = 0.0041918625, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.023738221, Final residual = 0.00087596499, No Iterations 2
+fluid      time step continuity errors : sum local = 841779.9, global = 298.33993, cumulative = -149.06047
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0019832063, Final residual = 2.1478457e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.03840534, Final residual = 6.6774693e-05, No Iterations 1
+fluid      bounding k, min: -7.7030029e-11 max: 0.14514019 average: 4.6991213e-06
+           ExecutionTime = 2117.7821 s  ClockTime = 2125 s
+           
+           Time = 73s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.38938861, Final residual = 0.0034551644, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.35177617, Final residual = 0.00069772881, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.21378693, Final residual = 0.00040846022, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.5984365, Final residual = 0.00088686612, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.078699647, Final residual = 4.737706e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.073712665, Final residual = 9.0590475e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0042160697, Final residual = 5.3766535e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0010928899, Final residual = 7.3180021e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0031312925, Final residual = 5.7749156e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0027186366, Final residual = 3.171703e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.40395972, Final residual = 0.018360566, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.080207012, Final residual = 0.0030288637, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11321317, Final residual = 0.0042127111, No Iterations 2
+fluid      time step continuity errors : sum local = 5013714.6, global = -182.85554, cumulative = -331.91601
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0051112523, Final residual = 6.4629482e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036662467, Final residual = 3.9342474e-05, No Iterations 1
+fluid      bounding k, min: -6.3809316e-11 max: 0.13340701 average: 4.7011339e-06
+           ExecutionTime = 2142.2247 s  ClockTime = 2150 s
+           
+           Time = 74s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.40745494, Final residual = 0.0022511561, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.33363171, Final residual = 0.00086238631, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.33939197, Final residual = 0.00040553036, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.37347829, Final residual = 0.0021168073, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.11106054, Final residual = 5.6482092e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.086780142, Final residual = 9.0880357e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0041250021, Final residual = 5.2611023e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0010715692, Final residual = 7.1858231e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0030658515, Final residual = 5.6636078e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0026616836, Final residual = 3.1097081e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.030018685, Final residual = 0.0010908607, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.025755726, Final residual = 0.0011354066, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.048387798, Final residual = 0.0018430339, No Iterations 2
+fluid      time step continuity errors : sum local = 1336652.7, global = 954.35689, cumulative = 622.44088
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.003520344, Final residual = 2.9407203e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.037554675, Final residual = 7.6737945e-05, No Iterations 1
+fluid      bounding k, min: -5.1422476e-11 max: 0.11354527 average: 4.7053676e-06
+           ExecutionTime = 2166.9064 s  ClockTime = 2174 s
+           
+           Time = 75s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.30500084, Final residual = 0.00064097043, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.33070352, Final residual = 0.00097726978, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.21147334, Final residual = 0.00042893163, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.54745356, Final residual = 0.0008679198, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.14807741, Final residual = 6.8894803e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.10321176, Final residual = 4.4208763e-08, No Iterations 14
+tim        DICPCG:  Solving for e, Initial residual = 0.0041324414, Final residual = 5.2114535e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.001072897, Final residual = 7.120236e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0030042125, Final residual = 5.5661516e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0026076589, Final residual = 3.054064e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.075165656, Final residual = 0.0032741776, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.074304671, Final residual = 0.0025463628, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.072187282, Final residual = 0.0025841571, No Iterations 2
+fluid      time step continuity errors : sum local = 7858032.2, global = 1378.2712, cumulative = 2000.7121
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0065036746, Final residual = 8.8435391e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036781951, Final residual = 4.5035866e-05, No Iterations 1
+fluid      bounding k, min: -5.020977e-11 max: 0.097630845 average: 4.7077787e-06
+           ExecutionTime = 2192.441 s  ClockTime = 2200 s
+           
+           Time = 76s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.39014263, Final residual = 0.002725779, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.289448, Final residual = 0.0011129177, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.31663192, Final residual = 0.00056627356, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.35759094, Final residual = 0.002610361, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.084994609, Final residual = 8.8012092e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.066128786, Final residual = 6.4203309e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0042320839, Final residual = 5.1100089e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0010960534, Final residual = 6.9039547e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0029478305, Final residual = 5.4891445e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0025576147, Final residual = 3.0091676e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.023853602, Final residual = 0.00095321666, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.046149008, Final residual = 0.0015407212, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.026601861, Final residual = 0.0010209484, No Iterations 2
+fluid      time step continuity errors : sum local = 1941232.1, global = -782.94027, cumulative = 1217.7719
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0050063643, Final residual = 3.2157388e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036987941, Final residual = 7.4843318e-05, No Iterations 1
+fluid      bounding k, min: -5.3347466e-11 max: 0.088767954 average: 4.7147023e-06
+           ExecutionTime = 2219.0862 s  ClockTime = 2227 s
+           
+           Time = 77s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.27746131, Final residual = 0.00049017322, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.32974365, Final residual = 0.00081478314, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.2139903, Final residual = 0.00070576617, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.53478483, Final residual = 0.0010552904, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.094742678, Final residual = 5.3225548e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.071300113, Final residual = 8.5359762e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0044243746, Final residual = 4.8697017e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0011423338, Final residual = 6.5204633e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028983158, Final residual = 5.4361446e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0025127851, Final residual = 2.978355e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.080850314, Final residual = 0.0037791054, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.049402153, Final residual = 0.0016591297, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.052780419, Final residual = 0.0019032897, No Iterations 2
+fluid      time step continuity errors : sum local = 9938521.7, global = -2374.9799, cumulative = -1157.2081
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0065835167, Final residual = 7.3351981e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.037668687, Final residual = 5.7305476e-05, No Iterations 1
+fluid      bounding k, min: -2.5396511e-11 max: 0.081017037 average: 4.7254556e-06
+           ExecutionTime = 2244.1057 s  ClockTime = 2252 s
+           
+           Time = 78s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.36570833, Final residual = 0.0028518487, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26382021, Final residual = 0.0013577038, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.28406145, Final residual = 0.00062647531, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.38319871, Final residual = 0.0029307627, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.060479893, Final residual = 7.3431047e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.049854891, Final residual = 5.6335983e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0047278662, Final residual = 4.9391026e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0012163756, Final residual = 6.2288693e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028575393, Final residual = 5.409009e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024746295, Final residual = 2.9652586e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.024899435, Final residual = 0.00093363834, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.035330563, Final residual = 0.0011697099, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.071668517, Final residual = 0.0027546024, No Iterations 2
+fluid      time step continuity errors : sum local = 2872533.1, global = -2329.4375, cumulative = -3486.6456
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0060320011, Final residual = 3.5607007e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.037431538, Final residual = 7.2049401e-05, No Iterations 1
+fluid      bounding k, min: -2.0579485e-11 max: 0.071785209 average: 4.7456099e-06
+           ExecutionTime = 2271.3437 s  ClockTime = 2279 s
+           
+           Time = 79s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25388348, Final residual = 0.00040897527, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.33638855, Final residual = 0.00079964685, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.19429811, Final residual = 0.00062721119, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.62036495, Final residual = 0.0014513624, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.056868696, Final residual = 9.1913119e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.047476181, Final residual = 6.1904377e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0051332903, Final residual = 5.3247984e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0013141482, Final residual = 6.1937236e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028269356, Final residual = 5.4041638e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024443948, Final residual = 2.9747828e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.18040541, Final residual = 0.0085715062, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15977227, Final residual = 0.0054023694, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14287114, Final residual = 0.0056338665, No Iterations 2
+fluid      time step continuity errors : sum local = 16060265, global = -123376.63, cumulative = -126863.28
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0081666991, Final residual = 1.0873773e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.037034096, Final residual = 4.6369053e-05, No Iterations 1
+fluid      bounding k, min: -9.4306178e-13 max: 0.064687052 average: 4.7798723e-06
+           ExecutionTime = 2296.0677 s  ClockTime = 2304 s
+           
+           Time = 80s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.40517432, Final residual = 0.0039473783, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.27331917, Final residual = 0.001113882, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.32415194, Final residual = 0.00083732379, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.31846387, Final residual = 0.00047916841, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.047039588, Final residual = 6.5931868e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.04100491, Final residual = 5.0944561e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0056727427, Final residual = 5.6780537e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0014400705, Final residual = 6.4535249e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028076727, Final residual = 5.4168438e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024231458, Final residual = 3.0117179e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.18569239, Final residual = 0.0092419823, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.20948987, Final residual = 0.0072990371, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13443978, Final residual = 0.0056404822, No Iterations 2
+fluid      time step continuity errors : sum local = 4246188, global = -13856.855, cumulative = -140720.13
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0078003229, Final residual = 8.5951366e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036523949, Final residual = 5.3933145e-05, No Iterations 1
+fluid      bounding k, min: -7.3601726e-12 max: 0.060562939 average: 4.8114946e-06
+           ExecutionTime = 2323.1279 s  ClockTime = 2331 s
+           
+           Time = 81s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.25799403, Final residual = 0.0014930169, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.32512092, Final residual = 0.00079853363, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.17191303, Final residual = 0.00083815478, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.49031847, Final residual = 0.00093917602, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.041407611, Final residual = 6.852049e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.03552722, Final residual = 4.7910392e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0063407277, Final residual = 6.1699112e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0015947735, Final residual = 6.9513272e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028005953, Final residual = 5.4433906e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024117118, Final residual = 3.0746315e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17215998, Final residual = 0.007641156, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.33405049, Final residual = 0.015634445, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.16738525, Final residual = 0.0052419489, No Iterations 3
+fluid      time step continuity errors : sum local = 13111412, global = -40913.089, cumulative = -181633.22
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.006474433, Final residual = 1.0144031e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036446104, Final residual = 4.8967454e-05, No Iterations 1
+           ExecutionTime = 2348.6956 s  ClockTime = 2356 s
+           
+           Time = 82s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.26771568, Final residual = 0.0013918986, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.22142962, Final residual = 0.0010729614, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.21939785, Final residual = 0.00061734993, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.43867943, Final residual = 0.00073151217, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.032427398, Final residual = 4.4616928e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.029039633, Final residual = 9.9512913e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0070638307, Final residual = 6.6415448e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0017658528, Final residual = 7.5822357e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028056035, Final residual = 5.4811472e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024102807, Final residual = 3.1545271e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13850593, Final residual = 0.0058142432, No Iterations 8
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.08431643, Final residual = 0.0030643272, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.1702595, Final residual = 0.0069275627, No Iterations 2
+fluid      time step continuity errors : sum local = 6591815.5, global = 10932.438, cumulative = -170700.79
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0073467481, Final residual = 7.6196517e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.036322163, Final residual = 5.3096212e-05, No Iterations 1
+fluid      bounding k, min: -8.5539547e-12 max: 0.050926516 average: 4.8985435e-06
+           ExecutionTime = 2375.9883 s  ClockTime = 2384 s
+           
+           Time = 83s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2278548, Final residual = 0.00035348236, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.34872636, Final residual = 0.0006222232, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.19340745, Final residual = 0.00029127167, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.52093647, Final residual = 0.00085273586, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.029854322, Final residual = 4.7715946e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.026597149, Final residual = 9.7992783e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.0078094418, Final residual = 7.0340222e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0019455234, Final residual = 8.2878789e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028221237, Final residual = 5.5310553e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024186203, Final residual = 3.2428324e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.1037292, Final residual = 0.0038384978, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.14848303, Final residual = 0.0063653274, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.085493812, Final residual = 0.0041263678, No Iterations 2
+fluid      time step continuity errors : sum local = 35838887, global = -160094.04, cumulative = -330794.82
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0081615741, Final residual = 1.1726521e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.034515502, Final residual = 3.521404e-05, No Iterations 1
+fluid      bounding k, min: -1.8379484e-11 max: 0.048203005 average: 4.9599108e-06
+           ExecutionTime = 2401.1581 s  ClockTime = 2409 s
+           
+           Time = 84s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.32720498, Final residual = 0.0027350667, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.25995793, Final residual = 0.0013864971, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.25744374, Final residual = 0.00067423751, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.4260863, Final residual = 0.0039784106, No Iterations 1
+cold_plate DICPCG:  Solving for e, Initial residual = 0.036500576, Final residual = 7.2409369e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.031884807, Final residual = 4.9210103e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0086140528, Final residual = 7.5488615e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0021428807, Final residual = 9.1534811e-08, No Iterations 4
+die        DICPCG:  Solving for e, Initial residual = 0.0028506697, Final residual = 5.6015331e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024370714, Final residual = 3.3375585e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.19593532, Final residual = 0.0080192617, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.15281354, Final residual = 0.0060567312, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.19632999, Final residual = 0.0079187665, No Iterations 2
+fluid      time step continuity errors : sum local = 8509851.8, global = -16795.236, cumulative = -347590.06
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0078902068, Final residual = 8.1363741e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.033429045, Final residual = 3.9739805e-05, No Iterations 1
+fluid      bounding k, min: -5.3331164e-12 max: 0.045358971 average: 5.021638e-06
+           ExecutionTime = 2428.5721 s  ClockTime = 2437 s
+           
+           Time = 85s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2298942, Final residual = 0.00060113094, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.36773551, Final residual = 0.00070015087, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.17849258, Final residual = 0.00064451606, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.6278416, Final residual = 0.001392001, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.031601352, Final residual = 5.8070218e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.026997464, Final residual = 4.1443012e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.0095764528, Final residual = 9.2734462e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0023830034, Final residual = 4.919585e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0028940919, Final residual = 5.7101878e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0024674933, Final residual = 3.448017e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.32940438, Final residual = 0.014460997, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.31489475, Final residual = 0.010893848, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.25438523, Final residual = 0.0089801482, No Iterations 2
+fluid      time step continuity errors : sum local = 45684398, global = -27149.736, cumulative = -374739.79
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0093137282, Final residual = 1.4853703e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.032603699, Final residual = 3.2421294e-05, No Iterations 1
+           ExecutionTime = 2453.4511 s  ClockTime = 2461 s
+           
+           Time = 86s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.38376403, Final residual = 0.0033263146, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.28560224, Final residual = 0.0016244208, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.30299048, Final residual = 0.0007507229, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.37086324, Final residual = 0.00059299723, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.024910176, Final residual = 4.5762231e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.021691464, Final residual = 8.4808547e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.010603305, Final residual = 9.1326578e-08, No Iterations 6
+tim        DICPCG:  Solving for e, Initial residual = 0.0026407959, Final residual = 5.5664003e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0029530423, Final residual = 5.861667e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0025106072, Final residual = 3.5766215e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.066556094, Final residual = 0.0031330572, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.039832842, Final residual = 0.0017294178, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.050238683, Final residual = 0.0021212314, No Iterations 2
+fluid      time step continuity errors : sum local = 11292309, global = 72099.098, cumulative = -302640.7
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0085909132, Final residual = 9.4890192e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.031322155, Final residual = 3.4475698e-05, No Iterations 1
+           ExecutionTime = 2480.6597 s  ClockTime = 2489 s
+           
+           Time = 87s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.22735812, Final residual = 0.0010011585, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.3508982, Final residual = 0.00076124725, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.17720791, Final residual = 0.0007717611, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.57591941, Final residual = 0.00086741397, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.029147888, Final residual = 5.042942e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.025464636, Final residual = 9.5048226e-08, No Iterations 12
+tim        DICPCG:  Solving for e, Initial residual = 0.011462042, Final residual = 9.650036e-08, No Iterations 6
+tim        DICPCG:  Solving for e, Initial residual = 0.0028581721, Final residual = 5.9548677e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.003023936, Final residual = 6.0382185e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0025639709, Final residual = 3.7142619e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.077643457, Final residual = 0.0032285189, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17110026, Final residual = 0.0081975343, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.066694418, Final residual = 0.002352678, No Iterations 3
+fluid      time step continuity errors : sum local = 47810879, global = 315769.31, cumulative = 13128.614
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0086964163, Final residual = 1.4147151e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.029926924, Final residual = 3.0758951e-05, No Iterations 1
+           ExecutionTime = 2506.1026 s  ClockTime = 2514 s
+           
+           Time = 88s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.34229024, Final residual = 0.0030560913, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.26387611, Final residual = 0.001528383, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.25589525, Final residual = 0.0007232713, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.39481703, Final residual = 0.00057418797, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.036386179, Final residual = 5.3836138e-08, No Iterations 13
+cold_plate DICPCG:  Solving for e, Initial residual = 0.032733852, Final residual = 4.0014894e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.011939827, Final residual = 2.1543767e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0029731937, Final residual = 5.7899265e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.003098601, Final residual = 6.2092443e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0026219321, Final residual = 3.8430146e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11964369, Final residual = 0.0059819396, No Iterations 4
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.047808783, Final residual = 0.0020400149, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.11465961, Final residual = 0.0051738718, No Iterations 3
+fluid      time step continuity errors : sum local = 19147635, global = -18757.93, cumulative = -5629.3161
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0092170915, Final residual = 1.0327539e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.02934497, Final residual = 3.4904614e-05, No Iterations 1
+fluid      bounding k, min: 1.976594e-16 max: 0.03767824 average: 5.2851783e-06
+           ExecutionTime = 2532.5774 s  ClockTime = 2541 s
+           
+           Time = 89s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.21211601, Final residual = 0.00046430807, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.3376426, Final residual = 0.00082091003, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.19549784, Final residual = 0.0005687777, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.65298081, Final residual = 0.00092638945, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.063999622, Final residual = 3.7839153e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.056389013, Final residual = 7.20275e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.012415488, Final residual = 2.2157393e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0030684759, Final residual = 5.7157481e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0031755506, Final residual = 6.3839235e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0026829469, Final residual = 3.9677338e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13500359, Final residual = 0.0054133893, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.16838982, Final residual = 0.0074526749, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.1135543, Final residual = 0.0055571421, No Iterations 2
+fluid      time step continuity errors : sum local = 1.1613214e+08, global = -1230797.1, cumulative = -1236426.4
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.010296705, Final residual = 1.670784e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.028809774, Final residual = 2.9552227e-05, No Iterations 1
+fluid      bounding k, min: 2.0259739e-16 max: 0.036198563 average: 5.4224991e-06
+           ExecutionTime = 2558.0493 s  ClockTime = 2566 s
+           
+           Time = 90s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.39421634, Final residual = 0.00059765725, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.28129553, Final residual = 0.0026684963, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.3387107, Final residual = 0.00096258329, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.32718292, Final residual = 0.00069207491, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.088975239, Final residual = 4.3601884e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.08398377, Final residual = 8.5546185e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.013842518, Final residual = 2.4356731e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0034190094, Final residual = 6.8313066e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0032790964, Final residual = 6.6693531e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0027619084, Final residual = 4.1496002e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.25472388, Final residual = 0.011267207, No Iterations 12
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.22525588, Final residual = 0.0091814593, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13601186, Final residual = 0.0064273732, No Iterations 2
+fluid      time step continuity errors : sum local = 26736430, global = -81228.156, cumulative = -1317654.5
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0097681911, Final residual = 1.3032666e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.028195037, Final residual = 3.616505e-05, No Iterations 1
+fluid      bounding k, min: 2.0504348e-16 max: 0.034471248 average: 5.5360706e-06
+           ExecutionTime = 2587.1943 s  ClockTime = 2596 s
+           
+           Time = 91s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.22602852, Final residual = 0.0016102844, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.31405577, Final residual = 0.0007976234, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.18435372, Final residual = 0.00094182954, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.5138892, Final residual = 0.00089683079, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.065049081, Final residual = 3.7802382e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.045463027, Final residual = 6.9024596e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.016206786, Final residual = 9.6610271e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0040034811, Final residual = 8.6940692e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0034291115, Final residual = 7.1219936e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0028737112, Final residual = 4.4283449e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.081829286, Final residual = 0.0038572009, No Iterations 4
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.26604493, Final residual = 0.0096401034, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.070135286, Final residual = 0.0029042391, No Iterations 4
+fluid      time step continuity errors : sum local = 1.0106757e+08, global = -2329204.9, cumulative = -3646859.5
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0077578757, Final residual = 1.3498126e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.027222157, Final residual = 2.8120686e-05, No Iterations 1
+fluid      bounding k, min: 1.8074281e-16 max: 0.03317237 average: 5.716435e-06
+           ExecutionTime = 2614.0857 s  ClockTime = 2623 s
+           
+           Time = 92s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.26599308, Final residual = 0.0017638476, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.22944843, Final residual = 0.0019797136, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.21667067, Final residual = 0.00064259591, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.4357631, Final residual = 0.00085504793, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.081446882, Final residual = 4.3845157e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.072416644, Final residual = 8.4281455e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.018067337, Final residual = 9.8827854e-08, No Iterations 5
+tim        DICPCG:  Solving for e, Initial residual = 0.0044788279, Final residual = 9.880816e-08, No Iterations 5
+die        DICPCG:  Solving for e, Initial residual = 0.0036183213, Final residual = 7.6702416e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0030169578, Final residual = 4.7656879e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.32937301, Final residual = 0.013142788, No Iterations 11
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.21280222, Final residual = 0.009663192, No Iterations 2
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.17797373, Final residual = 0.0061283679, No Iterations 3
+fluid      time step continuity errors : sum local = 31605736, global = -62796.844, cumulative = -3709656.3
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.009412953, Final residual = 9.4874609e-06, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.027166723, Final residual = 3.2854113e-05, No Iterations 1
+fluid      bounding k, min: -2.1681814e-09 max: 0.032149502 average: 5.8927641e-06
+           ExecutionTime = 2643.1524 s  ClockTime = 2652 s
+           
+           Time = 93s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.20418537, Final residual = 0.00035844414, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.31981521, Final residual = 0.00061785795, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.19219868, Final residual = 0.00027165339, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for h, Initial residual = 0.52362374, Final residual = 0.00091762486, No Iterations 2
+cold_plate DICPCG:  Solving for e, Initial residual = 0.06356351, Final residual = 3.9244327e-08, No Iterations 14
+cold_plate DICPCG:  Solving for e, Initial residual = 0.046924815, Final residual = 7.200286e-08, No Iterations 13
+tim        DICPCG:  Solving for e, Initial residual = 0.019726824, Final residual = 4.0690816e-09, No Iterations 7
+tim        DICPCG:  Solving for e, Initial residual = 0.0049014952, Final residual = 1.8761666e-08, No Iterations 6
+die        DICPCG:  Solving for e, Initial residual = 0.0038402959, Final residual = 8.2845984e-08, No Iterations 9
+die        DICPCG:  Solving for e, Initial residual = 0.0031883351, Final residual = 5.1409377e-08, No Iterations 9
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.13733416, Final residual = 0.0063829967, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.2550478, Final residual = 0.010058206, No Iterations 3
+fluid      GAMG:  Solving for p_rgh, Initial residual = 0.12174368, Final residual = 0.0048947555, No Iterations 3
+fluid      time step continuity errors : sum local = 1.6856554e+08, global = 1906952.7, cumulative = -1802703.6
+fluid      DILUPBiCGStab:  Solving for omega, Initial residual = 0.0095081324, Final residual = 1.3837981e-05, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for k, Initial residual = 0.026293399, Final residual = 2.4521521e-05, No Iterations 1
+fluid      bounding k, min: 1.7497188e-16 max: 0.030911347 average: 6.0617663e-06
+           ExecutionTime = 2669.4377 s  ClockTime = 2678 s
+           
+           Time = 94s
+           
+fluid      DILUPBiCGStab:  Solving for Ux, Initial residual = 0.31967696, Final residual = 0.0026856911, No Iterations 1
+fluid      DILUPBiCGStab:  Solving for Uy, Initial residual = 0.25757869, Final residual = 0.0014919787, No Iterations 2
+fluid      DILUPBiCGStab:  Solving for Uz, Initial residual = 0.27483005, Final residual = 0.00068553216, No Iterations 2

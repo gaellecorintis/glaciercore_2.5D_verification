@@ -1,0 +1,153 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   system/fluid/snappyHexMeshDict
+//   PASS 3 of the meshing pipeline: addLayers ONLY, on the fluid region.
+//
+//   Invoked as:
+//       snappyHexMesh -region fluid -overwrite
+//
+//   Targets the patch "fluid_to_cold_plate" (the mappedWall created by
+//   splitMeshRegions from the faceZone). Adds 3 prism layers growing inward
+//   into the fluid cells.
+//
+//   Layer geometry (post-snap surface cells = 12.5 um at level 3):
+//       firstLayerThickness   5  um   <-- innermost, y+ ~5-30 for kOmSST with wall functions
+//       layer 2              ~6.5 um (1.3 x first)
+//       layer 3              ~8.4 um
+//       total layer band    ~20 um
+//   Then the first non-layer cell stays at ~12.5 um (level 3 hex).
+//
+//   REDUCED from 5 to 3 layers (vs previous attempt which produced 3.15M
+//   concave cells and made the CHT solver diverge). 3 layers fit in narrow
+//   pillar gaps without triggering the relaxed{} quality fallback, so the
+//   resulting mesh stays clean enough for GAMG/PCG to converge.
+//
+//   firstLayerThickness raised from 3 to 5 um -> y+ in the wall-function
+//   range (5-30) instead of low-Re (~1). Compatible with our nutkWallFunction
+//   and omegaWallFunction BCs. Easier to fit, fewer rejected faces.
+//
+//   The patch "fluid_to_cold_plate" is also where heat exchange happens, so
+//   resolving the boundary layer here is what makes h_conv accurate in CHT.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+
+castellatedMesh false;          // skip
+snap            false;          // skip
+addLayers       true;           // ONLY this phase
+
+// ====== GEOMETRY (required by schema even if not used) =====================
+geometry {}
+
+// ====== CASTELLATED CONTROLS (required by schema, unused) ==================
+castellatedMeshControls
+{
+    maxLocalCells       100;
+    maxGlobalCells      100;
+    minRefinementCells  0;
+    nCellsBetweenLevels 1;
+    features ();
+    refinementSurfaces {}
+    resolveFeatureAngle 30;
+    refinementRegions {}
+    locationInMesh (0.005 0.005 0.00075);   // anywhere inside fluid
+    allowFreeStandingZoneFaces true;
+}
+
+// ====== SNAP CONTROLS (required by schema, unused) =========================
+snapControls
+{
+    nSmoothPatch       3;
+    tolerance          2.0;
+    nSolveIter         30;
+    nRelaxIter         5;
+    nFeatureSnapIter   10;
+    implicitFeatureSnap    false;
+    explicitFeatureSnap    false;
+    multiRegionFeatureSnap false;
+}
+
+// ====== ADD LAYERS CONTROLS ================================================
+
+addLayersControls
+{
+    // Absolute layer sizes (not relative to local cell size) so we control
+    // y+ precisely.
+    relativeSizes        false;
+
+    layers
+    {
+        fluid_to_cold_plate
+        {
+            nSurfaceLayers 5;        // back to 5 (target); cleanliness is now
+                                     // enforced via strict relaxed{} killers +
+                                     // nBufferCellsNoExtrude (snappy SKIPS a
+                                     // layer rather than degrade a cell).
+        }
+    }
+
+    // First layer = 5 um, expansion 1.3 -> layers ~ 5, 6.5, 8.4 um.
+    firstLayerThickness  5e-6;       // was 3e-6; thicker first layer = easier fit
+    expansionRatio       1.3;
+    minThickness         2e-6;       // was 1e-6; reject very thin layers --
+                                     // it's better to have NO layer at a face
+                                     // than a 1-um layer that creates a
+                                     // pathological cell.
+
+    // featureAngle 130: allow layers to wrap AROUND sharp 90 deg corners
+    // (pillar corners). Default 60 would stop layers at every pillar edge.
+    featureAngle         130;
+
+    nGrow                0;
+
+    // Smoothing of layer mesh (prevents zig-zag walls in the layer cells).
+    // RAISED for the 5-layer attempt: a smoother normal/displacement field
+    // reduces twisted/squeezed cells where layers meet pillar walls.
+    nSmoothSurfaceNormals 3;     // was 1
+    nSmoothNormals        5;     // was 3
+    nSmoothThickness      10;
+
+    // Quality controls during layer addition.
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedialAxisAngle    90;
+    // nBufferCellsNoExtrude 3: KEY FIX (was 0 in BOTH old_mesh and the previous
+    // 3-layer attempt). Forces a smooth, stepped termination of the layer band
+    // wherever it cannot extrude fully (pillar edges, tight gaps), instead of a
+    // single abrupt step that creates the small-volume-ratio / low-interp-weight
+    // faces (6021 + 5144 of the 11182 illegal faces last time).
+    nBufferCellsNoExtrude 3;
+
+    // Iteration budget. Many more iterations than defaults because layers
+    // need to fit in narrow channels around pillars (hard problem).
+    //
+    // nRelaxedIter REDUCED from 20 to 8 (vs previous mesh): too many relaxed
+    // iterations made snappy accept concave/skewed cells in tight pillar
+    // gaps just to fit a layer there. With nRelaxedIter 8 + tighter relaxed{}
+    // (see system/meshQualityDict), snappy will skip layers in unfittable
+    // spots rather than degrade the mesh quality.
+    nLayerIter            50;     // was 30 (default)
+    nRelaxedIter          8;      // was 20 (down to be more conservative)
+}
+
+// Explicitly pull the case-level meshQualityDict so snappy uses its strict
+// thresholds + relaxed{} sub-block when adding layers in this region pass.
+meshQualityControls
+{
+    #include "../meshQualityDict"
+}
+
+mergeTolerance 1e-6;
+
+// ************************************************************************* //

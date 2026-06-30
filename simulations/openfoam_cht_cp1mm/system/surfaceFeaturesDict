@@ -1,0 +1,40 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   surfaceFeaturesDict
+//
+//   Extracts sharp edges (.eMesh) from fluid.stl so snappy can snap mesh
+//   vertices onto the 90-degree edges of every pillar wall. HM27 pillars
+//   are right-rectangular extrusions: their vertical edges are critical for
+//   snap quality.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeaturesDict;
+}
+
+surfaces ("fluid.stl");
+
+includedAngle   150;
+
+subsetFeatures
+{
+    nonManifoldEdges    no;
+    openEdges           yes;
+}
+
+trimFeatures
+{
+    minElem         0;
+    minLen          0;
+}
+
+writeObj    yes;
+
+// ************************************************************************* //

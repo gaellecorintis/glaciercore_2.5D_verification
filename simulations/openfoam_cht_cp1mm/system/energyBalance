@@ -1,0 +1,64 @@
+/*--------------------------------*- C++ -*----------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      energyBalance;
+}
+// Bilan d'energie cote fluide. phi = flux massique [kg/s] (heRhoThermo).
+// Q_out = mdot_out * Cp * (Tout - Tin), Cp = 4002 J/kg/K, Tin = 316.15 K.
+
+mdotOutlet
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    regionType      patch;
+    name            outlet;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeControl    timeStep;
+    log             true;
+}
+
+ToutMassAvg
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    regionType      patch;
+    name            outlet;
+    operation       weightedAverage;
+    weightField     phi;
+    fields          (T);
+    writeFields     false;
+    writeControl    timeStep;
+    log             true;
+}
+
+mdotInlet1
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    regionType      patch;
+    name            inlet_1;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeControl    timeStep;
+    log             true;
+}
+
+mdotInlet2
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    regionType      patch;
+    name            inlet_2;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeControl    timeStep;
+    log             true;
+}
+// ************************************************************************* //

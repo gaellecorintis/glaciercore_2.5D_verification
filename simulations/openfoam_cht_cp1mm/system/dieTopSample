@@ -1,0 +1,16 @@
+type            surfaces;
+libs            ("libsampling.so");
+surfaceFormat   vtk;
+interpolate     false;
+interpolationScheme cell;
+fields          (T "grad(T)");
+
+surfaces
+{
+    dietop
+    {
+        type        patch;
+        patches     (top);
+        interpolate false;
+    }
+}

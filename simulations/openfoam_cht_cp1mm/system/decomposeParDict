@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   decomposeParDict  --  HM27 NE quarter, parallel decomposition for snappy
+//
+//   Used in Allrun BEFORE snappyHexMesh -parallel (pass 1, castellated+snap).
+//   8 subdomains = all 8 cores of the VM. After snappy we reconstruct
+//   (reconstructParMesh) before topoSet + splitMeshRegions, then re-decompose
+//   the fluid region for the addLayers pass.
+//
+//   scotch method: graph-partitioning, handles irregular geometries (lots
+//   of pillars in the channel) better than hierarchical XY blocks.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      decomposeParDict;
+}
+
+numberOfSubdomains 24;
+
+method scotch;
+
+// ************************************************************************* //

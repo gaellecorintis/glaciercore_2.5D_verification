@@ -1,0 +1,57 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  createPatchDict -- promote the three face sets produced by topoSetDict_BCs
+//                     into proper boundary patches inlet_1 / inlet_2 / outlet
+//                     on the fluid region.
+//
+//  Run as:
+//      createPatch -region fluid -overwrite -dict system/createPatchDict
+//
+//  After this, the fluid region's boundary will have the new patches:
+//      inlet_1  (was a subset of `right`)
+//      inlet_2  (was a subset of `fluid_to_cold_plate`)
+//      outlet   (was a subset of `left`)
+//  and the original patches `right`, `left`, `fluid_to_cold_plate` will keep
+//  their remaining faces.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+
+// pointSync false : do not try to synchronise coupled points (we are not
+//                   modifying any coupled boundary), faster and safer.
+pointSync false;
+
+patches
+(
+    {
+        name           inlet_1;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            in1Faces;
+    }
+
+    {
+        name           inlet_2;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            in2Faces;
+    }
+
+    {
+        name           outlet;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            outFaces;
+    }
+);
+
+// ************************************************************************* //

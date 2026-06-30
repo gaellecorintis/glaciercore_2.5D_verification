@@ -1,0 +1,95 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Fluid region schemes -- steady-state SIMPLE on a hex/poly mesh with
+//  fairly high non-orthogonality (~65 deg max from checkMesh).
+//
+//  Turbulence: k-omega SST RAS (matches Glaciercore reference).
+//
+//  Choices:
+//  - ddt steadyState                  (we solve for the steady solution)
+//  - grad with cellLimited            (cap gradient overshoot near walls/fins
+//                                      to stay stable at high non-orthog)
+//  - div(phi,U)     bounded linearUpwindV  (2nd order, robust on hex)
+//  - div(phi,h)     bounded linearUpwind   (same on the enthalpy transport)
+//  - div(phi,k)     bounded upwind          (1st order on k/omega -- much more
+//  - div(phi,omega) bounded upwind           stable on snappy meshes near walls,
+//                                            standard practice for k-omega SST)
+//  - laplacian   corrected             (correct snGrad for non-orthog)
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system/fluid";
+    object      fvSchemes;
+}
+
+ddtSchemes
+{
+    default         steadyState;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+    grad(U)         cellLimited Gauss linear 1;
+    grad(h)         cellLimited Gauss linear 1;
+    //  k-omega SST: limit grad(k) and grad(omega) for stability on snappy meshes
+    //  with high non-orthogonality near walls (matches OF13 coolingCylinder2D).
+    grad(k)         cellLimited Gauss linear 1;
+    grad(omega)     cellLimited Gauss linear 1;
+}
+
+divSchemes
+{
+    default         none;
+
+    //  CONVERGENCE RUN: all convection 1st-order upwind (unconditionally
+    //  bounded). The 4.6 m/s impinging jets through the 0.1mm slots made the
+    //  2nd-order linearUpwind reconstruction overshoot in the jet shear layers,
+    //  diverging omega -> U -> continuity at iter ~28. Upwind kills the wiggle.
+    //  Refine to linearUpwind by restarting from the converged field afterwards.
+    div(phi,U)      bounded Gauss upwind;
+    div(phi,K)      bounded Gauss upwind;
+    div(phi,h)      bounded Gauss upwind;
+    div(phi,e)      bounded Gauss upwind;
+    div(phi,Ekp)    bounded Gauss upwind;
+
+    div(phi,k)      bounded Gauss upwind;
+    div(phi,omega)  bounded Gauss upwind;
+
+    div(((rho*nuEff)*dev2(T(grad(U)))))   Gauss linear;
+}
+
+laplacianSchemes
+{
+    // 'limited 0.333' caps the non-orthogonal correction. checkMesh shows up to
+    // 75 deg non-orthogonality (12553 faces > 70 deg) in the near-wall interface
+    // cells; full 'corrected' overshoots there and blows up p_rgh. 0.333 keeps
+    // the scheme firmly on the stable side while retaining partial correction.
+    default         Gauss linear limited 0.333;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         limited 0.333;
+}
+
+//  k-omega SST needs the wall distance field (y) for its blending function.
+//  Use the cellDisplacement Poisson solver (cheap, parallel-safe).
+wallDist
+{
+    method          meshWave;
+}
+
+// ************************************************************************* //

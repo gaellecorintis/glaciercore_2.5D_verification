@@ -1,0 +1,24 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   system/fluid/decomposeParDict
+//   Used after splitMeshRegions for the parallel addLayers pass on the
+//   fluid region. 8 subdomains across all 8 VM cores. scotch handles the
+//   irregular pillar-pierced channel geometry well.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      decomposeParDict;
+}
+
+numberOfSubdomains 20;
+
+method scotch;
+
+// ************************************************************************* //

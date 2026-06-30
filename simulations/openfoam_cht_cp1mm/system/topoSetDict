@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   topoSetDict  --  HM27 NE quarter, create solid cellZones from the
+//                    untagged cells left by snappyHexMesh.
+//
+//   Starting point (after snappyHexMesh PASS 1 with `mode insidePoint`):
+//       cellZone "fluid"  -> the fluid channels (z=0..1.5, outside pillars/walls)
+//       Untagged cells    -> the rest of the kept mesh:
+//                              lid (z=1.5..2.5) + pillars + walls + TIM + die
+//
+//   We carve three cellZones out of the untagged cells, by Z box:
+//       "cold_plate"  -> box  z=[0,    2.5 mm]  MINUS the fluid zone
+//                             (catches the lid + pillar interiors + wall interiors)
+//       "tim"         -> box  z=[2.5,  2.6 mm]
+//       "die"         -> box  z=[2.6,  3.6 mm]
+//
+//   boxToCell catches cells whose CENTRE lies inside the given box. Z bounds
+//   are slightly padded; XY bounds padded by 1mm each side; for float safety.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+actions
+(
+    // ============== 1. cellZone "cold_plate" ===============================
+    // Box z = 0 -> 2.5 mm, MINUS the fluid cellZone.
+    // -> Cells of the lid (z=1.5..2.5) + pillar interiors + wall interiors.
+    {
+        name    coldPlateCells;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo { box (-0.001 -0.001 -0.001) (0.0277 0.044 0.0025); }
+    }
+    // Remove every cell that also belongs to the fluid zone.
+    // (OF13 cellSet uses action `delete` to subtract a source set; the
+    //  word `subtract` is NOT recognised -- this caused a fatal error on
+    //  the first attempt. Valid actions: clear/invert/remove/list/subset/
+    //  new/delete/add.)
+    {
+        name    coldPlateCells;
+        type    cellSet;
+        action  delete;
+        source  zoneToCell;
+        sourceInfo { name fluid; }
+    }
+    {
+        name    cold_plate;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo { set coldPlateCells; }
+    }
+
+    // ============== 2. cellZone "tim" ======================================
+    // Box z = 2.5 -> 2.6 mm. No need to subtract fluid (fluid stops at z=1.5).
+    {
+        name    timCells;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo { box (-0.001 -0.001 0.0025) (0.0277 0.044 0.0026); }
+    }
+    {
+        name    tim;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo { set timCells; }
+    }
+
+    // ============== 3. cellZone "die" ======================================
+    // Box z = 2.6 -> 3.6 mm.
+    {
+        name    dieCells;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo { box (-0.001 -0.001 0.0026) (0.0277 0.044 0.0036); }
+    }
+    {
+        name    die;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo { set dieCells; }
+    }
+);
+
+// ************************************************************************* //

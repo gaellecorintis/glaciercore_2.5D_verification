@@ -1,0 +1,167 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   system/fluid/snappyHexMeshDict
+//   PASS 3 of the meshing pipeline: addLayers ONLY, on the fluid region.
+//
+//   Invoked as:
+//       snappyHexMesh -region fluid -overwrite
+//
+//   Targets the patch "fluid_to_cold_plate" (the mappedWall created by
+//   splitMeshRegions from the faceZone). Adds 4 prism layers growing inward
+//   into the fluid cells.
+//
+//   Layer geometry (post-snap surface cells = 12.5 um at level 3):
+//       firstLayerThickness   4  um   <-- innermost, y+ ~5-30 for kOmSST wall fns
+//       layer 2              ~4.6 um (1.15 x)
+//       layer 3              ~5.3 um
+//       layer 4              ~6.1 um
+//       total layer band    ~20 um
+//   Then the first non-layer cell stays at ~12.5 um (level 3 hex).
+//
+//   STRATEGY (4-layer clean attempt): the 5-layer band (~45 um target) did not
+//   fit the tight pillar gaps -- it compressed to ~22 um (49%, only 3.9 layers)
+//   and produced 1.1M concave cells. Fix = aim for a band (~20 um) that fits
+//   UNDER the ~22 um the gaps actually allow, so layers grow at full thickness:
+//     - nSurfaceLayers 5 -> 4
+//     - firstLayerThickness 5 -> 4 um, expansionRatio 1.3 -> 1.15 (band ~20 um)
+//     - featureAngle 130 -> 90 (don't force-wrap sharp pillar corners)
+//     - maxThicknessToMedialRatio 0.3 -> 0.2 (terminate, don't fold, in gaps)
+//   y+ stays in the wall-function range (5-30), compatible with our
+//   omega/k/nut wall-function BCs.
+//
+//   The patch "fluid_to_cold_plate" is also where heat exchange happens, so
+//   resolving the boundary layer here is what makes h_conv accurate in CHT.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+
+castellatedMesh false;          // skip
+snap            false;          // skip
+addLayers       true;           // ONLY this phase
+
+// ====== GEOMETRY (required by schema even if not used) =====================
+geometry {}
+
+// ====== CASTELLATED CONTROLS (required by schema, unused) ==================
+castellatedMeshControls
+{
+    maxLocalCells       100;
+    maxGlobalCells      100;
+    minRefinementCells  0;
+    nCellsBetweenLevels 1;
+    features ();
+    refinementSurfaces {}
+    resolveFeatureAngle 30;
+    refinementRegions {}
+    locationInMesh (0.005 0.005 0.00075);   // anywhere inside fluid
+    allowFreeStandingZoneFaces true;
+}
+
+// ====== SNAP CONTROLS (required by schema, unused) =========================
+snapControls
+{
+    nSmoothPatch       3;
+    tolerance          2.0;
+    nSolveIter         30;
+    nRelaxIter         5;
+    nFeatureSnapIter   10;
+    implicitFeatureSnap    false;
+    explicitFeatureSnap    false;
+    multiRegionFeatureSnap false;
+}
+
+// ====== ADD LAYERS CONTROLS ================================================
+
+addLayersControls
+{
+    // Absolute layer sizes (not relative to local cell size) so we control
+    // y+ precisely.
+    relativeSizes        false;
+
+    layers
+    {
+        fluid_to_cold_plate
+        {
+            nSurfaceLayers 4;        // 4 layers (down from 5). The 5-layer band
+                                     // (~45 um target) did NOT fit the pillar
+                                     // gaps: it got compressed to 49% (~22 um)
+                                     // and only 3.9 layers avg -> 1.1M concave
+                                     // cells. 4 thinner layers (~20 um, see
+                                     // below) fit UNDER that ~22 um gap limit,
+                                     // so they grow at full thickness = clean.
+        }
+    }
+
+    // 4 layers, first 4 um, expansion 1.15 -> 4, 4.6, 5.3, 6.1 um = ~20 um total.
+    // Kept just UNDER the ~22 um that physically fit in the gaps last time, so
+    // no medial-axis compression (the source of the folded/concave cells).
+    firstLayerThickness  4e-6;       // y+ stays ~5-30 (wall-function range)
+    expansionRatio       1.15;       // gentler growth than 1.3 -> thinner band
+    minThickness         2e-6;       // reject very thin layers (no pathological
+                                     // 1-um cells); better NO layer than a bad one.
+
+    // featureAngle 90 (down from 130): do NOT force layers to wrap aggressively
+    // around the sharp pillar corners -- that wrapping was creating concave
+    // corner cells. At 90 the layer terminates cleanly at the sharpest pillar
+    // edges (handled gracefully by nBufferCellsNoExtrude) instead of folding.
+    // *** REVIEW POINT: 90 = cleaner but BL interrupted at sharpest corners;
+    //     130 = continuous BL but concave corners. Discuss before remeshing.
+    featureAngle         90;
+
+    nGrow                0;
+
+    // Smoothing of layer mesh (prevents zig-zag walls in the layer cells).
+    // RAISED for the 5-layer attempt: a smoother normal/displacement field
+    // reduces twisted/squeezed cells where layers meet pillar walls.
+    nSmoothSurfaceNormals 3;     // was 1
+    nSmoothNormals        5;     // was 3
+    nSmoothThickness      10;
+
+    // Quality controls during layer addition.
+    maxFaceThicknessRatio 0.5;
+    // maxThicknessToMedialRatio 0.3 -> 0.2 : cap layer thickness more strongly
+    // near the medial axis (the centre of a gap). In tight pillar gaps this
+    // makes the layers TERMINATE earlier instead of compressing/folding into
+    // concave cells. Directly targets the 1.1M concave cells.
+    maxThicknessToMedialRatio 0.2;
+    minMedialAxisAngle    90;
+    // nBufferCellsNoExtrude 3: KEY FIX (was 0 in BOTH old_mesh and the previous
+    // 3-layer attempt). Forces a smooth, stepped termination of the layer band
+    // wherever it cannot extrude fully (pillar edges, tight gaps), instead of a
+    // single abrupt step that creates the small-volume-ratio / low-interp-weight
+    // faces (6021 + 5144 of the 11182 illegal faces last time).
+    nBufferCellsNoExtrude 3;
+
+    // Iteration budget. Many more iterations than defaults because layers
+    // need to fit in narrow channels around pillars (hard problem).
+    //
+    // nRelaxedIter REDUCED from 20 to 8 (vs previous mesh): too many relaxed
+    // iterations made snappy accept concave/skewed cells in tight pillar
+    // gaps just to fit a layer there. With nRelaxedIter 8 + tighter relaxed{}
+    // (see system/meshQualityDict), snappy will skip layers in unfittable
+    // spots rather than degrade the mesh quality.
+    nLayerIter            50;     // was 30 (default)
+    nRelaxedIter          8;      // was 20 (down to be more conservative)
+}
+
+// Explicitly pull the case-level meshQualityDict so snappy uses its strict
+// thresholds + relaxed{} sub-block when adding layers in this region pass.
+meshQualityControls
+{
+    #include "../meshQualityDict"
+}
+
+mergeTolerance 1e-6;
+
+// ************************************************************************* //

@@ -1,0 +1,49 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Solid region (pure conduction on `e` via heSolidThermo).
+//  OF13 `solid` solver module of foamMultiRun reads `PIMPLE` block with
+//  single-value residualControl (same format constraint as the fluid module).
+//
+//  See multiRegion/CHT/circuitBoardCooling/system/baffle3D/fvSolution.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system/cold_plate";
+    object      fvSolution;
+}
+
+solvers
+{
+    "e.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        smoother        GaussSeidel;
+        tolerance       1e-7;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    nNonOrthogonalCorrectors    1;
+
+    residualControl
+    {
+        e               1e-6;
+    }
+}
+
+relaxationFactors
+{
+    e               0.95;
+}
+
+// ************************************************************************* //

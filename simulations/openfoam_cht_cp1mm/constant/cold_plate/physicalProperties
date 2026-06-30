@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Cold plate substrate -- pure copper (Cu).
+//  kappa = 400 W/m/K is taken from settings_sim.json (Glaciercore reference).
+//  Cv, rho from NIST/handbook values for Cu at ~300 K.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/cold_plate";
+    object      physicalProperties;
+}
+
+thermoType
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIsoSolid;
+    thermo          eConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight       63.55;          // g/mol, Cu
+    }
+
+    equationOfState
+    {
+        rho             8960;           // kg/m^3
+    }
+
+    thermodynamics
+    {
+        Cv              385;            // J/kg/K (Cp ~= Cv for solids)
+        Hf              0;
+    }
+
+    transport
+    {
+        kappa           400;            // W/m/K (from JSON: conductivity_cold_plate_substrate)
+    }
+}
+
+// ************************************************************************* //

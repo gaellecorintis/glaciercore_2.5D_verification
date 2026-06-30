@@ -1,0 +1,55 @@
+FoamFile
+{
+    version 2.0; format ascii; class dictionary; object topoSetDict;
+}
+
+actions
+(
+    {
+        name pAll; type faceSet; action new;
+        source patchToFace;
+        sourceInfo { name cold_plate_to_fluid; }
+    }
+    {
+        name pAll; type faceSet; action subset;
+        source boxToFace;
+        sourceInfo { box (0.02660 -1e-4 -1e-4) (0.02671 0.04301 0.00151); }
+    }
+
+    { name probePx; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probePx; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (1 0 0); cos 0.9; }
+    }
+    { name probeMx; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probeMx; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (-1 0 0); cos 0.9; }
+    }
+    { name probePy; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probePy; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (0 1 0); cos 0.9; }
+    }
+    { name probeMy; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probeMy; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (0 -1 0); cos 0.9; }
+    }
+    { name probePz; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probePz; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (0 0 1); cos 0.9; }
+    }
+    { name probeMz; type faceSet; action new; source faceToFace;
+      sourceInfo { set pAll; }
+    }
+    { name probeMz; type faceSet; action subset;
+      source normalToFace; sourceInfo { normal (0 0 -1); cos 0.9; }
+    }
+);

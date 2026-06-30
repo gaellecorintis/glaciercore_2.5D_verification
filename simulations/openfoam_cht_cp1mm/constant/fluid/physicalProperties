@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Fluid: propylene-glycol-water 25 % (pgw25) at T_inlet = 316.15 K (43 C).
+//  Properties from Dow Chemical PG25 datasheet (interpolated at 43 C).
+//  Matches the Glaciercore reference simulation
+//  `failure_catalogue_study/HM27/simulations/MI455_k_omega_full_powermap/`
+//  `simulation_result_warmstart_from_30C` (k-omega SST, 43 C, Mi455 powermap).
+//
+//  rhoConst is used (incompressible-like) because Mach << 1 and we don't
+//  want spurious density coupling. Energy form: sensibleEnthalpy (h) so that
+//  the foamMultiRun `fluid` solver advects h instead of e.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/fluid";
+    object      physicalProperties;
+}
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight       22.26;          // effective M for 25 % PG / 75 % H2O mix
+    }
+
+    equationOfState
+    {
+        rho             1013;           // kg/m^3 @ 43 C
+    }
+
+    thermodynamics
+    {
+        Cp              4002;           // J/kg/K @ 43 C
+        Hf              0;
+    }
+
+    transport
+    {
+        mu              1.50e-3;        // Pa.s @ 43 C (33% lower than at 30C)
+        Pr              11.96;          // = mu*Cp/k with k = 0.502 W/m/K
+    }
+}
+
+// ************************************************************************* //

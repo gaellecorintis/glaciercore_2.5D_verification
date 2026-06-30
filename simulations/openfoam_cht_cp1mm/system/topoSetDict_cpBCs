@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  topoSetDict_cpBCs -- mirror of system/topoSetDict_BCs but on the
+//                       cold_plate region.
+//
+//  WHY: after carving inlet_1/inlet_2/outlet out of fluid_to_cold_plate (on
+//  the fluid side), the paired solid-side patch cold_plate_to_fluid still
+//  has the corresponding faces. The mappedWall coupling check then fails
+//  (patches not geometrically similar). We carve the *same* physical faces
+//  out of cold_plate_to_fluid here and createPatch them into 3 new patches
+//  (cp_inlet_1 / cp_inlet_2 / cp_outlet) which we then treat as adiabatic
+//  walls on the cold_plate T field (since they face the inlet/outlet ports,
+//  not the coolant fluid).
+//
+//  Boxes are identical to topoSetDict_BCs. Normals are FLIPPED because face
+//  outward normals point from cold_plate INTO fluid on this side (opposite
+//  to the fluid side).
+//
+//  Run as:
+//      topoSet -region cold_plate -dict system/topoSetDict_cpBCs
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+actions
+(
+    // ============== 1. INLET 1 (cold_plate side) ===========================
+    // East wall of the fluid cavity; from cold_plate side, outward normal = -x.
+    {
+        name    cpIn1Faces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name cold_plate_to_fluid; }
+    }
+    {
+        name    cpIn1Faces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (0.02660 -1e-4 -1e-4) (0.02671 0.04301 0.00151); }
+    }
+    {
+        name    cpIn1Faces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (-1 0 0); cos 0.9; }   // FLIPPED vs fluid (+x)
+    }
+
+    // ============== 2. INLET 2 (cold_plate side) ===========================
+    // Internal horizontal separator; from cold_plate side, outward normal = +y.
+    {
+        name    cpIn2Faces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name cold_plate_to_fluid; }
+    }
+    {
+        name    cpIn2Faces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (0.0139 0.01855 -1e-4) (0.0262 0.01865 0.00151); }
+    }
+    {
+        name    cpIn2Faces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (0 1 0); cos 0.9; }   // FLIPPED vs fluid (-y)
+    }
+
+    // ============== 3. OUTLET (cold_plate side) ============================
+    // West wall of the fluid cavity; from cold_plate side, outward normal = +x.
+    {
+        name    cpOutFaces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name cold_plate_to_fluid; }
+    }
+    {
+        name    cpOutFaces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (-1e-4 -1e-4 -1e-4) (0.00011 0.03581 0.00151); }
+    }
+    {
+        name    cpOutFaces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (1 0 0); cos 0.9; }   // FLIPPED vs fluid (-x)
+    }
+);
+
+// ************************************************************************* //

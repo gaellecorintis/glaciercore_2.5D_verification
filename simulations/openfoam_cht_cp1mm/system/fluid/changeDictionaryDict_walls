@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  changeDictionaryDict_walls (fluid region)
+//
+//  Convert the residual snappy patches `right`, `left`, `back` on the fluid
+//  region from generic `patch` to `wall` -- they are physical no-slip walls
+//  (chip exterior contacts) and must be of type `wall` for nut*WallFunction
+//  boundary conditions on the turbulence model to accept them.
+//
+//  `bottom` is already `wall` and `fluid_to_cold_plate` is a `mappedWall`
+//  (which inherits from wall), so they don't need to be touched.
+//
+//  Run as:
+//      changeDictionary -region fluid \
+//          -dict system/fluid/changeDictionaryDict_walls
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+
+boundary
+{
+    right
+    {
+        type    wall;
+    }
+    left
+    {
+        type    wall;
+    }
+    back
+    {
+        type    wall;
+    }
+}
+
+// ************************************************************************* //

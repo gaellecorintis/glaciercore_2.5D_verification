@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Thermal interface material (high-performance grease).
+//  kappa = 8 W/m/K from settings_sim.json (conductivity_tim).
+//  rho, Cv from typical TIM datasheets (Honeywell/Shin-Etsu range).
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/tim";
+    object      physicalProperties;
+}
+
+thermoType
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIsoSolid;
+    thermo          eConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight       100;            // nominal (no effect on conduction-only solve)
+    }
+
+    equationOfState
+    {
+        rho             2700;           // kg/m^3
+    }
+
+    thermodynamics
+    {
+        Cv              900;            // J/kg/K
+        Hf              0;
+    }
+
+    transport
+    {
+        kappa           8;              // W/m/K (from JSON: conductivity_tim)
+    }
+}
+
+// ************************************************************************* //

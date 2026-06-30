@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   meshQualityDict -- STRICT quality controls for snappy snap.
+//
+//   These thresholds are consulted DURING snap iterations: if a vertex move
+//   would violate any of them, snap rejects/relaxes that move. End result:
+//   walls follow the STL where possible, but never at the cost of creating
+//   concave or degenerate cells (which would crash foamMultiRun CHT).
+//
+//   We start from the foundation defaults and TIGHTEN the most important
+//   thresholds (non-orthogonality, skewness, concavity, determinant). If you
+//   need a looser mesh (less wall accuracy, fewer rejections), bump these
+//   values; if you need stricter, lower them.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      meshQualityDict;
+}
+
+#includeEtc "caseDicts/mesh/generation/meshQualityDict.cfg"
+
+// ---- OVERRIDES (tighter than the foundation defaults) ---------------------
+
+// Reject snap moves that would create cells with non-orthogonality > 70 deg
+// (default: 70, was tightened to 65 but THE binding constraint causing snap
+// to loop forever: pillars with 90 deg corners inevitably create faces at
+// ~67-75 deg non-ortho, snap kept rejecting these and trying again forever).
+// 70 is the industry standard for unstructured CHT meshes (Ansys Fluent
+// recommends max 70). Our fvSolution has nNonOrthogonalCorrectors=2 which
+// handles up to ~75-80 deg cleanly.
+maxNonOrtho          70;
+
+// Reject snap moves that would create concave faces (angle > 80 deg between
+// face normal and any face vertex normal). Default: 80, we tighten to 70.
+maxConcave           70;
+
+// Reject snap moves that would create cells with determinant < 0.01 (default
+// 0.001 -> heavily degenerate cells slip through). 0.01 ensures every cell
+// has a well-formed shape and a stable Jacobian for the FVM discretisation.
+minDeterminant       0.01;
+
+// Reject snap moves that would produce internal faces with skewness > 3
+// (default 4). Skewed faces hurt interpolation accuracy at the fluid-solid
+// interface and slow CHT convergence.
+maxInternalSkewness  3.0;
+
+// Same for boundary faces (default 20, very loose). 10 still leaves room for
+// the pillar corners while protecting the wall regions.
+maxBoundarySkewness  10.0;
+
+// Reject snap moves that would produce cells with volume ratio of neighbour
+// cells < 0.02 (default 0.01). This prevents abrupt cell-size jumps that
+// cause local mass-flux errors in CHT.
+minVolRatio          0.02;
+
+// Min face area as fraction of cell volume^(2/3) - prevents zero-area faces
+// from sneaking through. Default -1 disables, we enable at 1e-13.
+minFaceArea          1e-13;
+
+// ---- RELAXED OVERRIDES (used during addLayers nRelaxedIter passes) --------
+// During layer addition, snappy first tries with the strict thresholds above;
+// if that fails on a face, it falls back to these limits for nRelaxedIter
+// attempts.
+//
+// HARDENED vs previous mesh (which produced 3.15M concave cells, max
+// skewness 6.74, and 9 cells with determinant < 0.001 -- enough to make
+// GAMG + PCG both diverge on p_rgh in the CHT run).
+//
+// New strategy: it's BETTER TO SKIP A LAYER than to accept a degenerate
+// cell. Tighter relaxed{} forces snappy to give up on a layer fit rather
+// than producing pathological cells.
+relaxed
+{
+    // 5-LAYER STRATEGY: the relaxed fallback is now STRICT on the metrics that
+    // make the p_rgh matrix unsolvable (determinant, volume ratio, concavity).
+    // Leniency is kept ONLY on non-orthogonality and skewness, which the
+    // nNonOrthogonalCorrectors handle and which do NOT break the linear solve.
+    // Net effect: snappy can never accept a solver-killing cell -- it skips the
+    // layer at that face instead. Guarantees a solvable mesh.
+    maxNonOrtho         75;     // tolerated -- correctors handle up to ~80.
+    maxConcave          70;     // TIGHTENED from 73 -> = strict.
+    minDeterminant      0.01;   // TIGHTENED from 0.005 -> = strict. THE solver
+                                // killer (det<0.01 -> non-SPD pressure matrix).
+    maxInternalSkewness 3.5;    // mild leniency -- skewness is tolerable.
+    maxBoundarySkewness 12.0;   // mild leniency.
+    minVolRatio         0.02;   // TIGHTENED from 0.010 -> = strict. Caused 6021
+                                // of the 11182 illegal faces last attempt.
+    minTwist            0.02;   // unchanged.
+}
+
+// ************************************************************************* //

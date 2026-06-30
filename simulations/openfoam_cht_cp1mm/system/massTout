@@ -1,0 +1,6 @@
+// Mass-flow-weighted average of T at the outlet (weight = phi, the mass flux).
+patch       outlet;
+fields      (T);
+operation   weightedAverage;
+weightField phi;
+#includeEtc "caseDicts/functions/surfaceFieldValue/patchValue.cfg"

@@ -1,0 +1,116 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  fluid region -- OF13 `fluid` solver module of foamMultiRun.
+//
+//  IMPORTANT (OF13):
+//    The `fluid` module reads the `PIMPLE` block of fvSolution, NOT `SIMPLE`,
+//    even in steady-state mode. Steady-state is selected via
+//    `ddt steadyState` in fvSchemes; convergence is then driven by the
+//    `PIMPLE.residualControl` dict (single values per field, no nested
+//    {tolerance/relTol} sub-dicts -- that triggers a fatal IO error).
+//
+//  Solvers / relaxation copied from the official OF13 steady-state CHT
+//  tutorial (multiRegion/CHT/circuitBoardCooling/system/fluid/fvSolution)
+//  and adapted to our 80 M cell snappy mesh with kOmegaSST RAS.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system/fluid";
+    object      fvSolution;
+}
+
+solvers
+{
+    "rho.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+    //  p_rgh -- SWITCHED FROM GAMG TO PCG+DIC.
+    //
+    //  Why: GAMG diverged on this mesh (NaN after 50 maxIter, even with
+    //  init guess 7000 Pa). Mesh has severe quality issues:
+    //    - 3.15 M concave cells (4% of fluid mesh)
+    //    - max skewness 6.74 (vs OK < 4)
+    //    - 4593 faces with interp weight < 0.05
+    //    - 3431 faces with volume ratio < 0.01
+    //    - 9 cells with determinant < 0.001 (nearly degenerate)
+    //  These pathological cells make GAMG's algebraic multigrid restriction
+    //  blow up. PCG + DIC is slower per iter (~3x) but is robust on bad
+    //  meshes because it doesn't try to coarsen cells.
+    //
+    //  Tolerance/relTol relaxed (1e-6 / 0.1) so that the inner solve doesn't
+    //  burn excessive iters early. maxIter 200 caps the work.
+    p_rgh
+    {
+        solver           PCG;
+        preconditioner   DIC;
+        tolerance        1e-6;
+        relTol           0.1;
+        maxIter          200;
+    }
+
+    p
+    {
+        $p_rgh;
+    }
+
+    "(U|h|e|k|omega)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-7;
+        relTol          0.01;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor           yes;
+    //  2 non-orthog correctors (raised from 1) -- our snappy mesh has up
+    //  to ~65 deg non-orthogonality near the fins; 2 correctors are needed
+    //  to stabilise the pressure equation on these cells (1 was not enough,
+    //  caused GAMG to diverge on the 1st outer iter).
+    nNonOrthogonalCorrectors    2;
+
+    //  residualControl: single value per field (NOT nested dicts).
+    //  Steady SIMPLE-like loop stops when all initial residuals are below
+    //  these thresholds. Targets chosen to match Glaciercore convergence
+    //  (typically reached in O(500-1500) outer iters on a well-set-up case).
+    residualControl
+    {
+        U                       1e-4;
+        h                       1e-4;
+        "(k|omega)"             5e-3;
+    }
+}
+
+//  Flat relaxation form (the OF13 tutorial uses this; the older
+//  fields{...}/equations{...} nesting also works but is more verbose).
+//  Strong under-relaxation for first-run robustness on snappy mesh:
+//    p_rgh = 0.3 (LOWERED from 0.7 -- conservative pressure update;
+//      previous 0.7 contributed to GAMG divergence on iter 1).
+//      Can be raised to 0.5-0.7 after a few hundred iters converge.
+//    U     = 0.3
+//    h     = 0.7
+//    k/omega = 0.3 (k-omega SST often needs <= 0.5 to avoid oscillation)
+relaxationFactors
+{
+    rho             1.0;
+    p_rgh           0.3;
+    U               0.3;
+    h               0.7;
+    "(k|omega)"     0.3;
+}
+
+// ************************************************************************* //

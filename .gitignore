@@ -10,3 +10,6 @@ _build
 .env
 __pycache__/
 *.pyc
+
+# Exception: keep curated result figures committed in case figures/ folders
+!simulations/**/figures/*.png

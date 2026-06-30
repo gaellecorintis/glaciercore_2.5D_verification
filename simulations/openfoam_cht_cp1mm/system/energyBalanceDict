@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      energyBalanceDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+areaT_out
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    region          fluid;
+    patch           outlet;
+    operation       areaAverage;
+    fields          (T);
+    writeFields     false;
+    writeToFile     true;
+}
+
+bulkT_out
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    region          fluid;
+    patch           outlet;
+    operation       average;
+    weightField     phi;
+    fields          (T);
+    writeFields     false;
+    writeToFile     true;
+}
+
+mdot_out
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    region          fluid;
+    patch           outlet;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeToFile     true;
+}
+
+mdot_in1
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    region          fluid;
+    patch           inlet_1;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeToFile     true;
+}
+
+mdot_in2
+{
+    type            surfaceFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    region          fluid;
+    patch           inlet_2;
+    operation       sum;
+    fields          (phi);
+    writeFields     false;
+    writeToFile     true;
+}
+// ************************************************************************* //

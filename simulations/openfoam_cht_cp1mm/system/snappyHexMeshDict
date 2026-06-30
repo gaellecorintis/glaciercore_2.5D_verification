@@ -1,0 +1,245 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   snappyHexMeshDict  --  HM27 NE quarter, PASS 1 (castellated + snap)
+//
+//   v2 strategy (no more "No layers to generate"):
+//
+//       Pass 1 (this dict):   blockMesh + snappyHexMesh -overwrite
+//                             castellated + snap, NO layers.
+//                             Produces a single mesh with cellZone "fluid"
+//                             and faceZone "fluid_to_cold_plate".
+//       Pass 2:               topoSet + splitMeshRegions -overwrite
+//                             Splits into 4 region polyMeshes; the snappy
+//                             interface becomes a real boundary patch
+//                             "fluid_to_cold_plate" (mappedWall) in the
+//                             fluid region.
+//       Pass 3:               snappyHexMesh -region fluid -overwrite
+//                             Uses system/fluid/snappyHexMeshDict to add 3
+//                             prism layers on fluid_to_cold_plate ONLY
+//                             (the previous "addLayers in same pass as
+//                             cellZone/faceZone" silently produced zero
+//                             layers because the patch was emptied by snap).
+//
+//   Refinement budget (this pass):
+//       blockMesh:           134 x 215 x 40  = 1.15M cells background
+//       snappy surface (2 3): 50 um min on flat walls, 25 um max only where
+//                             curvature > resolveFeatureAngle (= pillar
+//                             corners at 90 deg). Features eMesh at level 3
+//                             ensures pillar edges are captured sharply.
+//       (level (3 3) "level 3 EVERYWHERE on surface" inflated to 51M cells
+//        and crashed VM during snap with OOM. Level (2 3) cuts ~3x.)
+//       expected total:      ~15-25M cells before layers
+//       hard ceiling:        35M cells (maxGlobalCells safety net)
+//
+//   Snap is aggressive: 100 nSolveIter, 8 nRelaxIter, tolerance 1.0. The
+//   strict meshQualityDict is the safety net (rejects degenerate moves).
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+
+// PLAN F (10/06 13h): castellation already on disk from previous run. We
+// restart snap-only with relaxed maxNonOrtho 65->70 (see meshQualityDict)
+// and capped nSolveIter 100->8 so snap CANNOT loop indefinitely.
+castellatedMesh false;          // <-- WAS true. Reuse polyMesh on disk.
+snap            true;
+addLayers       false;          // pass 3 handles layers on fluid region only.
+
+// ====== SNAP CONTROLS =====================================================
+snapControls
+{
+    nSmoothPatch       5;
+    tolerance          1.0;
+    nSolveIter         8;       // <-- WAS 100. Hard cap on morph iterations.
+                                // After 8 iters we accept the best snap we
+                                // got (errors checked = converged enough or
+                                // we move on). 100 was overkill and caused
+                                // the 4h loop.
+    nRelaxIter         8;
+    // *** WARNING -- LESSON LEARNED (10/06/26) ***
+    // nFeatureSnapIter is the ACTUAL outer morph-iter cap (NOT nSolveIter).
+    // snappy will do EXACTLY this many morph iterations with NO early exit,
+    // even if mesh quality is already excellent. Each iter takes 5-15 min
+    // on this 14M-cell mesh. Setting too high (e.g. 15) wastes 1-2 hours
+    // on iters that produce no measurable quality gain.
+    //
+    // Sweet spot for HM27-like geometry: 5-8 iters.
+    // - First iter   : bulk snap (most points move into place)
+    // - Iter 1-3     : significant fine-tuning
+    // - Iter 4-5     : marginal polish (acceptable stop point)
+    // - Iter 6-15    : essentially no quality gain, just waste time
+    nFeatureSnapIter   8;       // *** WAS 15 -> too long. 8 is the sweet spot.
+
+    implicitFeatureSnap    false;
+    explicitFeatureSnap    true;
+    multiRegionFeatureSnap false;
+}
+
+// ====== 1) GEOMETRY ========================================================
+
+geometry
+{
+    fluid
+    {
+        type    triSurfaceMesh;
+        file    "fluid.stl";
+    }
+
+    // NOTE: previous attempt also had a "channel_box" searchableBox at
+    // refinementRegions level 2 that uniformly refined the entire fluid
+    // channel volume. That ballooned the cell count to 50M+ at iteration 1
+    // of surface refinement (and would have peaked at ~100M with ~150GB RAM,
+    // crashing the VM). It was overkill: for our 3 user issues (pillar
+    // capture, snap quality, prism layers), level (3 3) AT THE SURFACE is
+    // sufficient. The bulk of the channel doesn't need 50um cells.
+}
+
+// ====== 2) CASTELLATED MESH CONTROLS =======================================
+
+castellatedMeshControls
+{
+    // Hard ceiling: target 15-25M castellated cells (level (2 3) surface).
+    // 35M global ceiling = safety net before snap memory blowup (snap on
+    // ~50M cells needed >100GB RAM and crashed the VM twice in a row).
+    // With ~25M cells, snap will use ~25-35GB RAM, comfortably under the
+    // 58GB physical RAM (+31GB swap as overflow protection).
+    maxLocalCells       35000000;
+    maxGlobalCells      35000000;
+    minRefinementCells  10;
+
+    // Sharp-edge refinement: level 3 matches the surface refinement so 90 deg
+    // pillar corners are snapped onto the cell-vertex grid.
+    features
+    (
+        {
+            file "fluid.eMesh";
+            level 3;
+        }
+    );
+
+    refinementSurfaces
+    {
+        fluid
+        {
+            // (min max) levels:
+            //   min=2: all surface-touching cells refined to 50 um (level 2)
+            //   max=3: where curvature > resolveFeatureAngle (20 deg),
+            //          refine further to 25 um (level 3). At 169 pillars
+            //          with 90 deg corners, this means ~676 sharp corner
+            //          regions get level 3, while flat channel walls stay
+            //          at level 2. Plus the features eMesh (level 3) catches
+            //          ALL pillar edges sharply.
+            level (2 3);
+
+            // faceZone for the fluid/solid interface (snappy will turn this
+            // into a real mappedWall patch after splitMeshRegions).
+            faceZone   fluid_to_cold_plate;
+            cellZone   fluid;
+
+            // === mode insidePoint (NOT "mode inside") ===========================
+            // Use connectivity-based tagging: the side of fluid.stl that
+            // contains the per-surface insidePoint below is tagged as cellZone
+            // "fluid". The other side stays untagged (and will be split into
+            // cold_plate / tim / die by topoSet).
+            //
+            // Why not "mode inside" (previous broken approach):
+            //   "mode inside" relies on STL normal orientation -- cells with
+            //   positive signed distance to STL get tagged. fluid.stl normals
+            //   at pillar/wall walls are oriented INTO the fluid (gmsh
+            //   convention for holes in extruded surfaces), so snappy mistook
+            //   the pillar/wall INTERIORS as "inside the fluid" and tagged
+            //   them as cellZone fluid. Verified: ~140k fluid cells inside
+            //   solid zones per 0.1mm z-slab on the broken mesh.
+            //
+            // "mode insidePoint" bypasses normals entirely: snappy walks
+            // connected components and tags the one containing this point.
+            // The fluid channels are topologically connected to (5,5,0.7)mm;
+            // the 169 pillar/wall interiors are topologically isolated from
+            // it (each is its own connected component surrounded by STL),
+            // so they will NOT be tagged as fluid.
+            mode        insidePoint;
+            insidePoint (0.005 0.005 0.0007);   // mid-channel, x=5mm < pillar zone (x=12-13mm)
+        }
+    }
+
+    // No volumetric refinement region: see geometry{} note above.
+    // The mesh transitions naturally from the 200um background cells
+    // down to 25 um at the fluid wall via the nCellsBetweenLevels buffer.
+    refinementRegions
+    {
+    }
+
+    // nCellsBetweenLevels = number of buffer cells between refinement zones.
+    // 3 (was 2) gives a smoother transition over 3 levels of refinement.
+    nCellsBetweenLevels 3;
+    resolveFeatureAngle 20;          // was 30. Catches finer feature edges.
+
+    // ====================================================================
+    // GLOBAL insidePoint -- defines the background region snappy KEEPS.
+    //
+    // (5mm, 5mm, 2mm) is in the lid copper (z=1.5..2.5mm slab). The lid is
+    // topologically connected via the blockMesh (no STL between) to:
+    //    - Whole lid (z=1.5..2.5mm)
+    //    - TIM slab (z=2.5..2.6mm)
+    //    - Die slab (z=2.6..3.6mm)
+    //    - Every pillar interior (pillars merge into lid at z=1.5mm because
+    //      gmsh extrudes the holey 2D fluid contour, leaving pillar tops open)
+    //    - Every wall interior (same logic)
+    //
+    // So snappy keeps the ENTIRE solid stack (lid+pillars+walls+TIM+die)
+    // via this single seed. The fluid region is a topologically SEPARATE
+    // connected component (fully enclosed by fluid.stl walls + the lid STL
+    // above + the cold-plate bottom blockMesh boundary below). It is kept
+    // thanks to the cellZone declaration in refinementSurfaces.fluid above
+    // (snappy automatically keeps any region that hosts a cellZone).
+    //
+    // topoSet (system/topoSetDict) then carves the kept-untagged solid
+    // stack into cellZones cold_plate / tim / die by Z box.
+    //
+    // Previous broken approach: `mode inside;` on the fluid surface +
+    // insidePoint anywhere -- relied on STL normal orientation which gmsh
+    // sets to point INTO the fluid at every pillar/wall hole, making snappy
+    // mis-classify pillar/wall interiors as fluid. Fix: switched to
+    // `mode insidePoint;` on the fluid surface (connectivity-based) above.
+    // ====================================================================
+    insidePoint (0.005 0.005 0.002);
+
+    allowFreeStandingZoneFaces true;
+}
+
+// ====== 3) ADD LAYERS CONTROLS  (disabled in pass 1) =======================
+// This section is required by the dict schema even when addLayers is false.
+
+addLayersControls
+{
+    layers {}
+    relativeSizes        true;
+    expansionRatio       1.3;
+    finalLayerThickness  0.5;
+    minThickness         0.05;
+    nGrow                0;
+    featureAngle         60;
+    nSmoothSurfaceNormals 1;
+    nSmoothNormals        3;
+    nSmoothThickness      10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedialAxisAngle    90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter            30;
+    nRelaxedIter          5;
+}
+
+mergeTolerance 1e-6;
+
+// ************************************************************************* //

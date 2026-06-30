@@ -1,0 +1,133 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  topoSetDict_BCs  --  carve inlet_1, inlet_2, outlet face sets out of the
+//                       fluid_to_cold_plate mappedWall (= the interior chip
+//                       walls touching the fluid). All three are subsets of
+//                       this single source patch.
+//
+//  WHY NOT from `right`/`left`/etc.: the fluid STL is a CLOSED volume (no
+//  physical inlet/outlet openings -- it was extruded from a 2D fluid contour
+//  with pillar holes). After splitMeshRegions, the patches called
+//  right/left/front/back in the fluid region are leftover snappy fragments,
+//  not the planes from blockMesh. The fluid only touches the chip's east /
+//  west / internal-separator walls via fluid_to_cold_plate. We therefore
+//  carve all three BCs out of that single mappedWall.
+//
+//  Coordinates (chip frame, metres):
+//      X in [0,        0.02670]    (chip width)
+//      Y in [0,        0.04300]    (chip length)
+//      Z in [0,        0.00150]    (fluid channel)
+//
+//  Glaciercore reference (settings_sim.json / settings_mesh.json):
+//    INLET 1: x ~ 0.02645, y in [0,      0.0187]   -- east edge, south half
+//    INLET 2: y ~ 0.01885, x in [0.0139, 0.0262]   -- horizontal separator
+//    OUTLET : x ~ 0,       y in [0,      0.0358]   -- west edge, south part
+//
+//  Our mesh has chip_width=26.7mm (vs glaciercore 26.5mm). The chip east
+//  edge is at x = 0.0267, west at x = 0. The internal separator wall is
+//  at y ~ 0.0186 (slightly south of glaciercore 0.0188, but irrelevant
+//  for area-driven flow split).
+//
+//  Run as:
+//      topoSet -region fluid -dict system/topoSetDict_BCs
+//
+//  Then:
+//      createPatch -region fluid -overwrite -dict system/createPatchDict
+//
+//  createPatch will REUSE (overwrite faces of) any pre-existing patches with
+//  the same names -- so this dict is safe to re-run after the first attempt.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+actions
+(
+    // ============== 1. INLET 1 =============================================
+    // East wall of the fluid cavity (x ~ 0.0267, outward normal = +x).
+    // Naturally limited to y in [0, 0.0185] by the channel topology (no
+    // fluid touches the east edge for y > the inlet_2 separator), so we
+    // don't need a y subset -- the whole east-wall slice IS inlet_1.
+    {
+        name    in1Faces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name right; }   // east wall (x=0.0267) = inlet_1 zone
+    }
+    {   // idempotent: also pull faces already mislabelled as inlet_1 by a prior run
+        name    in1Faces; type faceSet; action add;
+        source  patchToFace;
+        sourceInfo { name inlet_1; }
+    }
+    {
+        name    in1Faces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (0.02660 -1e-4 -1e-4) (0.02671 0.0187 0.00151); }
+    }
+    {
+        name    in1Faces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (1 0 0); cos 0.9; }   // outward normal = +x
+    }
+
+    // ============== 2. INLET 2 =============================================
+    // Top side of the internal horizontal separator at y ~ 0.0186 (fluid
+    // sits above the wall, so we keep faces with outward normal = -y).
+    // Injecting a positive flow rate -> fluid pushed in +y (= upward into
+    // the vertical-fin zone), matching glaciercore inlet_2 behaviour.
+    {
+        name    in2Faces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name fluid_to_cold_plate; }
+    }
+    {   // idempotent: also pull faces already moved to inlet_2 by a prior run
+        name    in2Faces; type faceSet; action add;
+        source  patchToFace;
+        sourceInfo { name inlet_2; }
+    }
+    {
+        name    in2Faces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (0.0139 0.01855 -1e-4) (0.0262 0.01865 0.00151); }
+    }
+    {
+        name    in2Faces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (0 -1 0); cos 0.9; }   // outward normal = -y
+    }
+
+    // ============== 3. OUTLET ==============================================
+    // West wall of the fluid cavity (x ~ 0, outward normal = -x).
+    // Limited to y in [0, 0.0358] to match glaciercore outlet zone (the
+    // west wall actually extends naturally up to y = 0.043; the region
+    // beyond y = 0.0358 stays as a noSlip wall).
+    {
+        name    outFaces; type faceSet; action new;
+        source  patchToFace;
+        sourceInfo { name left; }   // west wall (x=0) = outlet zone
+    }
+    {   // idempotent: also pull faces already moved to outlet by a prior run
+        name    outFaces; type faceSet; action add;
+        source  patchToFace;
+        sourceInfo { name outlet; }
+    }
+    {
+        name    outFaces; type faceSet; action subset;
+        source  boxToFace;
+        sourceInfo { box (-1e-4 -1e-4 -1e-4) (0.00011 0.03581 0.00151); }
+    }
+    {
+        name    outFaces; type faceSet; action subset;
+        source  normalToFace;
+        sourceInfo { normal (-1 0 0); cos 0.9; }   // outward normal = -x
+    }
+);
+
+// ************************************************************************* //

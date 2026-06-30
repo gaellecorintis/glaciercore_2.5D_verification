@@ -1,0 +1,90 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Version:  13
+\*---------------------------------------------------------------------------*/
+//  Diagnostic dict: try several normal directions in the inlet_2 box to find
+//  out which orientation has actual horizontal-separator faces in this mesh.
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+actions
+(
+    {
+        name probeAll; type faceSet; action new;
+        source patchToFace;
+        sourceInfo { name fluid_to_cold_plate; }
+    }
+    {
+        name probeAll; type faceSet; action subset;
+        source boxToFace;
+        sourceInfo { box (0.0139 0.01855 -1e-4) (0.0262 0.01865 0.00151); }
+    }
+
+    {
+        name probePy; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probePy; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (0 1 0); cos 0.9; }
+    }
+
+    {
+        name probeMy; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probeMy; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (0 -1 0); cos 0.9; }
+    }
+
+    {
+        name probePx; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probePx; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (1 0 0); cos 0.9; }
+    }
+
+    {
+        name probeMx; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probeMx; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (-1 0 0); cos 0.9; }
+    }
+
+    {
+        name probePz; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probePz; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (0 0 1); cos 0.9; }
+    }
+
+    {
+        name probeMz; type faceSet; action new; source faceToFace;
+        sourceInfo { set probeAll; }
+    }
+    {
+        name probeMz; type faceSet; action subset;
+        source normalToFace;
+        sourceInfo { normal (0 0 -1); cos 0.9; }
+    }
+);

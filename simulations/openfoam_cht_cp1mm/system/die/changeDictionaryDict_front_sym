@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Convert the `front` patch (y = 0, the chip's east-west centerline) from
+//  a generic `patch` to a `symmetryPlane`. snappyHexMesh tags split-region
+//  boundary patches as type `patch`; we need the geometric constraint.
+//
+//  Run as:
+//      changeDictionary -region fluid -dict system/fluid/changeDictionaryDict_front_sym
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+
+boundary
+{
+    front
+    {
+        type            symmetryPlane;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,64 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  Pseudo-transient (steady-state via SIMPLE on the fluid + solid conduction).
+//  Run with `foamMultiRun` -- the regionSolvers entry tells it which solver
+//  module to use per region (`fluid` for the coolant, `solid` for the 3
+//  conducting layers).
+//
+//  endTime = 5000 is a hard cap; in practice we rely on residualControl in
+//  each region's fvSolution to stop early (typically << 1000 iters for a
+//  well-set-up SIMPLE).
+//
+//  writeInterval = 100: keep enough snapshots to inspect convergence,
+//  purgeWrite = 5: only the 5 most recent kept on disk (mesh is 80M cells).
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+regionSolvers
+{
+    fluid           fluid;
+    cold_plate      solid;
+    tim             solid;
+    die             solid;
+}
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         7000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   25;
+
+purgeWrite      3;
+
+writeFormat     binary;
+
+writePrecision  8;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+// ************************************************************************* //

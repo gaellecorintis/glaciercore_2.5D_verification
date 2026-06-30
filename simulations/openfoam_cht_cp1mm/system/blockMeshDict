@@ -1,0 +1,189 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   blockMeshDict  --  HM27 NE quarter chip, 4-region CHT case
+//
+//   Bounding box (chip frame, metres):
+//       X in [0,        0.02670]    (26.70 mm, perpendicular to flow)
+//       Y in [0,        0.04300]    (43.00 mm, perpendicular to flow)
+//       Z in [0,        0.00360]    ( 3.60 mm, the thermal stack)
+//
+//   FOUR vertical blocks stacked along Z. Z densification (v2): we now want
+//   FIVE z-cells through the TIM (20 um per cell) and a much finer solid
+//   discretisation in cold_plate / die so the thermal gradient is properly
+//   resolved AND so layers added later on the fluid_to_cold_plate interface
+//   don't see a sudden cell-size jump on the solid side.
+//
+//        z = 3.6 mm  ------ DIE TOP   (powermap face, later)
+//         block 3    die_substrate (Si, 1 mm), Nz = 10 (100 um cells)
+//        z = 2.6 mm  ------
+//         block 2    TIM (paste, 100 um), Nz = 5 (20 um cells)  <-- 5 cells
+//        z = 2.5 mm  ------
+//         block 1    cold_plate_lid (Cu, 1 mm), Nz = 10 (100 um cells)
+//        z = 1.5 mm  ------
+//         block 0    fluid + pillars (1.5 mm), Nz = 15 (100 um cells)
+//                    snappyHexMesh refines this block locally near pillars
+//                    to level 3 (-> 12.5 um cells at walls, 25 um in the
+//                    channel volume via a refinementBox).
+//        z = 0       ------ FLUID BOTTOM (adiabatic)
+//
+//   XY discretisation: 134 x 215 = 200 um base cells in both X and Y.
+//   Combined with snappy level (3 3) on the fluid surface -> 25 um cells
+//   at the pillar walls = ~10+ vertices around each circular pillar
+//   (vs ~6 at level 2 = visible octagon facets).
+//
+//   Total background cells: 134 * 215 * (15+10+5+10) = 1 152 400.
+//   With snappy level 3 + refinementBox + 3 layers on fluid:
+//   estimated 40-80M total cells.
+//
+//   Patches (named by chip-frame orientation, semantics applied in Phase D):
+//       right    x = W_NE    (chip's RIGHT edge -- inlet in HM27 split flow)
+//       left     x = 0       (chip CENTERLINE -- contains outlet)
+//       front    y = 0       (chip CENTERLINE -- symmetry plane)
+//       back     y = L_NE    (chip's TOP edge -- wall)
+//       bottom   z = 0       (under the fluid -- adiabatic wall)
+//       top      z = 3.6 mm  (top of die -- where powermap is applied)
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+scale   1;
+
+// --- Five Z-levels, four corner XY each. 20 vertices total. -----------------
+//   Each level has corners ordered (0,0), (W,0), (W,L), (0,L).
+//   Level 0 = z=0; Level 1 = z=1.5mm; Level 2 = z=2.5mm;
+//   Level 3 = z=2.6mm; Level 4 = z=3.6mm.
+
+vertices
+(
+    // Level 0: z = 0
+    (0       0       0)        // 0
+    (0.0267  0       0)        // 1
+    (0.0267  0.043   0)        // 2
+    (0       0.043   0)        // 3
+    // Level 1: z = 0.0015 (top of fluid / bottom of lid)
+    (0       0       0.0015)   // 4
+    (0.0267  0       0.0015)   // 5
+    (0.0267  0.043   0.0015)   // 6
+    (0       0.043   0.0015)   // 7
+    // Level 2: z = 0.0025 (top of lid / bottom of TIM)
+    (0       0       0.0025)   // 8
+    (0.0267  0       0.0025)   // 9
+    (0.0267  0.043   0.0025)   // 10
+    (0       0.043   0.0025)   // 11
+    // Level 3: z = 0.0026 (top of TIM / bottom of die)
+    (0       0       0.0026)   // 12
+    (0.0267  0       0.0026)   // 13
+    (0.0267  0.043   0.0026)   // 14
+    (0       0.043   0.0026)   // 15
+    // Level 4: z = 0.0036 (top of die)
+    (0       0       0.0036)   // 16
+    (0.0267  0       0.0036)   // 17
+    (0.0267  0.043   0.0036)   // 18
+    (0       0.043   0.0036)   // 19
+);
+
+// --- Four vertical blocks. XY resolution (54 x 86) is identical across all
+//     four blocks; only the Z cell count varies. simpleGrading (1 1 1) means
+//     uniform spacing inside each block.
+blocks
+(
+    // Block 0: fluid + pillars (z=0 -> 1.5mm), 200um XY + 100um Z
+    //          snappy refines to level 3 inside the channel (-> 25 um at walls)
+    hex ( 0  1  2  3   4  5  6  7) (134 215 15) simpleGrading (1 1 1)
+    // Block 1: cold-plate lid (z=1.5 -> 2.5mm), 100um Z (~cubic with xy=200)
+    hex ( 4  5  6  7   8  9 10 11) (134 215 10) simpleGrading (1 1 1)
+    // Block 2: TIM (z=2.5 -> 2.6mm), 20um Z = 5 cells through the 100um slab
+    hex ( 8  9 10 11  12 13 14 15) (134 215  5) simpleGrading (1 1 1)
+    // Block 3: die substrate (z=2.6 -> 3.6mm), 100um Z
+    hex (12 13 14 15  16 17 18 19) (134 215 10) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+// --- Patches. Faces from all 4 blocks contribute to the side patches; only
+//     block 0 contributes to "bottom" and only block 3 to "top".
+boundary
+(
+    right
+    {
+        type patch;
+        faces
+        (
+            ( 1  2  6  5)    // block 0 east face
+            ( 5  6 10  9)    // block 1 east face
+            ( 9 10 14 13)    // block 2 east face
+            (13 14 18 17)    // block 3 east face
+        );
+    }
+
+    left
+    {
+        type patch;
+        faces
+        (
+            ( 0  4  7  3)    // block 0 west face
+            ( 4  8 11  7)    // block 1 west face
+            ( 8 12 15 11)    // block 2 west face
+            (12 16 19 15)    // block 3 west face
+        );
+    }
+
+    front
+    {
+        type patch;
+        faces
+        (
+            ( 0  1  5  4)    // block 0 south face
+            ( 4  5  9  8)    // block 1 south face
+            ( 8  9 13 12)    // block 2 south face
+            (12 13 17 16)    // block 3 south face
+        );
+    }
+
+    back
+    {
+        type patch;
+        faces
+        (
+            ( 3  7  6  2)    // block 0 north face
+            ( 7 11 10  6)    // block 1 north face
+            (11 15 14 10)    // block 2 north face
+            (15 19 18 14)    // block 3 north face
+        );
+    }
+
+    bottom
+    {
+        type wall;
+        faces
+        (
+            ( 0  3  2  1)    // block 0 bottom face (z=0)
+        );
+    }
+
+    top
+    {
+        type wall;
+        faces
+        (
+            (16 17 18 19)    // block 3 top face (z=3.6mm)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

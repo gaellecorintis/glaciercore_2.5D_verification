@@ -1,0 +1,38 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  fvConstraints (fluid) -- physically bound the temperature to stop the
+//  energy equation from overshooting into unphysical values (a single cell
+//  near the high-speed 0.1 mm inlet jets undershot to T = -46 C at iter 28
+//  and crashed the rhoThermo). Bounds are wide enough not to clip the real
+//  solution (inlet 43 C = 316 K, junction ~85 C = 358 K) but catch blow-ups.
+// ============================================================================
+
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system/fluid";
+    object      fvConstraints;
+}
+
+#includeConstraint limitTemperature(min=280, max=400)
+
+//  limitMag (fluid) -- fuse on the velocity magnitude. Diagnostic on the iter-25
+//  diverged field showed the blow-up is hyper-localised: ~20 cells inside a
+//  0.1 mm cube at (23.0, 33.6, 1.5) mm reach |U| = 1.34e6 m/s (Mach ~4000),
+//  poisoning the whole domain, while everywhere else |U| stays physical. The
+//  real maximum physical velocity is ~4.6 m/s (in the 0.1 mm inlet jets), so a
+//  50 m/s cap (>10x margin) never touches the genuine flow -- it only clips the
+//  runaway from the pathological snap cell, stopping the continuity explosion.
+limitU
+{
+    type        limitMag;
+    cellZone    all;
+    field       U;
+    max         50;
+}
+
+// ************************************************************************* //

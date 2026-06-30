@@ -1,0 +1,51 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  createPatchDict_cp -- promote cpIn1Faces / cpIn2Faces / cpOutFaces into
+//                        three new patches on the cold_plate region:
+//                        cp_inlet_1, cp_inlet_2, cp_outlet.
+//
+//  These patches are the cold_plate-side counterparts of the fluid-side
+//  inlet/outlet patches. They face the inlet/outlet ports (where, in the
+//  real chip, coolant pipes connect), so on the cold_plate they are
+//  treated as adiabatic walls (zeroGradient T).
+//
+//  Run as:
+//      createPatch -region cold_plate -overwrite -dict system/createPatchDict_cp
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+
+pointSync false;
+
+patches
+(
+    {
+        name           cp_inlet_1;
+        patchInfo      { type wall; }
+        constructFrom  set;
+        set            cpIn1Faces;
+    }
+    {
+        name           cp_inlet_2;
+        patchInfo      { type wall; }
+        constructFrom  set;
+        set            cpIn2Faces;
+    }
+    {
+        name           cp_outlet;
+        patchInfo      { type wall; }
+        constructFrom  set;
+        set            cpOutFaces;
+    }
+);
+
+// ************************************************************************* //

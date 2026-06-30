@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//  createPatchDict -- (re)build inlet_1 / inlet_2 / outlet as TOP-surface
+//                      strips from the face sets made by topoSetDict_BCs.
+//
+//  Order matters (createPatch assigns faces top-to-bottom):
+//    1. `left` first ABSORBS any pre-existing inlet_1/inlet_2/outlet faces
+//       (the old vertical-wall I/O) back into a plain noSlip wall, so they
+//       don't linger in the new I/O patches. `left` is already in the wall
+//       BC regex of 0/fluid, so no 0/ edits are needed.
+//    2. inlet_1/inlet_2/outlet are then (re)built from the new ceiling sets;
+//       those faces currently live in fluid_to_cold_plate, so they move out
+//       of the coupled interface into the new openings.
+//
+//  Run:  createPatch -region fluid -overwrite -dict system/createPatchDict
+//  Safe to re-run (topoSetDict_BCs re-absorbs prior strips into `top`).
+// ============================================================================
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+
+pointSync false;
+
+patches
+(
+    {
+        name           left;                 // catch-all wall for old I/O faces
+        patchInfo      { type wall; }
+        constructFrom  patches;
+        patches        (left inlet_1 inlet_2 outlet);
+    }
+
+    {
+        name           inlet_1;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            in1Faces;
+    }
+
+    {
+        name           inlet_2;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            in2Faces;
+    }
+
+    {
+        name           outlet;
+        patchInfo      { type patch; }
+        constructFrom  set;
+        set            outFaces;
+    }
+);
+
+// ************************************************************************* //

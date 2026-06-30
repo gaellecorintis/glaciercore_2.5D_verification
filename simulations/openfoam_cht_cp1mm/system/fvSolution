@@ -1,0 +1,22 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  13                                    |
+\*---------------------------------------------------------------------------*/
+//   Top-level fvSolution -- minimal. Per-region solvers in Phase D live in
+//   system/{fluid,cold_plate,tim,die}/fvSolution.
+// ============================================================================
+
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+
+PIMPLE
+{
+}
+
+// ************************************************************************* //
